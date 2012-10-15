@@ -1,3 +1,5 @@
+<?php require ( 'events.php' ); ?>
+
 <!DOCTYPE html>
 <html class='production' lang='no'>
     <head>
@@ -20,9 +22,11 @@
 
         <div class="container">
             <div class="hero-unit">
-                <h1>Statoil, 25.11.12</h1>
-                <p>Statoil har 40 årsjubileum, og dette feires med brask og bram på Studentersamfundet i Trondheim. For å avslutte det hele får vi besøk av Syntpopelektronika-kollektivet fra Norrköping Slagsmålsklubben som kommer til å få ALLE til å danse!</p>
-                <p><a class="btn btn-primary btn-large" href="#registration">Meld meg på &raquo;</a></p>
+                <?php if ( isset ( $first_upcoming_event ) ): ?>
+                    <h1><?= $first_upcoming_event["name"]; ?>, <?= date ( "d.m.y", $first_upcoming_event["date"] ); ?></h1>
+                    <p><?= $first_upcoming_event["description"]; ?></p>
+                    <p><a class="btn btn-primary btn-large" href="#registration">Meld meg på &raquo;</a></p>
+                <?php endif; ?>
             </div>
 
             <div class="row">
@@ -51,7 +55,9 @@
                             <label class="control-label" for="inputPresentation">Bedriftspresentasjon</label>
                             <div class="controls">
                                 <select id="inputPresentation">
-
+                                    <?php foreach ( $upcoming_events as $event ): ?>
+                                        <option><?= $event["name"] ?>, <?= date ( "d.m.y", $event["date"] ); ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -83,11 +89,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>Statoil</td>
-                            <td>25.11.12</td>
-                            <td>Statoil har 40 årsjubileum, og dette feires med brask og bram på Studentersamfundet i.. <a href="#">Les mer</a></td>
-                        </tr>
+                            <?php foreach ( $upcoming_events as $event ): ?>
+                                <tr>
+                                    <td><?= $event["name"] ?></td>
+                                    <td><?= date ( "d.m.y", $event["date"] ); ?></td>
+                                    <td><?= $event["description"] ?></td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
