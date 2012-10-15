@@ -1,6 +1,6 @@
 <?php
 
-    require_once ( "presentations.php" );
+    require_once ( "../presentations.php" );
 
     if ( !empty ( $_POST["name"] ) &&
          !empty ( $_POST["email"] ) &&
