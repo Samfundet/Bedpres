@@ -25,11 +25,11 @@
         <div class="container">
             <div class="hero-unit">
                 <?php if ( isset ( $first_upcoming_presentation ) ): ?>
-                    <h1><?= $first_upcoming_presentation["name"]; ?>, <?= date ( "d.m.y", $first_upcoming_presentation["date"] ); ?></h1>
-                    <p><?= $first_upcoming_presentation["description"]; ?></p>
+                    <h1><?= $first_upcoming_presentation -> getName (); ?>, <?= date ( "d.m.y", $first_upcoming_presentation -> getDate () ); ?></h1>
+                    <p><?= $first_upcoming_presentation -> getDescription (); ?></p>
                     <p>
-                        <?= $first_upcoming_presentation["max_registrations"] - get_registration_count ( $first_upcoming_presentation ); ?> av
-                        <?= $first_upcoming_presentation["max_registrations"]; ?> plasser er ledig.
+                        <?= $first_upcoming_presentation -> getRegistrationsLeft (); ?> av
+                        <?= $first_upcoming_presentation -> getMaxRegistrations (); ?> plasser er ledig.
                     </p>
                     <p><a class="btn btn-primary btn-large" href="#registration">Meld meg på &raquo;</a></p>
                 <?php else: ?>
@@ -77,10 +77,10 @@
                                     <?php foreach ( $upcoming_presentations as $presentation ): ?>
                                         <option
                                             <?php if ( isset ( $status ) && $status <> 0 &&
-                                                       $_POST["presentation"] == $presentation["name"] . ", " . date ( "d.m.y", $presentation["date"] ) ): ?>
+                                                       $_POST["presentation"] == $presentation -> getName () . ", " . date ( "d.m.y", $presentation -> getDate () ) ): ?>
                                                 selected="selected"
                                             <?php endif; ?>>
-                                            <?= $presentation["name"] ?>, <?= date ( "d.m.y", $presentation["date"] ); ?>
+                                            <?= $presentation -> getName () ?>, <?= date ( "d.m.y", $presentation -> getDate () ); ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
@@ -118,13 +118,13 @@
                             <tbody>
                                 <?php foreach ( $upcoming_presentations as $presentation ): ?>
                                     <tr>
-                                        <td><?= $presentation["name"] ?></td>
-                                        <td><?= date ( "d.m.y", $presentation["date"] ); ?></td>
+                                        <td><?= $presentation -> getName () ?></td>
+                                        <td><?= date ( "d.m.y", $presentation -> getDate () ); ?></td>
                                         <td>
-                                            <?= $presentation["max_registrations"] - get_registration_count ( $presentation ); ?>
-                                            av <?= $presentation["max_registrations"]; ?>
+                                            <?= $presentation -> getRegistrationsLeft (); ?>
+                                            av <?= $presentation -> getMaxRegistrations (); ?>
                                         </td>
-                                        <td><?= $presentation["description"] ?></td>
+                                        <td><?= $presentation -> getDescription (); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

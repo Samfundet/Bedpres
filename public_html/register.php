@@ -6,13 +6,13 @@
          !empty ( $_POST["email"] ) &&
          !empty ( $_POST["phone"] ) &&
          !empty ( $_POST["presentation"] ) ) {
-        if ( ( $presentation = get_presentation_from_string ( $upcoming_presentations, $_POST["presentation"] ) ) !== null ) {
-            if ( get_registration_count ( $presentation ) < $presentation["max_registrations"] ) {
+        if ( ( $presentation = Presentation :: getPresentationFromString ( $_POST["presentation"] ) ) !== null ) {
+            if ( $presentation -> getRegistrationCount () < $presentation -> getMaxRegistrations () ) {
                 $line = "\"" . $_POST["name"] . "\"|" .
                         "\"" . $_POST["email"] . "\"|" .
                         "\"" . $_POST["phone"] . "\"|\"Påmeldt\"";
 
-                $file = get_registration_file ( $presentation );
+                $file = $presentation -> getRegistrationFile ();
 
                 if ( file_exists ( $file ) ) {
                     file_put_contents ( $file, file_get_contents ( $file ) . "\n" . $line );
