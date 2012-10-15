@@ -1,0 +1,14 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.navbar-inner {
+    background-color: #A03033 !important;
+    background-image: none !important;
+    border: none !important;
+}
+
+    .navbar-inner a {
+        color: #eceded !important;
+    }
