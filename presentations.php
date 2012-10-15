@@ -3,7 +3,7 @@
       int mktime ([ int $hour = date("H") [, int $minute = date("i") [, int $second = date("s") [, int $month = date("n") [, int $day = date("j") [, int $year = date("Y") [, int $is_dst = -1 ]]]]]]] )
     */
 
-    $events = array (
+    $presentations = array (
         array (
             "name" => "Statoil",
             "description" => "Statoil har 40 årsjubileum, og dette feires med brask og bram på Studentersamfundet i Trondheim. For å avslutte det hele får vi besøk av Syntpopelektronika-kollektivet fra Norrköping Slagsmålsklubben som kommer til å få ALLE til å danse!",
@@ -26,24 +26,24 @@
         ),
     );
 
-    usort ( $events, function ( $event_1, $event_2 ) {
-        return $event_1["date"] - $event_2["date"];
+    usort ( $presentations, function ( $presentation_1, $presentation_2 ) {
+        return $presentation_1["date"] - $presentation_2["date"];
     } );
 
-    function get_upcoming_events ( $events ) {
-        $upcoming_events = array ();
+    function get_upcoming_presentations ( $presentations ) {
+        $upcoming_presentations = array ();
 
-        foreach ( $events as $event ) {
-            if ( $event["date"] > time () ) {
-                $upcoming_events[] = $event;
+        foreach ( $presentations as $presentation ) {
+            if ( $presentation["date"] > time () ) {
+                $upcoming_presentations[] = $presentation;
             }
         }
 
-        return $upcoming_events;
+        return $upcoming_presentations;
     }
 
-    $upcoming_events = get_upcoming_events ( $events );
+    $upcoming_presentations = get_upcoming_presentations ( $presentations );
 
-    if ( count ( $upcoming_events ) > 0 ) {
-        $first_upcoming_event = $upcoming_events[0];
+    if ( count ( $upcoming_presentations ) > 0 ) {
+        $first_upcoming_presentation = $upcoming_presentations[0];
     }
