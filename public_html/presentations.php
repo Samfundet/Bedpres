@@ -55,13 +55,17 @@
     }
 
     function get_registration_count ( $presentation ) {
-        $file = "registrations/" . $presentation["name"] . ", " . date ( "d.m.y", $presentation["date"] )  . ".csv";
+        $file = get_registration_file ( $presentation );
 
         if ( file_exists ( $file ) ) {
             return count ( split ( "\n", file_get_contents ( $file ) ) );
         } else {
             return 0;
         }
+    }
+
+    function get_registration_file ( $presentation ) {
+        return "registrations/" . $presentation["name"] . ", " . date ( "d.m.y", $presentation["date"] )  . ".csv";
     }
 
     $upcoming_presentations = get_upcoming_presentations ( $presentations );

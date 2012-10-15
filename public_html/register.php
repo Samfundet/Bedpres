@@ -12,7 +12,7 @@
                         "\"" . $_POST["email"] . "\"|" .
                         "\"" . $_POST["phone"] . "\"|\"Påmeldt\"";
 
-                $file = "registrations/" . $_POST["presentation"] . ".csv";
+                $file = get_registration_file ( $presentation );
 
                 if ( file_exists ( $file ) ) {
                     file_put_contents ( $file, file_get_contents ( $file ) . "\n" . $line );
