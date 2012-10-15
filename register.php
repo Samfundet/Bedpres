@@ -11,6 +11,18 @@
          !empty ( $_POST["phone"] ) &&
          !empty ( $_POST["presentation"] ) ) {
         if ( in_array ( $_POST["presentation"], $valid_presentations ) ) {
+            $line = "\"" . $_POST["name"] . "\"|" .
+                    "\"" . $_POST["email"] . "\"|" .
+                    "\"" . $_POST["phone"] . "\"|\"Påmeldt\"";
+
+            $file = "påmeldinger/" . $_POST["presentation"] . ".csv";
+
+            if ( file_exists ( $file ) ) {
+                file_put_contents ( $file, file_get_contents ( $file ) . "\n" . $line );
+            } else {
+                file_put_contents ( $file, $line );
+            }
+
             $status = 0;
         } else {
             $status = 2;
