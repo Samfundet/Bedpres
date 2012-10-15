@@ -9,6 +9,8 @@
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="jquery.expander.min.js"></script>
+        <script src="javascript.js"></script>
     </head>
 
     <body>
@@ -80,7 +82,7 @@
             <div class="row">
                 <div class="span12">
                     <h2>Kommende bedriftspresentasjoner</h2>
-                    <table class="table">
+                    <table class="table" id="upcoming-events">
                         <thead>
                         <tr>
                             <th>Bedriftnavn</th>
