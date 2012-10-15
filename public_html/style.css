@@ -12,3 +12,7 @@ body {
     .navbar-inner a {
         color: #eceded !important;
     }
+
+#upcoming-presentations {
+    font-size: 12px;
+}
