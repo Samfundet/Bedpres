@@ -5,4 +5,8 @@ $(function () {
             userCollapseText: "Les mindre"
         });
     });
+
+    $(".btn-primary").click(function () {
+        $('select[name=presentation] option:eq(1)').attr('selected', 'selected');
+    });
 });
