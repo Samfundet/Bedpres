@@ -34,31 +34,44 @@
             <div class="row">
                 <div class="span6">
                     <h3 id="registration">Påmelding</h3>
-                    <form class="form-horizontal">
+                    <?php if ( $status == 1 ): ?>
+                        <p class="text-error">Vennligst fyll ut alle felter.</p>
+                    <?php endif; ?>
+                    <form class="form-horizontal" action="register.php" method="post">
                         <div class="control-group">
                             <label class="control-label" for="inputName">Fullt navn</label>
                             <div class="controls">
-                                <input type="text" id="inputName" placeholder="Fullt navn">
+                                <input type="text" id="inputName" placeholder="Fullt navn" name="name"
+                                    <?php if ( isset ( $status ) && $status <> 0 ): ?>value="<?= htmlentities ( $_POST["name"] ); ?>"<?php endif; ?>>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="inputEmail">E-post</label>
                             <div class="controls">
-                                <input type="text" id="inputEmail" placeholder="E-post">
+                                <input type="text" id="inputEmail" placeholder="E-post" name="email"
+                                    <?php if ( isset ( $status ) && $status <> 0 ): ?>value="<?= htmlentities ( $_POST["email"] ); ?>"<?php endif; ?>>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="inputPhone">Telefon</label>
                             <div class="controls">
-                                <input type="text" id="inputPhone" placeholder="Telefon">
+                                <input type="text" id="inputPhone" placeholder="Telefon" name="phone"
+                                    <?php if ( isset ( $status ) && $status <> 0 ): ?>value="<?= htmlentities ( $_POST["phone"] ); ?>"<?php endif; ?>>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="inputPresentation">Bedriftspresentasjon</label>
                             <div class="controls">
-                                <select id="inputPresentation">
+                                <select id="inputPresentation" name="presentation">
+                                    <option></option>
                                     <?php foreach ( $upcoming_presentations as $presentation ): ?>
-                                        <option><?= $presentation["name"] ?>, <?= date ( "d.m.y", $presentation["date"] ); ?></option>
+                                        <option
+                                            <?php if ( isset ( $status ) && $status <> 0 &&
+                                                       $_POST["presentation"] == $presentation["name"] . ", " . date ( "d.m.y", $presentation["date"] ) ): ?>
+                                                selected="selected"
+                                            <?php endif; ?>>
+                                            <?= $presentation["name"] ?>, <?= date ( "d.m.y", $presentation["date"] ); ?>
+                                        </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
