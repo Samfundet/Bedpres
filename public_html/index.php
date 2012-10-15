@@ -34,9 +34,9 @@
             <div class="row">
                 <div class="span6">
                     <h3 id="registration">Påmelding</h3>
-                    <?php if ( $status == 1 ): ?>
+                    <?php if ( $status === 1 ): ?>
                         <p class="text-error">Vennligst fyll ut alle felter.</p>
-                    <?php elseif ( $status == 0 ): ?>
+                    <?php elseif ( $status === 0 ): ?>
                         <p class="text-success">Du er nå påmeldt på bedriftspresentasjon.</p>
                     <?php endif; ?>
                     <form class="form-horizontal" action="register.php" method="post">
