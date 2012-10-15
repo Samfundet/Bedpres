@@ -17,7 +17,7 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="#">Bedriftspresentasjoner på Studentersamfundet</a>
+                    <a class="brand" href="/">Bedriftspresentasjoner på Studentersamfundet</a>
                 </div>
             </div>
         </div>
