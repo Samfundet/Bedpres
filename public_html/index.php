@@ -28,6 +28,8 @@
                     <h1><?= $first_upcoming_presentation["name"]; ?>, <?= date ( "d.m.y", $first_upcoming_presentation["date"] ); ?></h1>
                     <p><?= $first_upcoming_presentation["description"]; ?></p>
                     <p><a class="btn btn-primary btn-large" href="#registration">Meld meg på &raquo;</a></p>
+                <?php else: ?>
+                    <h2>Det er for tiden ingen kommende presentasjoner... :(</h2>
                 <?php endif; ?>
             </div>
 
@@ -94,29 +96,31 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="span12">
-                    <h2>Kommende bedriftspresentasjoner</h2>
-                    <table class="table" id="upcoming-presentations">
-                        <thead>
-                        <tr>
-                            <th>Bedriftnavn</th>
-                            <th>Dato</th>
-                            <th>Beskrivelse</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ( $upcoming_presentations as $presentation ): ?>
-                                <tr>
-                                    <td><?= $presentation["name"] ?></td>
-                                    <td><?= date ( "d.m.y", $presentation["date"] ); ?></td>
-                                    <td><?= $presentation["description"] ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+            <?php if ( count ( $upcoming_presentations ) > 0 ): ?>
+                <div class="row">
+                    <div class="span12">
+                        <h2>Kommende bedriftspresentasjoner</h2>
+                        <table class="table" id="upcoming-presentations">
+                            <thead>
+                            <tr>
+                                <th>Bedriftnavn</th>
+                                <th>Dato</th>
+                                <th>Beskrivelse</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ( $upcoming_presentations as $presentation ): ?>
+                                    <tr>
+                                        <td><?= $presentation["name"] ?></td>
+                                        <td><?= date ( "d.m.y", $presentation["date"] ); ?></td>
+                                        <td><?= $presentation["description"] ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
     </body>
 </html>
