@@ -1,4 +1,0 @@
-AuthUserFile ../../.htpasswd
-AuthType Basic
-AuthName "Påmeldinger til bedriftspresentasjoner"
-Require valid-user
