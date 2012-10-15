@@ -8,21 +8,25 @@
             "name" => "Statoil",
             "description" => "Statoil har 40 årsjubileum, og dette feires med brask og bram på Studentersamfundet i Trondheim. For å avslutte det hele får vi besøk av Syntpopelektronika-kollektivet fra Norrköping Slagsmålsklubben som kommer til å få ALLE til å danse!",
             "date" => mktime ( 20, 00, 00, 10, 14, 2012 ),
+            "max_registrations" => 40,
         ),
         array (
             "name" => "Statoil",
             "description" => "Statoil har 40 årsjubileum, og dette feires med brask og bram på Studentersamfundet i Trondheim. For å avslutte det hele får vi besøk av Syntpopelektronika-kollektivet fra Norrköping Slagsmålsklubben som kommer til å få ALLE til å danse!",
             "date" => mktime ( 20, 00, 00, 10, 20, 2012 ),
+            "max_registrations" => 2,
         ),
         array (
             "name" => "Statoil",
             "description" => "Statoil har 40 årsjubileum, og dette feires med brask og bram på Studentersamfundet i Trondheim. For å avslutte det hele får vi besøk av Syntpopelektronika-kollektivet fra Norrköping Slagsmålsklubben som kommer til å få ALLE til å danse!",
             "date" => mktime ( 20, 00, 00, 10, 21, 2012 ),
+            "max_registrations" => 2,
         ),
         array (
             "name" => "Statoil",
             "description" => "Statoil har 40 årsjubileum, og dette feires med brask og bram på Studentersamfundet i Trondheim. For å avslutte det hele får vi besøk av Syntpopelektronika-kollektivet fra Norrköping Slagsmålsklubben som kommer til å få ALLE til å danse!",
             "date" => mktime ( 20, 00, 00, 10, 22, 2012 ),
+            "max_registrations" => 2,
         ),
     );
 
@@ -47,6 +51,16 @@
             if ( $presentation["name"] . ", " . date ( "d.m.y", $presentation["date"] ) == $presentation_string ) {
                 return $presentation;
             }
+        }
+    }
+
+    function get_registration_count ( $presentation ) {
+        $file = "registrations/" . $presentation["name"] . ", " . date ( "d.m.y", $presentation["date"] )  . ".csv";
+
+        if ( file_exists ( $file ) ) {
+            return count ( split ( "\n", file_get_contents ( $file ) ) );
+        } else {
+            return 0;
         }
     }
 

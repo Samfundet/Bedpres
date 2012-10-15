@@ -38,6 +38,8 @@
                     <h3 id="registration">Påmelding</h3>
                     <?php if ( $status === 1 ): ?>
                         <p class="text-error">Vennligst fyll ut alle felter.</p>
+                    <?php elseif ( $status === 3 ): ?>
+                        <p class="text-error">Denne bedriftspresentasjon er dessverre full.</p>
                     <?php elseif ( $status === 0 ): ?>
                         <p class="text-success">Du er nå påmeldt på bedriftspresentasjon.</p>
                     <?php endif; ?>

@@ -6,20 +6,24 @@
          !empty ( $_POST["email"] ) &&
          !empty ( $_POST["phone"] ) &&
          !empty ( $_POST["presentation"] ) ) {
-        if ( get_presentation_from_string ( $upcoming_presentations, $_POST["presentation"] ) !== null ) {
-            $line = "\"" . $_POST["name"] . "\"|" .
-                    "\"" . $_POST["email"] . "\"|" .
-                    "\"" . $_POST["phone"] . "\"|\"Påmeldt\"";
+        if ( ( $presentation = get_presentation_from_string ( $upcoming_presentations, $_POST["presentation"] ) ) !== null ) {
+            if ( get_registration_count ( $presentation ) < $presentation["max_registrations"] ) {
+                $line = "\"" . $_POST["name"] . "\"|" .
+                        "\"" . $_POST["email"] . "\"|" .
+                        "\"" . $_POST["phone"] . "\"|\"Påmeldt\"";
 
-            $file = "registrations/" . $_POST["presentation"] . ".csv";
+                $file = "registrations/" . $_POST["presentation"] . ".csv";
 
-            if ( file_exists ( $file ) ) {
-                file_put_contents ( $file, file_get_contents ( $file ) . "\n" . $line );
+                if ( file_exists ( $file ) ) {
+                    file_put_contents ( $file, file_get_contents ( $file ) . "\n" . $line );
+                } else {
+                    file_put_contents ( $file, $line );
+                }
+
+                $status = 0;
             } else {
-                file_put_contents ( $file, $line );
+                $status = 3;
             }
-
-            $status = 0;
         } else {
             $status = 2;
         }
