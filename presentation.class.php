@@ -14,10 +14,6 @@
             $this -> max_registrations = $max_registrations;
 
             self :: $presentations[] = $this;
-
-            usort ( self :: $presentations, function ( $presentation_1, $presentation_2 ) {
-                return $presentation_1 -> getDate () - $presentation_2 -> getDate ();
-            } );
         }
 
         public function getName () {
