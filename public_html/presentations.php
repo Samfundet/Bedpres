@@ -42,6 +42,14 @@
         return $upcoming_presentations;
     }
 
+    function get_presentation_from_string ( $presentations, $presentation_string ) {
+        foreach ( $presentations as $presentation ) {
+            if ( $presentation["name"] . ", " . date ( "d.m.y", $presentation["date"] ) == $presentation_string ) {
+                return $presentation;
+            }
+        }
+    }
+
     $upcoming_presentations = get_upcoming_presentations ( $presentations );
 
     if ( count ( $upcoming_presentations ) > 0 ) {

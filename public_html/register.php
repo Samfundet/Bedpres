@@ -2,15 +2,11 @@
 
     require_once ( "presentations.php" );
 
-    $valid_presentations = array_map ( function ( $presentation ) {
-        return $presentation["name"] . ", " . date ( "d.m.y", $presentation["date"] );
-    }, $upcoming_presentations );
-
     if ( !empty ( $_POST["name"] ) &&
          !empty ( $_POST["email"] ) &&
          !empty ( $_POST["phone"] ) &&
          !empty ( $_POST["presentation"] ) ) {
-        if ( in_array ( $_POST["presentation"], $valid_presentations ) ) {
+        if ( get_presentation_from_string ( $upcoming_presentations, $_POST["presentation"] ) !== null ) {
             $line = "\"" . $_POST["name"] . "\"|" .
                     "\"" . $_POST["email"] . "\"|" .
                     "\"" . $_POST["phone"] . "\"|\"Påmeldt\"";
