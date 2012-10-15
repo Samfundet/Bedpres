@@ -4,7 +4,7 @@
     */
 
     $presentations = array (
-        array (
+        /*array (
             "name" => "Statoil",
             "description" => "Statoil har 40 årsjubileum, og dette feires med brask og bram på Studentersamfundet i Trondheim. For å avslutte det hele får vi besøk av Syntpopelektronika-kollektivet fra Norrköping Slagsmålsklubben som kommer til å få ALLE til å danse!",
             "date" => mktime ( 20, 00, 00, 10, 14, 2012 ),
@@ -27,7 +27,7 @@
             "description" => "Statoil har 40 årsjubileum, og dette feires med brask og bram på Studentersamfundet i Trondheim. For å avslutte det hele får vi besøk av Syntpopelektronika-kollektivet fra Norrköping Slagsmålsklubben som kommer til å få ALLE til å danse!",
             "date" => mktime ( 20, 00, 00, 10, 22, 2012 ),
             "max_registrations" => 2,
-        ),
+        ),*/
     );
 
     usort ( $presentations, function ( $presentation_1, $presentation_2 ) {
