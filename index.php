@@ -1,4 +1,4 @@
-<?php require ( 'presentations.php' ); ?>
+<?php require_once ( 'presentations.php' ); ?>
 
 <!DOCTYPE html>
 <html class='production' lang='no'>
