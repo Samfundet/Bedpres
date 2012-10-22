@@ -5,3 +5,32 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+def interesting_tables
+  ActiveRecord::Base.connection.tables.sort.reject do |tbl|
+    ['schema_migrations', 'sessions', 'public_exceptions'].include?(tbl)
+  end
+end
+
+def truncate_db_table(table)
+  config = ActiveRecord::Base.configurations[Rails.env]
+  ActiveRecord::Base.establish_connection
+  case config["adapter"]
+    when "mysql", "postgres"
+      ActiveRecord::Base.connection.execute("TRUNCATE #{table}")
+    when "sqlite", "sqlite3"
+      ActiveRecord::Base.connection.execute("DELETE FROM #{table}")
+      ActiveRecord::Base.connection.execute("DELETE FROM sqlite_sequence where name='#{table}'")
+      ActiveRecord::Base.connection.execute("VACUUM")
+  end
+end
+
+interesting_tables.each do |table|
+  truncate_db_table table
+end
+
+10.times do
+  Presentation.create!(
+      :name => Faker::Lorem.words(3)
+  )
+end

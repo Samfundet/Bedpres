@@ -19,6 +19,11 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :development do
+  # Faker is a library that generates fake data (names, email addresses, etc.)
+  gem 'faker'
+end
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
