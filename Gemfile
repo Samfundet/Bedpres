@@ -22,6 +22,8 @@ end
 group :development do
   # Faker is a library that generates fake data (names, email addresses, etc.)
   gem 'faker'
+  # Annotate is a gem that annotates a model's .rb file with it's database columns
+  gem 'annotate'
 end
 
 gem 'jquery-rails'
