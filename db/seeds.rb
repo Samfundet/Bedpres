@@ -38,7 +38,7 @@ end
 
 10.times do
   Presentation.create!(
-      :name => Faker::Lorem.words(3),
+      :name => Faker::Lorem.words(3).join(" "),
       :area_id => Area.all.sample.id
   )
 end
