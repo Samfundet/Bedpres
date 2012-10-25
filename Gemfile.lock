@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/Samfundet/SamfundetDomain.git
+  revision: f9695a4c0dbf770ecb7b728f45cc9cc4bb9acf28
+  specs:
+    samfundet_domain (0.0.1)
+      rails (~> 3.2.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -109,6 +116,7 @@ DEPENDENCIES
   haml
   jquery-rails
   rails (= 3.2.8)
+  samfundet_domain!
   sass-rails (~> 3.2.3)
   sqlite3
   therubyracer

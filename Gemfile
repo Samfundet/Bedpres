@@ -30,6 +30,9 @@ end
 
 gem 'jquery-rails'
 
+# SamfundetDomain is a gem which provides the application with samfundets domain models.
+gem 'samfundet_domain', :git => "git://github.com/Samfundet/SamfundetDomain.git"
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
