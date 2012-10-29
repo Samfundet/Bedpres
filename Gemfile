@@ -30,6 +30,8 @@ end
 
 gem 'jquery-rails'
 
+gem 'formtastic'
+
 # SamfundetDomain is a gem which provides the application with samfundets domain models.
 gem 'samfundet_domain', :git => "git://github.com/Samfundet/SamfundetDomain.git"
 
