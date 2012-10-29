@@ -11,3 +11,5 @@
 //= require_self
 //= require bootstrap_and_overrides
 //= require bedpres
+//= require jquery.ui.datepicker
+//= require jquery-ui-timepicker-addon
