@@ -1,6 +1,8 @@
 Bedpres::Application.routes.draw do
 
   root :to => "presentations#index"
+
+  resources :presentations
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

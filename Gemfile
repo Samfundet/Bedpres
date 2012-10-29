@@ -30,8 +30,14 @@ end
 
 gem 'jquery-rails'
 
+#to use datepicker
+gem 'jquery-ui-rails'
+
 #to make forms easily
 gem 'formtastic'
+
+#to validate dates
+gem 'date_validator'
 
 # SamfundetDomain is a gem which provides the application with samfundets domain models.
 gem 'samfundet_domain', :git => "git://github.com/Samfundet/SamfundetDomain.git"
