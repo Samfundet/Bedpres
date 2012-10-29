@@ -30,6 +30,7 @@ end
 
 gem 'jquery-rails'
 
+#to make forms easily
 gem 'formtastic'
 
 # SamfundetDomain is a gem which provides the application with samfundets domain models.
