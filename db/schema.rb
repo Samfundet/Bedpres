@@ -41,8 +41,11 @@ ActiveRecord::Schema.define(:version => 20121029182930) do
 
   create_table "presentations", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.text     "description"
+    t.integer  "guest_limit"
+    t.datetime "presentation_date"
   end
 
   create_table "users", :force => true do |t|
