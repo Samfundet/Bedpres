@@ -34,7 +34,7 @@ gem 'jquery-rails'
 gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
 
 #to make forms easily
-gem 'formtastic'
+gem 'twitter_bootstrap_form_for'
 
 #For bootstrap via gem instead of manual updating
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
