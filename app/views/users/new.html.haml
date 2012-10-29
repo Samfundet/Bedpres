@@ -1,0 +1,9 @@
+= twitter_bootstrap_form_for @user do |f|
+  = f.text_field :email
+  = f.text_field :firstname
+  = f.text_field :surname
+  = f.password_field :password
+  %span.help-block
+    Must do shit!
+  = f.password_field :password_confirmation
+  = f.submit "Create user"
