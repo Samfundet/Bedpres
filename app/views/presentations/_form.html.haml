@@ -1,7 +1,6 @@
-= semantic_form_for @presentation do |form|
-	= form.input :name
-	= form.input :description
-	= form.input :guest_limit
-	= form.input :presentation_date
-	= form.action :submit
- 
+= twitter_bootstrap_form_for @presentation do |form|
+  = form.text_field :name
+  = form.text_field :description
+  = form.text_field :guest_limit
+  = form.text_field :presentation_date
+  = form.submit "create presentation"
