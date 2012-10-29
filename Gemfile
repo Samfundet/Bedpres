@@ -30,15 +30,21 @@ end
 
 gem 'jquery-rails'
 
+#Gem for easy email regex validation
+gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
+
 #to make forms easily
 gem 'formtastic'
+
+#For bootstrap via gem instead of manual updating
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 # SamfundetDomain is a gem which provides the application with samfundets domain models.
 gem 'samfundet_domain', :git => "git://github.com/Samfundet/SamfundetDomain.git"
 
 # To use ActiveModel has_secure_password
 # For secure encryption of user passwords
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', :require => 'bcrypt'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
