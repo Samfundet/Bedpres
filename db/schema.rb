@@ -11,7 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121022173350) do
+ActiveRecord::Schema.define(:version => 20121025204104) do
+
+  create_table "areas", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "group_types", :force => true do |t|
+    t.string   "description",                :null => false
+    t.integer  "priority",    :default => 0, :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name",              :null => false
+    t.string   "abbreviation"
+    t.text     "description",       :null => false
+    t.string   "website"
+    t.text     "short_description", :null => false
+    t.text     "long_description",  :null => false
+    t.integer  "group_type_id",     :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "presentations", :force => true do |t|
     t.string   "name"

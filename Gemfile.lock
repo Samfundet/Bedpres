@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/Samfundet/SamfundetDomain.git
-  revision: 95369850a96495230a7caac7cc504e27db1ed33e
+  revision: 48808ee6b31b7d19430b350dd863d58b12e170f6
   specs:
     samfundet_domain (0.0.1)
       rails (~> 3.2.8)
