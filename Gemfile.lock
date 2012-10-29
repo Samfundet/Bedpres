@@ -38,6 +38,7 @@ GEM
     annotate (2.5.0)
       rake
     arel (3.0.2)
+    bcrypt-ruby (3.0.1)
     builder (3.0.4)
     erubis (2.7.0)
     execjs (1.4.0)
@@ -114,6 +115,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  bcrypt-ruby (~> 3.0.0)
   faker
   formtastic
   haml
