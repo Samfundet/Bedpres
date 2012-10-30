@@ -34,6 +34,8 @@ Rake::Task['samfundet_domain_engine:db:seed'].invoke
 10.times do
   Presentation.create!(
       :name => Faker::Lorem.words(3).join(" "),
-      :area_id => Area.all.sample.id
+      :area_id => Area.all.sample.id,
+      :guest_limit => rand(10..1000),
+      :presentation_date => Time.now + rand(1..10).days
   )
 end
