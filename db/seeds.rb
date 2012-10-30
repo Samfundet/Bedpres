@@ -31,6 +31,8 @@ end
 
 Rake::Task['samfundet_domain_engine:db:seed'].invoke
 
+puts "Creating presentations.."
+
 10.times do
   Presentation.create!(
       :name => Faker::Lorem.words(3).join(" "),
