@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20121030014632) do
 
   create_table "presentations", :force => true do |t|
     t.string   "name"
+    t.integer  "area_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.text     "description"
