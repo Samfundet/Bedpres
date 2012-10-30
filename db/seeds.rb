@@ -29,12 +29,7 @@ interesting_tables.each do |table|
   truncate_db_table table
 end
 
-3.times do
-  Area.create!(
-      :name => Faker::Address.city,
-      :description => Faker::Lorem.paragraphs.join("\n\n")
-  )
-end
+Rake::Task['samfundet_domain_engine:db:seed'].invoke
 
 10.times do
   Presentation.create!(
