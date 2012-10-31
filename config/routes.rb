@@ -4,6 +4,10 @@ Bedpres::Application.routes.draw do
 
   resources :users
   resources :presentations
+
+  match '/login', :to => 'sessions#new', :via => :get
+  match '/login', :to => 'sessions#create', :via => :post
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

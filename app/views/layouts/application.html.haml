@@ -13,6 +13,7 @@
           .nav-collapse.collapse
             %ul.nav
               %li
-                = link_to "Logg inn", login_path
+                - unless @current_user
+                  = link_to "Logg inn", login_path
     .container
       = yield
