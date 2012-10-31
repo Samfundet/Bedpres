@@ -48,6 +48,9 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 # SamfundetDomain is a gem which provides the application with samfundets domain models.
 gem 'samfundet_domain', :git => "git://github.com/Samfundet/SamfundetDomain.git"
 
+# SamfundetAuth is a gem which provides the application with methods for authenticating against mdb2.
+gem 'samfundet_auth', :git => "git://github.com/Samfundet/SamfundetAuth.git"
+
 # To use ActiveModel has_secure_password
 # For secure encryption of user passwords
 gem 'bcrypt-ruby', :require => 'bcrypt'
