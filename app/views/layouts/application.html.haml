@@ -10,5 +10,9 @@
       .navbar-inner
         .container
           = link_to "Samfundets Bedritspresentasjonssystem", root_path, :class => "brand"
+          .nav-collapse.collapse
+            %ul.nav
+              %li
+                = link_to "Logg inn", login_path
     .container
       = yield
