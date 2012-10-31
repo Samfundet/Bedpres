@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030014632) do
+ActiveRecord::Schema.define(:version => 20121031224457) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -38,6 +38,19 @@ ActiveRecord::Schema.define(:version => 20121030014632) do
     t.datetime "updated_at",        :null => false
   end
 
+  create_table "members", :primary_key => "medlem_id", :force => true do |t|
+    t.string "fornavn"
+    t.string "etternavn"
+    t.string "mail"
+    t.string "telefon"
+    t.string "passord"
+  end
+
+  create_table "members_roles", :force => true do |t|
+    t.integer "member_id"
+    t.integer "role_id"
+  end
+
   create_table "presentations", :force => true do |t|
     t.string   "name"
     t.integer  "area_id"
@@ -46,6 +59,17 @@ ActiveRecord::Schema.define(:version => 20121030014632) do
     t.text     "description"
     t.integer  "guest_limit"
     t.datetime "presentation_date"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "show_in_hierarchy", :default => false
+    t.integer  "role_id"
+    t.integer  "group_id"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   create_table "users", :force => true do |t|
