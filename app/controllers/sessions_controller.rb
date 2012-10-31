@@ -4,6 +4,11 @@ class SessionsController < ApplicationController
   def new
   end
 
+  def destroy
+    session[:member_id] = nil
+    redirect_to root_path
+  end
+
   def create
     member = Member.authenticate params[:member][:mail], params[:member][:passord]
 

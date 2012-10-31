@@ -13,7 +13,9 @@
           .nav-collapse.collapse
             %ul.nav
               %li
-                - unless @current_user
+                - if @current_user
+                  = link_to "Logg ut", logout_path, :method => :post
+                - else
                   = link_to "Logg inn", login_path
     .container
       = yield
