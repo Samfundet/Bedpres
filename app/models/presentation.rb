@@ -16,7 +16,7 @@ class Presentation < ActiveRecord::Base
 
   validates_presence_of :name, :guest_limit, :presentation_date
   validates :guest_limit, :numericality => { :greater_than => 0}
-  validates :presentation_date, :date => { :after => Proc.new { Time.now } }
+  validates :presentation_date, :date => { :after => Proc.new { Time.now } }, :if => :presentation_date_changed?
 
   belongs_to :area
 
