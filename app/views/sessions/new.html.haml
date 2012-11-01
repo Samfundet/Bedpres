@@ -1,7 +1,23 @@
 %h1 Logg in
-= semantic_form_for Member.new(:mail => @mail), :url => login_path, :html => { :class => "form-horizontal" } do |f|
-  = f.inputs do
-    = f.input :mail, :hint => "Du kan også logge inn med ditt medlemsnummer"
-    = f.input :passord, :as => :password
-  = f.actions do
-    = f.action :submit, :label => "Logg inn"
+
+.row
+  .span6
+    %h2 Bruker
+    = semantic_form_for User.new(:email => @user_mail), :url => login_path, :html => { :class => "form-horizontal" } do |f|
+      = f.inputs do
+        = f.input :email
+        = f.input :password
+      = f.actions do
+        = f.action :submit, :label => "Logg inn"
+
+  .span6
+    %h2 Admin-pålogging
+    = semantic_form_for Member.new(:mail => @member_mail), :url => login_path, :html => { :class => "form-horizontal" } do |f|
+      = f.inputs do
+        = f.input :mail
+        = f.input :passord, :as => :password
+      = f.actions do
+        = f.action :submit, :label => "Logg inn"
+
+%p
+  = link_to "Ingen bedpres-bruker? Lag ny konto her!", new_user_path
