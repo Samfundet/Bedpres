@@ -4,7 +4,7 @@
       = "#{Presentation.upcoming.first.name}, "
       = Presentation.upcoming.first.presentation_date.to_date
     :markdown
-      #{Presentation.upcoming.first.description}
+      #{Presentation.upcoming.first.description.split("\n\n").first}
 
 %h3
   Kommende bedriftspresentasjoner
