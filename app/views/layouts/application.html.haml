@@ -10,13 +10,17 @@
       .navbar-inner
         .container
           = link_to "Bedriftspresentasjoner på Samfundet", root_path, :class => "brand"
-          .nav-collapse.collapse
+          .pull-right
+            -if @current_user
+              .brand
+                = @current_user.full_name
             %ul.nav
               %li
                 - if @current_user
                   = link_to "Logg ut", logout_path, :method => :post
                 - else
                   = link_to "Logg inn", login_path
+
     .container
       - flash.each do |key, value|
         %p{ :class => "text-#{key}" }
