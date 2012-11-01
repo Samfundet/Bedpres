@@ -41,12 +41,12 @@ class User < ActiveRecord::Base
       user = find_by_email(email.downcase)
       return user if user &&
         BCrypt::Password.new(user.hashed_password) == password
-      end
     end
+  end
 
   private
-    def lowercase_email
-      email.downcase!
-    end
 
+  def lowercase_email
+    email.downcase!
+  end
 end
