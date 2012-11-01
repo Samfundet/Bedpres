@@ -16,3 +16,4 @@
 //= require jquery.ui.datepicker
 //= require jquery-ui-timepicker-addon
 //= require timepicker.js
+//= require formtastic_bootstrap_fix
