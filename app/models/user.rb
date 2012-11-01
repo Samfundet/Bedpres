@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
     email.downcase!
   end
 
+  def role_symbols
+    [:user]
+  end
+
   def hash_new_password
     self.hashed_password = BCrypt::Password.create(password)
   end
