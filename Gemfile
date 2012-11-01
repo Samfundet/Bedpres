@@ -21,8 +21,11 @@ gem 'jquery-ui-rails'
 # Validate e-mail addresses against RFC 2822 and RFC 3696.
 gem 'validates_email_format_of'
 
-#to make forms easily
-gem 'twitter_bootstrap_form_for'
+# formtastic is a Rails form builder plugin
+# with semantically rich and accessible markup.
+# formtastic-bootstrap is a gem built on top of
+# this to create markup which adheres to bootstrap.
+gem 'formtastic-bootstrap'
 
 #to validate dates
 gem 'date_validator'

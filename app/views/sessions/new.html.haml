@@ -1,4 +1,6 @@
-= twitter_bootstrap_form_for Member.new, :url => login_path do |form|
-  = form.text_field :mail, :value => @mail
-  = form.password_field :passord
-  = form.submit "Logg inn"
+= semantic_form_for Member.new(:mail => @mail), :url => login_path do |f|
+  = f.inputs do
+    = f.input :mail
+    = f.input :passord
+  = f.actions do
+    = f.action :submit, :label => "Logg inn"
