@@ -11,20 +11,23 @@ authorization do
   end
 
   role :medlem do
-    includes :guest
+    includes :user
   end
 
   role :presentation_administrator do
-    includes :guest
-    includes :user
+    includes :medlem
 
     has_permission_on :presentations, :to => :manage
+  end
+
+  role :lim_web do
+    includes :presentation_administrator
   end
 
 end
 
 privileges do
-  privilege :manage, :includes => [:create, :read, :update, :delete, :search]
+  privilege :manage, :includes => [:create, :read, :update, :delete]
   privilege :read,   :includes => [:index, :show]
   privilege :create, :includes => :new
   privilege :update, :includes => :edit
