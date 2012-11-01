@@ -30,6 +30,9 @@ gem 'formtastic-bootstrap'
 #to validate dates
 gem 'date_validator'
 
+# Offers a declarative approach to user authorization.
+gem 'declarative_authorization'
+
 # Bootstrap is a toolkit from Twitter designed to kickstart development
 # of webapps and sites. It includes base CSS and HTML for typography,
 # forms, buttons, tables, grids, navigation, and more.
