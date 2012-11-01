@@ -18,8 +18,6 @@ class ApplicationController < ActionController::Base
 
   def permission_denied 
     flash[:failure] = "Du må logge inn for å gjøre dette"
-    #redirect_to :back
-    #rescue ActionController::RedirectBackError
     redirect_to login_path
   end
 
