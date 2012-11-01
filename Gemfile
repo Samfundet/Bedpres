@@ -1,14 +1,47 @@
-source 'https://rubygems.org'
+###########################################
+# NOTHING GOES IN HERE WITHOUT A COMMENT! #
+###########################################
 
+# The repository from which we're fetching our rubygems.
+source 'http://rubygems.org'
+
+# Rails. Duh.
 gem 'rails', '3.2.8'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
-
-# haml for sexy html syntax
+# Haml is a templating language. It compiles to HTML.
 gem 'haml'
+
+# jquery-rails provides the jQuery and jQuery UI JavaScript files,
+# as well as the UJS (Unobtrusive JavaScript) adapter.
+gem 'jquery-rails'
+
+# jquery-ui-rails provides the jQuery UI assets (JS, stylesheets, images).
+gem 'jquery-ui-rails'
+
+# Validate e-mail addresses against RFC 2822 and RFC 3696.
+gem 'validates_email_format_of'
+
+#to make forms easily
+gem 'twitter_bootstrap_form_for'
+
+#to validate dates
+gem 'date_validator'
+
+# Bootstrap is a toolkit from Twitter designed to kickstart development
+# of webapps and sites. It includes base CSS and HTML for typography,
+# forms, buttons, tables, grids, navigation, and more.
+gem 'twitter-bootstrap-rails'
+
+# SamfundetDomain is a gem which provides the application with samfundets domain models.
+gem 'samfundet_domain', :git => "git://github.com/Samfundet/SamfundetDomain.git"
+
+# SamfundetAuth is a gem which provides the application with methods for authenticating against mdb2.
+gem 'samfundet_auth', :git => "git://github.com/Samfundet/SamfundetAuth.git"
+
+# bcrypt() is a sophisticated and secure hash algorithm
+# designed by The OpenBSD project for hashing passwords.
+# bcrypt-ruby provides a simple wrapper for safely handling passwords.
+gem 'bcrypt-ruby', :require => 'bcrypt'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,47 +55,14 @@ group :assets do
 end
 
 group :development do
+  # annotate adds schema information from the database, in the form of
+  # Ruby comments, to model files so that we can see which columns
+  # are actually in the database.
+  gem 'annotate'
+
   # Faker is a library that generates fake data (names, email addresses, etc.)
   gem 'faker'
-  # Annotate is a gem that annotates a model's .rb file with it's database columns
-  gem 'annotate'
+
+  # SQLite adapter. See: config/database.yml
+  gem 'sqlite3'
 end
-
-gem 'jquery-rails'
-
-#to use datepicker
-gem 'jquery-ui-rails'
-
-#Gem for easy email regex validation
-gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
-
-#to make forms easily
-gem 'twitter_bootstrap_form_for'
-
-#to validate dates
-gem 'date_validator'
-
-#For bootstrap via gem instead of manual updating
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-
-# SamfundetDomain is a gem which provides the application with samfundets domain models.
-gem 'samfundet_domain', :git => "git://github.com/Samfundet/SamfundetDomain.git"
-
-# SamfundetAuth is a gem which provides the application with methods for authenticating against mdb2.
-gem 'samfundet_auth', :git => "git://github.com/Samfundet/SamfundetAuth.git"
-
-# To use ActiveModel has_secure_password
-# For secure encryption of user passwords
-gem 'bcrypt-ruby', :require => 'bcrypt'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
