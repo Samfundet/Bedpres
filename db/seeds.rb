@@ -37,7 +37,8 @@ puts "Creating presentations.."
   Presentation.create!(
       :name => Faker::Lorem.words(3).join(" "),
       :area_id => Area.all.sample.id,
-      :guest_limit => rand(10..1000),
-      :presentation_date => Time.now + rand(1..10).days
+      :guest_limit => 1 + rand(999),
+      :presentation_date => Time.now + (1+rand(9)).days,
+      :description => Faker::Lorem.paragraphs.join("\n\n")
   )
 end
