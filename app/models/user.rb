@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
     self.hashed_password = BCrypt::Password.create(password)
   end
 
+  def full_name
+    "#{firstname} #{surname}"
+  end
+
   class << self
     def authenticate(email, password)
       user = find_by_email(email.downcase)
