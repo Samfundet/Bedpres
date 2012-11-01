@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def permission_denied 
-    flash[:failure] = "Du må logge inn for å gjøre dette"
+    flash[:error] = "Du må logge inn for å gjøre dette"
     redirect_to login_path
   end
 
