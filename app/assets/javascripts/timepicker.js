@@ -1,3 +1,3 @@
 $(function() {
-	$('#date_select').datetimepicker();
+	$('.datetime_select').datetimepicker();
 })
