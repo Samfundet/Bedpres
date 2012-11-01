@@ -28,8 +28,16 @@ class User < ActiveRecord::Base
     email.downcase!
   end
 
+  def role_symbols
+    [:user]
+  end
+
   def hash_new_password
     self.hashed_password = BCrypt::Password.create(password)
+  end
+
+  def full_name
+    "#{firstname} #{surname}"
   end
 
   class << self
@@ -37,12 +45,12 @@ class User < ActiveRecord::Base
       user = find_by_email(email.downcase)
       return user if user &&
         BCrypt::Password.new(user.hashed_password) == password
-      end
     end
+  end
 
   private
-    def lowercase_email
-      email.downcase!
-    end
 
+  def lowercase_email
+    email.downcase!
+  end
 end

@@ -1,0 +1,8 @@
+'no':
+  formtastic:
+    labels:
+      presentation:
+        name: "Navn"
+        description: "Beskrivelse"
+        guest_limit: "Plassbegrensning"
+        presentation_date: "Presentasjonsdato"

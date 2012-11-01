@@ -1,6 +1,8 @@
 # encoding: UTF-8
 
 class SessionsController < ApplicationController
+  filter_access_to :all
+
   def new
   end
 

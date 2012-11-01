@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require jquery.ui.datepicker
+//= require jquery.ui.slider
 //= require jquery-ui-timepicker-addon
 //= require timepicker.js
 //= require formtastic_bootstrap_fix

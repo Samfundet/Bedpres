@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  filter_access_to :all
 
   def new
     @user = User.new
@@ -7,11 +8,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      #flash[:success] = "Welcome, #{@user.name}.".html_safe
+      flash[:success] = "Velkommen, #{@user.full_name}"
       #session[:user_id] = @user.id
-      redirect_to root_path #@user
+      redirect_to root_path
     else
-      #flash.now[:failure] = "<span class='black'>Invalid</span> user data.".html_safe
       render :new
     end
   end

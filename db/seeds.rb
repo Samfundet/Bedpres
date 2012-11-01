@@ -29,7 +29,7 @@ interesting_tables.each do |table|
   truncate_db_table table
 end
 
-Rake::Task['samfundet_domain_engine:db:seed'].invoke
+Rake::Task['samfundet_auth_engine:db:seed'].invoke
 
 puts "Creating presentations.."
 

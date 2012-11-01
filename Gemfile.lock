@@ -146,6 +146,7 @@ DEPENDENCIES
   annotate
   bcrypt-ruby
   date_validator
+  declarative_authorization
   faker
   formtastic-bootstrap
   haml

@@ -4,6 +4,3 @@
       member:
         mail: "E-post"
         passord: "Passord"
-    placeholders:
-      member:
-        mail: "E-post eller medlemsnummer"
