@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
     begin
       if session[:member_id]
         @current_user ||= Member.find(session[:member_id])
-      #elsif session[:applicant_id] to be implemented with normal user login
-      #  @current_user ||= Applicant.find(session[:applicant_id])
+      elsif session[:user_id]
+        @current_user ||= User.find(session[:user_id])
       end
     rescue
       @current_user = nil
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def permission_denied 
-    flash[:error] = "Du må logge inn for å gjøre dette"
+    flash[:error] = "Du har ikke rettigheter til å gjøre dette."
     redirect_to login_path
   end
 
