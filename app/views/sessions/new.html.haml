@@ -11,7 +11,7 @@
         = f.action :submit, :label => "Logg inn"
 
   .span6
-    %h2 Admin-pålogging
+    %h2 Admin
     = semantic_form_for Member.new(:mail => @member_mail), :url => login_path, :html => { :class => "form-horizontal" } do |f|
       = f.inputs do
         = f.input :mail
