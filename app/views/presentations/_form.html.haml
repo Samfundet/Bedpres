@@ -1,7 +1,7 @@
 = semantic_form_for @presentation, :html => { :class => "form-horizontal" } do |f|
   = f.inputs do
     = f.input :name
-    = f.input :description
+    = f.input :description, :input_html => { :class => "input-xxlarge" }
     = f.input :guest_limit
     = f.input :presentation_date, :as => :string, :input_html => { :class => "datetime_select" }
   = f.actions do
