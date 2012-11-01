@@ -23,4 +23,8 @@ class PresentationsController < ApplicationController
 		end
 	end
 
+	def show
+		@presentation = Presentation.find_by_name(params[:id])
+	end
+
 end

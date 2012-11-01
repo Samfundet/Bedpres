@@ -1,9 +1,31 @@
 .hero-unit
-  %h1
-    Samfundets BPS
+  -unless Presentation.upcoming.empty?
+    %h1
+      = "#{Presentation.upcoming.first.name}, "
+      = Presentation.upcoming.first.presentation_date.to_date
+    %p
+      = Presentation.upcoming.first.description
 
-All presentations
-= Presentation.all
+%h3
+  Kommende bedriftspresentasjoner
+%table.table
+  %thead
+    %tr
+      %th Tittel
+      %th Dato
+      %th Tidspunkt
+      %th Ledige Plasser
+  - unless Presentation.upcoming.empty?
+    - Presentation.upcoming.each do |post|
+      %tr
+        %td
+          = link_to presentation_path(:id => post.name) do
+            = post.name
+        %td
+          = post.presentation_date.to_date
+        %td
+          = post.presentation_date.to_time
+        %td
+          = post.guest_limit
 
 %p= link_to "Opprett presentasjon", new_presentation_path
-
