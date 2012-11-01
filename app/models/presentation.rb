@@ -19,4 +19,7 @@ class Presentation < ActiveRecord::Base
   validates :presentation_date, :date => { :after => Time.now}
 
   belongs_to :area
+
+  scope :upcoming, where("presentation_date >= ?", Time.now).order("presentation_date ASC")
+  scope :past, where("presentation_date < ?", Time.now).order("presentation_date DESC")
 end
