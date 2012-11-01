@@ -38,6 +38,9 @@ gem 'declarative_authorization'
 # forms, buttons, tables, grids, navigation, and more.
 gem 'twitter-bootstrap-rails'
 
+# markdown 
+gem 'redcarpet'
+
 # SamfundetDomain is a gem which provides the application with samfundets domain models.
 gem 'samfundet_domain', :git => "git://github.com/Samfundet/SamfundetDomain.git"
 

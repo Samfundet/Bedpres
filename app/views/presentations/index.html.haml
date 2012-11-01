@@ -3,8 +3,8 @@
     %h1
       = "#{Presentation.upcoming.first.name}, "
       = Presentation.upcoming.first.presentation_date.to_date
-    %p
-      = Presentation.upcoming.first.description
+    :markdown
+      #{Presentation.upcoming.first.description}
 
 %h3
   Kommende bedriftspresentasjoner
@@ -29,5 +29,5 @@
           = post.guest_limit
 
 -if permitted_to? :new, :presentations
-  %p
-    = link_to "Opprett presentasjon", new_presentation_path, :class => 'btn'
+  :markdown
+    #{link_to "Opprett presentasjon", new_presentation_path, :class => 'btn'}

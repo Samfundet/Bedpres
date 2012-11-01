@@ -2,6 +2,6 @@
   .aboutbox
     %h3
       = @presentation.name
-    %p 
-      = @presentation.description
+    :markdown
+      #{@presentation.description}
       
