@@ -42,3 +42,15 @@ puts "Creating presentations.."
       :description => Faker::Lorem.paragraphs.join("\n\n")
   )
 end
+
+puts "Creating users.."
+
+10.times do
+  User.create!(
+    :firstname => Faker::Name.first_name, 
+    :surname => Faker::Name.last_name,
+    :email => Faker::Internet.email,
+    :password => "passord",
+    :password_confirmation => "passord"
+    )
+end
