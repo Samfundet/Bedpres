@@ -4,14 +4,3 @@
       member:
         mail: "E-post"
         passord: "Passord"
-      user:
-        email: "E-post"
-        firstname: "Fornavn"
-        surname: "Etternavn"
-        password: "Passord"
-        password_confirmation: "Bekreft passord"
-      presentation:
-        name: "Navn"
-        description: "Beskrivelse"
-        guest_limit: "Plassbegrensning"
-        presentation_date: "Presentasjonsdato"

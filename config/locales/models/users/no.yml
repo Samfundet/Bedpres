@@ -1,0 +1,9 @@
+'no':
+  formtastic:
+    labels:
+      user:
+        email: "E-post"
+        firstname: "Fornavn"
+        surname: "Etternavn"
+        password: "Passord"
+        password_confirmation: "Bekreft passord"
