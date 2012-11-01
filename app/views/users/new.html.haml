@@ -1,9 +1,9 @@
-= twitter_bootstrap_form_for @user do |f|
-  = f.text_field :email
-  = f.text_field :firstname
-  = f.text_field :surname
-  = f.password_field :password
-  %span.help-block
-    Must do shit!
-  = f.password_field :password_confirmation
-  = f.submit "Create user"
+= semantic_form_for @user, :html => { :class => "form-horizontal" } do |f|
+  = f.inputs do
+    = f.input :email
+    = f.input :firstname
+    = f.input :surname
+    = f.input :password
+    = f.input :password_confirmation
+  = f.actions do
+    = f.action :submit, :lablel => "Create user"
