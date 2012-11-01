@@ -27,7 +27,7 @@ gem 'validates_email_format_of'
 # this to create markup which adheres to bootstrap.
 gem 'formtastic-bootstrap'
 
-#to validate dates
+#A simple date validator for Rails 3.
 gem 'date_validator'
 
 # Bootstrap is a toolkit from Twitter designed to kickstart development
