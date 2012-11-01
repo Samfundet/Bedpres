@@ -13,8 +13,9 @@ class SessionsController < ApplicationController
     member = Member.authenticate params[:member][:mail], params[:member][:passord]
 
     if member.nil?
-      flash[:error] = "Du tastet inn feil brukernavn eller passord."
-      redirect_to login_path
+      @mail = params[:member][:mail]
+      flash.now[:error] = "Du tastet inn feil brukernavn eller passord."
+      render :new
     else
       flash[:success] = "Du er nå logget inn."
       session[:member_id] = member.id
