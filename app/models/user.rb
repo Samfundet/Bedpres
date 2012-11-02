@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :firstname, :surname, :email
 
-  validates :email, :email_format => {:message => 'Invalid email'}, :presence => true, :uniqueness => true
+  validates :email, :email_format => {:message => 'ikke gyldig adresse'}, :presence => true, :uniqueness => true
   validates :password, :presence => true, :confirmation => true, :length => {:minimum => 6}
 
   validates_presence_of :password_confirmation
