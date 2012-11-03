@@ -23,8 +23,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
-    def set_current_user_for_model_layer_access_control
-      Authorization.current_user = current_user
-    end
-
+  def set_current_user_for_model_layer_access_control
+    Authorization.current_user = current_user
+  end
 end

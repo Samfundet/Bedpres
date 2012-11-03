@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
       session[:user_id] = nil
 
       member = Member.authenticate params[:member][:mail], params[:member][:passord]
+
       if member.nil?
         @member_mail = params[:member][:mail]
         flash.now[:error] = "Du tastet inn feil brukernavn eller passord."
@@ -33,6 +34,7 @@ class SessionsController < ApplicationController
       session[:member_id] = nil
 
       user = User.authenticate params[:user][:email], params[:user][:password]
+
       if user.nil?
         @user_mail = params[:user][:email]
         flash.now[:error] = "Du tastet inn feil brukernavn eller passord."
@@ -44,5 +46,4 @@ class SessionsController < ApplicationController
       end
     end
   end
-
 end

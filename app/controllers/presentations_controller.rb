@@ -15,6 +15,7 @@ class PresentationsController < ApplicationController
 
 	def create
 		@presentation = Presentation.new params[:presentation]
+
 		if @presentation.save
 			flash[:success] = "Presentatsjonen er opprettet."
 			redirect_to presentations_path
@@ -27,5 +28,4 @@ class PresentationsController < ApplicationController
 	def show
 		@presentation = Presentation.find_by_name(params[:id])
 	end
-
 end

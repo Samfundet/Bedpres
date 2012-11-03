@@ -20,7 +20,6 @@
                   = link_to "Logg ut", logout_path, :method => :post
                 - else
                   = link_to "Logg inn", login_path
-
     .container
       - flash.each do |type, message|
         %div{ :class => "alert alert-block alert-#{type}" }
