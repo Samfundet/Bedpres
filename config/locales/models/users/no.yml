@@ -1,4 +1,9 @@
 'no':
+  activerecord:
+    models:
+      user:
+        one: "bruker"
+        other: "brukere"
   formtastic:
     labels:
       user:

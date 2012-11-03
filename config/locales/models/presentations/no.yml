@@ -1,4 +1,9 @@
 'no':
+  activerecord:
+    models:
+      presentation:
+        one: "presentasjon"
+        other: "presentasjoner"
   formtastic:
     labels:
       presentation:

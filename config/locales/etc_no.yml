@@ -1,0 +1,23 @@
+'no':
+  crud:
+    show: "vis"
+    create: "opprett"
+    destroy: "slett"
+    edit: "rediger"
+    confirm: "Er du sikker?"
+  common:
+    back: "tilbake"
+    up: "Opp"
+    down: "Ned"
+    please_select: "Vennligst velg"
+  time:
+    last_updated: "Sist oppdatert"
+    created: "Opprettet"
+  formtastic:
+    :yes: 'Ja'
+    :no: 'Nei'
+    create: "Opprett %{model}"
+    save: 'Lagre'
+    update: "Oppdater %{model}"
+    submit: 'Send'
+    required: 'Påkrevd'
