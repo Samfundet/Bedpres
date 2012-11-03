@@ -23,6 +23,6 @@
 
     .container
       - flash.each do |type, message|
-        %p{ :class => "text-#{type}" }
+        %div{ :class => "alert alert-block alert-#{type}" }
           = message
       = yield
