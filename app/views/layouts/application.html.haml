@@ -22,7 +22,7 @@
                   = link_to "Logg inn", login_path
 
     .container
-      - flash.each do |key, value|
-        %p{ :class => "text-#{key}" }
-          = value
+      - flash.each do |type, message|
+        %p{ :class => "text-#{type}" }
+          = message
       = yield
