@@ -3,8 +3,7 @@
 class SessionsController < ApplicationController
   filter_access_to :all
 
-  def new
-  end
+  def new; end
 
   def destroy
     session[:member_id] = nil
