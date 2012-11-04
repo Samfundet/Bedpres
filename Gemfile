@@ -52,6 +52,11 @@ gem 'samfundet_auth', :git => "git://github.com/Samfundet/SamfundetAuth.git"
 # bcrypt-ruby provides a simple wrapper for safely handling passwords.
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
+# rails-translate-routes is a gem which provides the application
+# with translated routes in accordance with a user-defined,
+# yaml-style dictionary.
+gem 'rails-translate-routes'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

@@ -1,0 +1,9 @@
+'no':
+  routes:
+    new: 'ny'
+    login: 'logg-inn'
+    logout: 'logg-ut'
+    presentations: 'presentasjoner'
+    users: 'brukere'
+    forgot_password: 'glemt-passord'
+    reset_password: 'tilbakestill-passord'
