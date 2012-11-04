@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :password_confirmation
 
+  has_many :password_recoveries
+
   before_save do |user|
     hash_new_password
     email.downcase!
@@ -38,6 +40,18 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{firstname} #{surname}"
+  end
+
+  def can_recover_password?
+    password_recoveries.find(:all, :conditions => ['created_at > ?', Time.now - 1.day]).count < 5
+  end
+
+  def create_recovery_hash
+    Digest::SHA256.hexdigest(hashed_password + email + Time.now.to_s)
+  end
+
+  def check_hash(hash)
+    not password_recoveries.where("recovery_hash = ?", hash).where("created_at > ?", Time.now - 1.hour).empty?
   end
 
   class << self

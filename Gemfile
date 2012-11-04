@@ -57,6 +57,11 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 # yaml-style dictionary.
 gem 'rails-translate-routes'
 
+# Roadie tries to make sending HTML emails a little
+# less painful in Rails 3 by inlining stylesheets and
+# rewrite relative URLs for you.
+gem 'roadie'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

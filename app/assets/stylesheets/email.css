@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #222222;
+    margin: 20px;
+    font-size: 12px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#container {
+    width: 600px;
+    border: 1px solid #aaa;
+    background: url('http://www.samfundet.no/public/css/img/body-white.png') repeat-x;
+
+    -moz-box-shadow:    0px 0px 10px 6px #ccc !important;
+    -webkit-box-shadow: 0px 0px 10px 6px #ccc !important;
+    box-shadow:         0px 0px 10px 6px #ccc !important;
+}
+
+    #container h1 img {
+        margin: 40px 0px 40px 30px;
+        display: block;
+    }
+
+    #container #content {
+        padding: 10px;
+    }
+
+    #container #content h2 {
+        color: #111111;
+        font-size: 26px;
+    }
+
+    #container #content p {
+        margin-top: 20px;
+    }

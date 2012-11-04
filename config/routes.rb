@@ -2,7 +2,18 @@ Bedpres::Application.routes.draw do
 
   root :to => "presentations#index"
 
-  resources :users
+  resources :users do
+    collection do
+      get 'forgot_password' => 'users#forgot_password'
+      post 'forgot_password' => 'users#generate_forgot_password_email'
+    end
+
+    member do
+      get 'reset_password/:hash' => 'users#reset_password', :as => :reset_password
+      post 'reset_password/:hash' => 'users#change_password', :as => :reset_password
+    end
+  end
+
   resources :presentations
 
   match '/login', :to => 'sessions#new', :via => :get

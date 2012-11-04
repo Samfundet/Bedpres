@@ -13,8 +13,25 @@ Bedpres::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  # Care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = true
+
+  # Host parameter so our server becomes self aware(!)
+  config.action_mailer.default_url_options = { :host => 'localhost', :port => 3000 }
+
+  # set delivery method to :smtp, :sendmail or :test
+  config.action_mailer.delivery_method = :smtp
+
+  # these options are only needed if you choose smtp delivery
+  config.action_mailer.smtp_settings = {
+      :enable_starttls_auto => true,
+      :address        => 'smtp.gmail.com',
+      :port           => 587,
+      :domain         => 'samfundet.no',
+      :authentication => :login,
+      :user_name      => 'din-epost@gmail.com',
+      :password       => 'ditt-passord'
+  }
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
