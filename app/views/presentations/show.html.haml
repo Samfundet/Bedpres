@@ -1,7 +1,16 @@
 .section#content
-  .aboutbox
-    %h3
-      = @presentation.name
-    :markdown
-      #{@presentation.description}
-      
+  %h3
+    = @presentation.name
+  .row
+    .span9
+      :markdown
+        #{@presentation.description}
+    .span3
+      .well.sidebar-nav
+        Dato:
+        :markdown
+          #{@presentation.presentation_date.to_date}
+        Klokkeslett:
+        :markdown
+          #{@presentation.presentation_date.strftime("%H:%M")}
+          

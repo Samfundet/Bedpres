@@ -14,7 +14,7 @@
     %tr
       %th Tittel
       %th Dato
-      %th Tidspunkt
+      %th Klokkeslett
       %th Ledige Plasser
   - unless Presentation.upcoming.empty?
     - Presentation.upcoming.each do |post|
@@ -32,5 +32,3 @@
 -if permitted_to? :new, :presentations
   :markdown
     #{link_to "Opprett presentasjon", new_presentation_path, :class => 'btn'}
-
-    %H

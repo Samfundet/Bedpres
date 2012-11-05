@@ -8,6 +8,7 @@
     labels:
       presentation:
         name: "Navn"
+        corporation: "Bedrift"
         description: "Beskrivelse"
         guest_limit: "Plassbegrensning"
         presentation_date: "Presentasjonsdato"
