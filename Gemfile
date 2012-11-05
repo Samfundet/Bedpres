@@ -38,7 +38,8 @@ gem 'declarative_authorization'
 # forms, buttons, tables, grids, navigation, and more.
 gem 'twitter-bootstrap-rails'
 
-# markdown 
+# Redcarpet is Ruby library for Markdown processing that smells like
+# butterflies and popcorn. Redcarpet is powered by the Sundown library.
 gem 'redcarpet'
 
 # SamfundetDomain is a gem which provides the application with samfundets domain models.
