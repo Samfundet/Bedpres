@@ -25,10 +25,12 @@
         %td
           = post.presentation_date.to_date
         %td
-          = post.presentation_date.to_time
+          = post.presentation_date.strftime("%H:%M")
         %td
           = post.guest_limit
 
 -if permitted_to? :new, :presentations
   :markdown
     #{link_to "Opprett presentasjon", new_presentation_path, :class => 'btn'}
+
+    %H
