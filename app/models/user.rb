@@ -26,10 +26,7 @@ class User < ActiveRecord::Base
   has_many :password_recoveries
 
   before_validation :downcase_email
-
-  before_save do |user|
-    hash_new_password
-  end
+  before_save :hash_new_password
 
   def role_symbols
     [:user]
@@ -66,7 +63,7 @@ class User < ActiveRecord::Base
   private
 
   def downcase_email
-      self.email = self.email.downcase if self.email.present?
+      email.downcase!
   end
 
 end
