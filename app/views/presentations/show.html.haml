@@ -1,19 +1,31 @@
 .section#content
-  %h3
-    = @presentation.name
-  .row
-    .span9
-      :markdown
-        #{@presentation.description}
-    .span3
-      .well.sidebar-nav
-        Dato:
+  .vetda
+    %h1
+      = @presentation.name
+    .row
+      .span8
         :markdown
-          #{@presentation.presentation_date.to_date}
-        Klokkeslett:
-        :markdown
-          #{@presentation.presentation_date.strftime("%H:%M")}
-        Bedrift:
-        :markdown
-          #{@presentation.corporation}
-          
+          #{@presentation.description}
+      .span2
+        .well.sidebar-nav
+          %b
+            Bedrift:
+          :markdown
+            #{@presentation.corporation}
+          %b
+            Dato:
+          :markdown
+            #{@presentation.presentation_date.to_date}
+          %b
+            Klokkeslett:
+          :markdown
+            #{@presentation.presentation_date.strftime("%H:%M")}
+          %b
+            Sted:
+          :markdown
+            #{@presentation.area.name}
+          %b
+            Ledige plasser:
+          :markdown
+            #{@presentation.area.name}
+            
