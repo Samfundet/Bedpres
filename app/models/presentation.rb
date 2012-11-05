@@ -2,19 +2,21 @@
 #
 # Table name: presentations
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  description :text
-#  guest_limit :integer
-#  date        :datetime
+#  id                :integer          not null, primary key
+#  name              :string(255)
+#  area_id           :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  description       :text
+#  guest_limit       :integer
+#  presentation_date :datetime
+#  corporation       :string(255)
 #
 
 class Presentation < ActiveRecord::Base
-  attr_accessible :name, :area_id, :presentation_date, :guest_limit, :description
+  attr_accessible :name, :area_id, :presentation_date, :guest_limit, :description, :corporation
 
-  validates_presence_of :name, :guest_limit, :presentation_date
+  validates_presence_of :name, :guest_limit, :presentation_date, :corporation
   validates :guest_limit, :numericality => { :greater_than => 0}
   validates :presentation_date, :date => { :after => Proc.new { Time.now } }, :if => :presentation_date_changed?
 
