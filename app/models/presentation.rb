@@ -33,4 +33,11 @@ class Presentation < ActiveRecord::Base
     "#{id}-#{name.gsub(" ","-")}"
   end
 
+  def name
+    if canceled
+      "[Avlyst] #{super}"
+    else
+      super
+    end
+  end
 end
