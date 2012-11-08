@@ -28,6 +28,7 @@
       time: "%H:%M"
       short: "%e. %B, %H:%M"
       long: "%e. %B %Y, %H:%M"
+      formtastic: "%d.%m.%Y %H:%M"
   datetime:
     distance_in_words:
       half_a_minute: "et halvt minutt"
