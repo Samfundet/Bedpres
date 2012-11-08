@@ -16,7 +16,7 @@
 class Presentation < ActiveRecord::Base
   attr_accessible :name, :area_id, :presentation_date, :guest_limit, :description, :corporation
 
-  validates_presence_of :name, :guest_limit, :presentation_date, :corporation
+  validates_presence_of :name, :guest_limit, :presentation_date, :corporation, :area
   validates :guest_limit, :numericality => { :greater_than => 0}
   validates :presentation_date, :date => { :after => Proc.new { Time.now } }, :if => :presentation_date_changed?
 
