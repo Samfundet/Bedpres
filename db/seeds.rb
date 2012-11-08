@@ -33,7 +33,9 @@ Rake::Task['samfundet_auth_engine:db:seed'].invoke
 
 puts "Creating presentations.."
 
-10.times do
+presentations = 10
+
+presentations.times do
   Presentation.create!(
       :name => Faker::Lorem.words(3).join(" "),
       :corporation => Faker::Company.name,
@@ -44,14 +46,20 @@ puts "Creating presentations.."
   )
 end
 
-puts "Creating users.."
+puts "Creating users and participations"
 
-10.times do
-  User.create!(
-    :firstname => Faker::Name.first_name, 
-    :surname => Faker::Name.last_name,
-    :email => Faker::Internet.email,
-    :password => "passord",
-    :password_confirmation => "passord"
+users = 7
+
+Presentation.all.each do |p|
+  users.times do 
+    u = User.create!(
+      :firstname => Faker::Name.first_name, 
+      :surname => Faker::Name.last_name,
+      :email => Faker::Internet.email,
+      :password => "passord",
+      :password_confirmation => "passord"
     )
+    puts "Registering #{u.full_name} for #{p.name}"
+    Participation.create!(:user => u, :presentation => p)
+  end
 end
