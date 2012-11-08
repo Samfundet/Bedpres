@@ -25,7 +25,18 @@ class PresentationsController < ApplicationController
 		end
 	end
 
+	def update
+		@presentation = Presentation.find params[:id]
+		if @presentation.update_attributes(params[:presentation])
+			flash[:success] = "Presentasjonen er oppdatert."
+			redirect_to presentation_path
+		else
+			flash.now[:error] = "Presentasjonen ble ikke oppdatert."
+			render :edit
+		end
+	end
+
 	def show
-		@presentation = Presentation.find_by_name(params[:id])
+		@presentation = Presentation.find params[:id]
 	end
 end

@@ -22,7 +22,7 @@
     - Presentation.upcoming.each do |post|
       %tr
         %td
-          = link_to presentation_path(:id => post.name) do
+          = link_to presentation_path(post.id) do
             = post.name
         %td
           = post.corporation

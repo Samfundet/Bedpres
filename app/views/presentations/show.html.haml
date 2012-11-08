@@ -27,5 +27,8 @@
           %b
             Ledige plasser:
           :markdown
-            #{@presentation.area.name}
+            #{@presentation.guest_limit}
+          -if permitted_to? :new, :presentations
+            :markdown
+              #{link_to "Rediger", edit_presentation_path(@presentation), :class=> 'btn'}
             
