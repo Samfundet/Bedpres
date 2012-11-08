@@ -14,7 +14,9 @@ Bedpres::Application.routes.draw do
     end
   end
 
-  resources :presentations
+  resources :presentations do
+    resources :participations, :only => [:create, :destroy]
+  end
 
   match '/login', :to => 'sessions#new', :via => :get
   match '/login', :to => 'sessions#create', :via => :post

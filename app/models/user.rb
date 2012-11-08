@@ -12,16 +12,17 @@
 #
 
 class User < ActiveRecord::Base
-
   attr_accessor :password, :password_confirmation
   attr_accessible :firstname, :surname, :email, :password, :password_confirmation
+
+  has_many :participations, :dependent => :destroy
+  has_many :presentations, :through => :participations
 
   validates_presence_of :firstname, :surname, :email
 
   validates :email, :email_format => {:message => 'ikke gyldig adresse'}, :presence => true, :uniqueness => true
-  validates :password, :presence => true, :confirmation => true, :length => {:minimum => 6}
-
-  validates_presence_of :password_confirmation
+  validates :password, :presence => true, :confirmation => true, :length => {:minimum => 6}, :if => Proc.new { |user| user.new_record? }
+  validates :password_confirmation, :presence => true, :if => Proc.new { |user| user.new_record? }
 
   has_many :password_recoveries
 
