@@ -12,16 +12,15 @@ authorization do
 
   role :user do
     includes :guest
-    has_permission_on :participations, :to => [ :create, :delete ]
+    has_permission_on :participations, :to => [:create, :destroy]
   end
 
   role :medlem do
-    includes :user
+    includes :guest
   end
 
   role :presentation_administrator do
-    includes :medlem
-
+    includes :guest
     has_permission_on :presentations, :to => :manage
   end
 

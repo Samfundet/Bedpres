@@ -10,7 +10,7 @@
     .span8.offset1
       :markdown
         #{@presentation.description}
-      -if permitted_to? [:create, :delete], :participations
+      -if permitted_to? :create, :participations
         %p
           -if @presentation.users.include? @current_user
             = link_to "Meld meg av!", presentation_participation_path(@presentation), :method => :delete
