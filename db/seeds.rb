@@ -63,3 +63,13 @@ Presentation.all.each do |p|
     Participation.create!(:user => u, :presentation => p)
   end
 end
+
+puts "Creating named- and easy to remember user: bruker@samfundet.no !"
+
+User.create!(
+  :firstname => "Bruker",
+  :surname => "Brukerson",
+  :email => "bruker@samfundet.no",
+  :password => "passord",
+  :password_confirmation => "passord"
+)
