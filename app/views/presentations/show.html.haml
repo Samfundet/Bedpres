@@ -42,6 +42,10 @@
         -if permitted_to? :new, :presentations
           :markdown
             #{link_to "Rediger", edit_presentation_path(@presentation), :class=> 'btn'}
+        - unless @presentation.canceled
+          - if permitted_to? :cancel, :presentations
+            %p
+              #{link_to "Avlys", cancel_presentation_path(@presentation), :class=> 'btn', :method => :post}
           
   .row
     .span10.offset1
