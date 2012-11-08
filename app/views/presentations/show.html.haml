@@ -16,7 +16,6 @@
             = link_to "Meld meg av!", presentation_participation_path(@presentation), :method => :delete
           -elsif @current_user
             = link_to "Meld meg på", presentation_participations_path(@presentation), :method => :post
-            
     .span2
       .well.sidebar-nav
         %b
@@ -30,33 +29,6 @@
         %b
           Klokkeslett:
         :markdown
-          #{@presentation.description}
-      .span2
-        .well.sidebar-nav
-          %b
-            Bedrift:
-          :markdown
-            #{@presentation.corporation}
-          %b
-            Dato:
-          :markdown
-            #{@presentation.presentation_date.to_date}
-          %b
-            Klokkeslett:
-          :markdown
-            #{@presentation.presentation_date.strftime("%H:%M")}
-          %b
-            Sted:
-          :markdown
-            #{@presentation.area.name}
-          %b
-            Ledige plasser:
-          :markdown
-            #{@presentation.guest_limit}
-          -if permitted_to? :new, :presentations
-            :markdown
-              #{link_to "Rediger", edit_presentation_path(@presentation), :class=> 'btn'}
-            
           #{@presentation.presentation_date.strftime("%H:%M")}
         %b
           Sted:
@@ -66,6 +38,10 @@
           Ledige plasser:
         %p
           = @presentation.guest_limit - @presentation.users.size
+
+        -if permitted_to? :new, :presentations
+          :markdown
+            #{link_to "Rediger", edit_presentation_path(@presentation), :class=> 'btn'}
           
   .row
     .span10.offset1
