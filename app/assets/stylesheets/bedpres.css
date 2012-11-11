@@ -17,3 +17,8 @@ h2 {
 img#presentation-image {
     margin-bottom: 30px;
 }
+
+.formtastic .form-actions {
+    border-top: none;
+    padding-top: 0;
+}
