@@ -22,7 +22,7 @@
           %th Ledige Plasser
       - unless Presentation.upcoming.empty?
         - Presentation.upcoming.each do |presentation|
-          %tr
+          %tr{ :class =>  presentation.canceled ? 'error' : nil }
             %td
               = link_to presentation.name, presentation
             %td
