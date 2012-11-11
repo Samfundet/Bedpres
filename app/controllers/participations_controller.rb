@@ -12,7 +12,14 @@ class ParticipationsController < ApplicationController
 
   def create
     @presentation = Presentation.find(params[:presentation_id])
-    if @presentation.users.size < @presentation.guest_limit && Time.now < @presentation.presentation_date
+
+    if @presentation.users.size < @presentation.guest_limit
+      flash[:failure] = "Denne presentasjonen er desverre full."
+      redirect_to @presentation
+    elsif Time.now >= @presentation.presentation_date
+      flash[:failure] = "Denne presentasjonen er desverre begynt."
+      redirect_to @presentation
+    else
       if @presentation.users.include? @current_user
         flash[:failure] = "Du er allerede påmeldt denne presentasjonen."
         redirect_to @presentation
@@ -28,14 +35,6 @@ class ParticipationsController < ApplicationController
           flash[:failure] = "Noe gikk galt."
           redirect_to @presentation
         end
-      end
-    else
-      if Time.now >= @presentation.presentation_date
-        flash[:failure] = "Denne presentasjonen er desverre begynt."
-        redirect_to @presentation
-      else
-        flash[:failure] = "Denne presentasjonen er desverre full."
-        redirect_to @presentation
       end
     end
   end
