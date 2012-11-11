@@ -35,7 +35,7 @@ class Presentation < ActiveRecord::Base
 
   def name
     if canceled
-      "[Avlyst] #{super}"
+      "[avlyst] #{super}"
     else
       super
     end
