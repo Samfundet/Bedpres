@@ -42,8 +42,11 @@
         -if permitted_to? :new, :presentations
           :markdown
             #{link_to "Rediger", edit_presentation_path(@presentation), :class=> 'btn'}
-        - unless @presentation.canceled
-          - if permitted_to? :cancel, :presentations
+        - if permitted_to? :cancel, :presentations
+          - if @presentation.canceled
+            %p
+              #{link_to "Avlys avlysning", cancel_presentation_path(@presentation), :class=> 'btn', :method => :post, :confirm => "Er du sikker på at du vil avlyse avlysningen for presentasjonen?"}
+          - else
             %p
               #{link_to "Avlys", cancel_presentation_path(@presentation), :class=> 'btn', :method => :post, :confirm => "Er du sikker på at du vil avlyse denne presentasjonen?"}
         -if permitted_to? :destroy, :presentations

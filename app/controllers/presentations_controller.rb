@@ -42,13 +42,18 @@ class PresentationsController < ApplicationController
 
   def cancel
     @presentation = Presentation.find params[:id]
-    @presentation.canceled = true
+    @presentation.canceled = !@presentation.canceled
 
     if @presentation.save
-      flash[:success] = "Presentasjonen er markert som avlyst."
+      if @presentation.canceled
+        flash[:success] = "Presentasjonen er markert som avlyst."
+      else
+        flash[:success] = "Presentasjonen er ikke lenger markert som avlyst."
+      end
+
       redirect_to presentation_path @presentation
     else
-      flash.now[:error] = "En feil forekom. Presentasjonen er ikke markert som avlyst."
+      flash.now[:error] = "En feil forekom. Presentasjonen er ikke endret."
       render :show
     end
   end
