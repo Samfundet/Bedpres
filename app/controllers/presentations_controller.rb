@@ -55,8 +55,14 @@ class PresentationsController < ApplicationController
 
   def destroy
     @presentation = Presentation.find params[:id]
-    @presentation.destroy
-    flash[:success] = "Presentasjonen er slettet."
-    redirect_to root_path
+
+    if @presentation.participations.count > 0
+      flash.now[:error] = "Denne presentasjonen har allerede deltagelser og kan derfor ikke slettes."
+      render :show
+    else
+      @presentation.destroy
+      flash[:success] = "Presentasjonen er slettet."
+      redirect_to root_path
+    end
   end
 end
