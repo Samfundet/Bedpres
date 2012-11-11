@@ -45,8 +45,10 @@
         - unless @presentation.canceled
           - if permitted_to? :cancel, :presentations
             %p
-              #{link_to "Avlys", cancel_presentation_path(@presentation), :class=> 'btn', :method => :post}
-          
+              #{link_to "Avlys", cancel_presentation_path(@presentation), :class=> 'btn', :method => :post, :confirm => "Er du sikker på at du vil avlyse denne presentasjonen?"}
+        -if permitted_to? :destroy, :presentations
+          :markdown
+            #{link_to "Slett", presentation_path(@presentation), :class=> 'btn', :method => :delete, :confirm => "Er du sikker på at du vil slette denne presentasjonen?"}
   .row
     .span10.offset1
       %h2

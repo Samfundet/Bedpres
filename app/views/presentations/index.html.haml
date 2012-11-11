@@ -5,11 +5,11 @@
         %h1
           = link_to presentation_path(:id => Presentation.upcoming.first) do
             = Presentation.upcoming.first.name
-          = " – #{Presentation.upcoming.first.corporation}" 
+          = " – #{Presentation.upcoming.first.corporation}"
         %h1
           = Presentation.upcoming.first.presentation_date.to_date
 .row
-  .span10.offset1   
+  .span10.offset1
     %h3
       Kommende bedriftspresentasjoner
     %table.table
