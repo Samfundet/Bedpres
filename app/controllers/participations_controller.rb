@@ -7,7 +7,7 @@ class ParticipationsController < ApplicationController
     @participation = Participation.where(:presentation_id => params[:presentation_id], :user_id => @current_user).first
 
     if @participation.presentation.canceled
-      flash[:failure] = "Denne presentasjonen er desverre avlyst."
+      flash[:error] = "Denne presentasjonen er desverre avlyst."
       redirect_to @participation.presentation
     else
       @participation.destroy
@@ -20,17 +20,17 @@ class ParticipationsController < ApplicationController
     @presentation = Presentation.find(params[:presentation_id])
 
     if @presentation.canceled
-      flash[:failure] = "Denne presentasjonen er desverre avlyst."
+      flash[:error] = "Denne presentasjonen er desverre avlyst."
       redirect_to @presentation
     elsif @presentation.users.size == @presentation.guest_limit
-      flash[:failure] = "Denne presentasjonen er desverre full."
+      flash[:error] = "Denne presentasjonen er desverre full."
       redirect_to @presentation
     elsif Time.now >= @presentation.presentation_date
-      flash[:failure] = "Denne presentasjonen er desverre begynt."
+      flash[:error] = "Denne presentasjonen er desverre begynt."
       redirect_to @presentation
     else
       if @presentation.users.include? @current_user
-        flash[:failure] = "Du er allerede påmeldt denne presentasjonen."
+        flash[:error] = "Du er allerede påmeldt denne presentasjonen."
         redirect_to @presentation
       else
         @participation = Participation.new(
@@ -41,7 +41,7 @@ class ParticipationsController < ApplicationController
           flash[:success] = "Du er nå påmeldt presentasjonen."
           redirect_to @presentation
         else
-          flash[:failure] = "Noe gikk galt."
+          flash[:error] = "Noe gikk galt."
           redirect_to @presentation
         end
       end
