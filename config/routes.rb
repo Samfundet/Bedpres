@@ -18,7 +18,7 @@ Bedpres::Application.routes.draw do
     resources :participations, :only => [:create, :destroy]
 
     member do
-      post 'cancel'
+      post 'toggle_cancel'
     end
   end
 

@@ -40,7 +40,7 @@ class PresentationsController < ApplicationController
 		@presentation = Presentation.find(params[:id])
   end
 
-  def cancel
+  def toggle_cancel
     @presentation = Presentation.find params[:id]
     @presentation.canceled = !@presentation.canceled
 

@@ -21,7 +21,7 @@ authorization do
 
   role :presentation_administrator do
     includes :guest
-    has_permission_on :presentations, :to => [:manage, :cancel]
+    has_permission_on :presentations, :to => [:manage, :toggle_cancel]
   end
 
   role :lim_web do
