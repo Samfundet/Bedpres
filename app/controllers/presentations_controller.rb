@@ -52,4 +52,11 @@ class PresentationsController < ApplicationController
       render :show
     end
   end
+
+  def destroy
+    @presentation = Presentation.find params[:id]
+    @presentation.destroy
+    flash[:success] = "Presentasjonen er slettet."
+    redirect_to root_path
+  end
 end
