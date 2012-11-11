@@ -1,39 +1,36 @@
-.row
-  .span10.offset1
-    .hero-unit
-      -unless Presentation.upcoming.empty?
-        %h1
-          = link_to presentation_path(:id => Presentation.upcoming.first) do
-            = Presentation.upcoming.first.name
-          = " – #{Presentation.upcoming.first.corporation}"
-        %h1
-          = Presentation.upcoming.first.presentation_date.to_date
-.row
-  .span10.offset1
-    %h3
-      Kommende bedriftspresentasjoner
-    %table.table
-      %thead
-        %tr
-          %th Tittel
-          %th Bedrift
-          %th Dato
-          %th Klokkeslett
-          %th Ledige Plasser
-      - unless Presentation.upcoming.empty?
-        - Presentation.upcoming.each do |presentation|
-          %tr{ :class =>  presentation.canceled ? 'error' : nil }
-            %td
-              = link_to presentation.name, presentation
-            %td
-              = presentation.corporation
-            %td
-              = presentation.presentation_date.to_date
-            %td
-              = presentation.presentation_date.strftime("%H:%M")
-            %td
-              = presentation.guest_limit - presentation.users.size
+.hero-unit
+  -unless Presentation.upcoming.empty?
+    %h1
+      = link_to presentation_path(:id => Presentation.upcoming.first) do
+        = Presentation.upcoming.first.name
+      = " – #{Presentation.upcoming.first.corporation}"
+    %h1
+      = Presentation.upcoming.first.presentation_date.to_date
 
-    -if permitted_to? :new, :presentations
-      :markdown
-        #{link_to "Opprett presentasjon", new_presentation_path, :class => 'btn'}
+%h3
+  Kommende bedriftspresentasjoner
+%table.table
+  %thead
+    %tr
+      %th Tittel
+      %th Bedrift
+      %th Dato
+      %th Klokkeslett
+      %th Ledige Plasser
+  - unless Presentation.upcoming.empty?
+    - Presentation.upcoming.each do |presentation|
+      %tr{ :class =>  presentation.canceled ? 'error' : nil }
+        %td
+          = link_to presentation.name, presentation
+        %td
+          = presentation.corporation
+        %td
+          = presentation.presentation_date.to_date
+        %td
+          = presentation.presentation_date.strftime("%H:%M")
+        %td
+          = presentation.guest_limit - presentation.users.size
+
+-if permitted_to? :new, :presentations
+  :markdown
+    #{link_to "Opprett presentasjon", new_presentation_path, :class => 'btn'}
