@@ -4,7 +4,7 @@
     = f.input :corporation
     = f.input :description, :input_html => { :class => "input-xxlarge" }
     = f.input :guest_limit
-    = f.input :presentation_date, :as => :string, :input_html => { :class => "datetime_select",  :value => I18n.l(f.object.presentation_date, :format => :formtastic) }
+    = f.input :presentation_date, :as => :string, :input_html => { :class => "datetime_select",  :value => I18n.l(f.object.presentation_date || Time.now, :format => :formtastic) }
     = f.input :area
   = f.actions do
     = f.action :submit
