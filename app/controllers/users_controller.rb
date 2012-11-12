@@ -90,16 +90,10 @@ class UsersController < ApplicationController
     password_should_change = !(params[:user][:password].blank? &&
                                params[:user][:password_confirmation].blank?)
 
-    password_match = (params[:user][:password] == params[:user][:password_confirmation])
-
     if password_should_change
       user_pwd_check = User.authenticate(@user.email, params[:user][:old_password])
       if user_pwd_check.nil?
         flash[:error] = "Du tastet inn feil passord."
-        render :edit
-        return
-      elsif !password_match
-        flash[:error] = "Du har ikke tastet inn samme passordet i begge felter."
         render :edit
         return
       end
