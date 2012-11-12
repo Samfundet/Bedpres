@@ -13,4 +13,4 @@
         password: "Passord"
         password_confirmation: "Bekreft passord"
         password_new: "Nytt passord"
-        password_old: "Gammelt passord"
+        old_password: "Gammelt passord"

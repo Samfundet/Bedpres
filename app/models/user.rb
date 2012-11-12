@@ -12,8 +12,9 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessor :password, :password_confirmation
-  attr_accessible :firstname, :surname, :email, :password, :password_confirmation
+  attr_accessor :password, :password_confirmation, :old_password
+  attr_accessible :firstname, :surname, :email, :password, :password_confirmation, :old_password
+
 
   has_many :participations, :dependent => :destroy
   has_many :presentations, :through => :participations
