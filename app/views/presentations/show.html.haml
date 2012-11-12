@@ -37,7 +37,8 @@
         #{@presentation.guest_limit - @presentation.users.size}
         av
         #{@presentation.guest_limit}
-      = render 'edit_button', :presentation => @presentation
+      - if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
+        = render 'edit_button', :presentation => @presentation
         
 -if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
   %h2
