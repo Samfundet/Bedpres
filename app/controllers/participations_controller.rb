@@ -17,11 +17,11 @@ class ParticipationsController < ApplicationController
     if @presentation.canceled
       flash[:error] = "Denne presentasjonen er desverre avlyst."
       redirect_to @presentation
-    elsif @presentation.users.size >= @presentation.guest_limit
-      flash[:error] = "Denne presentasjonen er desverre full."
-      redirect_to @presentation
     elsif Time.now >= @presentation.presentation_date
       flash[:error] = "Denne presentasjonen er desverre begynt."
+      redirect_to @presentation
+    elsif @presentation.users.size >= @presentation.guest_limit
+      flash[:error] = "Denne presentasjonen er desverre full."
       redirect_to @presentation
     else
       if @presentation.users.include? @current_user
