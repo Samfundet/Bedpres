@@ -17,38 +17,36 @@
     .well.sidebar-nav
       %b
         Bedrift:
-      :markdown
-        #{@presentation.corporation}
+      %p
+        = @presentation.corporation
       %b
         Dato:
-      :markdown
-        #{@presentation.presentation_date.to_date}
+      %p
+        = @presentation.presentation_date.to_date
       %b
         Klokkeslett:
-      :markdown
-        #{@presentation.presentation_date.strftime("%H:%M")}
+      %p
+        = @presentation.presentation_date.strftime("%H:%M")
       %b
         Sted:
-      :markdown
-        #{@presentation.area.name}
+      %p
+        = @presentation.area.name
       %b
         Ledige plasser:
       %p
         = @presentation.guest_limit - @presentation.users.size
 
       -if permitted_to? :new, :presentations
-        :markdown
-          #{link_to "Rediger", edit_presentation_path(@presentation), :class=> 'btn'}
+        = link_to "Rediger", edit_presentation_path(@presentation), :class=> 'btn'
       - if permitted_to? :toggle_cancel, :presentations
         - if @presentation.canceled
           %p
-            #{link_to "Avlys avlysning", toggle_cancel_presentation_path(@presentation), :class=> 'btn', :method => :post, :confirm => "Er du sikker på at du vil avlyse avlysningen for presentasjonen?"}
+            = link_to "Avlys avlysning", toggle_cancel_presentation_path(@presentation), :class=> 'btn', :method => :post, :confirm => "Er du sikker på at du vil avlyse avlysningen for presentasjonen?"
         - else
           %p
-            #{link_to "Avlys", toggle_cancel_presentation_path(@presentation), :class=> 'btn', :method => :post, :confirm => "Er du sikker på at du vil avlyse denne presentasjonen?"}
+            = link_to "Avlys", toggle_cancel_presentation_path(@presentation), :class=> 'btn', :method => :post, :confirm => "Er du sikker på at du vil avlyse denne presentasjonen?"
       -if permitted_to? :destroy, :presentations
-        :markdown
-          #{link_to "Slett", presentation_path(@presentation), :class=> 'btn', :method => :delete, :confirm => "Er du sikker på at du vil slette denne presentasjonen?"}
+        = link_to "Slett", presentation_path(@presentation), :class=> 'btn', :method => :delete, :confirm => "Er du sikker på at du vil slette denne presentasjonen?"
 
 %h2
   Påmeldte brukere
