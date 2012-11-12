@@ -11,11 +11,15 @@
         .container
           = link_to "Bedriftspresentasjoner på Samfundet", root_path, :class => "brand"
           .pull-right
-            -if @current_user
-              .brand
-                = link_to edit_user_path(@current_user) do
-                  = @current_user.full_name
             %ul.nav
+              - if @current_user
+                %li
+                  - if @current_user.is_a? User
+                    = link_to edit_user_path(@current_user) do
+                      = @current_user.full_name
+                  - else
+                    = link_to "https://medlem.samfundet.no/account/edit" do
+                      = @current_user.full_name
               %li
                 - if @current_user
                   = link_to "Logg ut", logout_path, :method => :post
