@@ -22,3 +22,43 @@ img#presentation-image {
     border-top: none;
     padding-top: 0;
 }
+
+.banner 
+{ 
+  height:300px; 
+  padding:0; 
+  position:relative;
+}
+
+
+.banner > .align_bottom
+{
+  position:absolute; 
+  bottom:0em; 
+  padding-bottom:1em; 
+  margin-left:0;
+}
+
+.banner > .align_bottom > h2
+{
+  font-size:4em; 
+  margin: 0.3em 0; 
+  padding: 0; 
+  text-align: left;
+}
+
+.banner > .align_bottom > h2 > a
+{
+	margin:0; 
+	background-color:#A03033; 
+	color:white; 
+	padding:0 20px 0 20px; 
+}
+
+.banner > .align_bottom > h3
+{
+  background-color:black; 
+  color:white; margin:0; 
+  padding:0 20px 0 20px; 
+  text-align:left;
+}
