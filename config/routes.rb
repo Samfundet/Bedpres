@@ -16,6 +16,10 @@ Bedpres::Application.routes.draw do
 
   resources :presentations do
     resources :participations, :only => [:create, :destroy]
+
+    member do
+      post 'toggle_cancel'
+    end
   end
 
   match '/login', :to => 'sessions#new', :via => :get

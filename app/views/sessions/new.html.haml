@@ -1,5 +1,5 @@
 .row
-  .span6
+  .span5
     %h2 Logg inn som bruker
     = semantic_form_for User.new(:email => @user_mail), :url => login_path, :html => { :class => "form-horizontal" } do |f|
       = f.inputs do
@@ -8,7 +8,7 @@
       = f.actions do
         = f.action :submit, :label => "Logg inn"
 
-  .span6
+  .span5
     %h2 Logg inn som administrator
     = semantic_form_for Member.new(:mail => @member_mail), :url => login_path, :html => { :class => "form-horizontal" } do |f|
       = f.inputs do

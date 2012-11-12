@@ -17,13 +17,12 @@ authorization do
   end
 
   role :medlem do
-    includes :user
+    includes :guest
   end
 
   role :presentation_administrator do
-    includes :medlem
-
-    has_permission_on :presentations, :to => :manage
+    includes :guest
+    has_permission_on :presentations, :to => [:manage, :toggle_cancel]
   end
 
   role :lim_web do

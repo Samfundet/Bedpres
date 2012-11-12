@@ -6,12 +6,19 @@ body {
 	margin-bottom:2em;
 }
 
-.row {
-	margin-bottom:2em;
+h1 {
+    margin-bottom: 40px;
 }
-/*.container-main {
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 950px;
+
+h2 {
+    margin-bottom: 30px;
 }
-*/
+
+img#presentation-image {
+    margin-bottom: 30px;
+}
+
+.formtastic .form-actions {
+    border-top: none;
+    padding-top: 0;
+}

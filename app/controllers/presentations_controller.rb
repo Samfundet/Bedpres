@@ -38,5 +38,36 @@ class PresentationsController < ApplicationController
 
 	def show
 		@presentation = Presentation.find(params[:id])
-	end
+  end
+
+  def toggle_cancel
+    @presentation = Presentation.find params[:id]
+    @presentation.canceled = !@presentation.canceled
+
+    if @presentation.save
+      if @presentation.canceled
+        flash[:success] = "Presentasjonen er markert som avlyst."
+      else
+        flash[:success] = "Presentasjonen er ikke lenger markert som avlyst."
+      end
+
+      redirect_to presentation_path @presentation
+    else
+      flash.now[:error] = "En feil forekom. Presentasjonen er ikke endret."
+      render :show
+    end
+  end
+
+  def destroy
+    @presentation = Presentation.find params[:id]
+
+    if @presentation.participations.count > 0
+      flash.now[:error] = "Denne presentasjonen har allerede deltagelser og kan derfor ikke slettes."
+      render :show
+    else
+      @presentation.destroy
+      flash[:success] = "Presentasjonen er slettet."
+      redirect_to root_path
+    end
+  end
 end

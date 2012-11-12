@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105191010) do
+ActiveRecord::Schema.define(:version => 20121108215226) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20121105191010) do
     t.integer  "guest_limit"
     t.datetime "presentation_date"
     t.string   "corporation"
+    t.boolean  "canceled"
   end
 
   create_table "roles", :force => true do |t|

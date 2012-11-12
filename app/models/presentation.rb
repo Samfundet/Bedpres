@@ -30,7 +30,14 @@ class Presentation < ActiveRecord::Base
   scope :past, where("presentation_date < ?", Time.now).order("presentation_date DESC")
 
   def to_param
-    "#{id}-#{name.gsub(" ","-")}"
+    "#{id}-#{name.parameterize}"
   end
 
+  def name
+    if canceled
+      "[avlyst] #{super}"
+    else
+      super
+    end
+  end
 end

@@ -1,70 +1,69 @@
-.section#content
-  .row
-    .span10.offset1
-      = image_tag "/assets/placeholder.jpg"
-  .row
-    .span10.offset1
-      %h1
-        = @presentation.name.capitalize
-  .row
-    .span8.offset1
-      :markdown
-        #{@presentation.description}
-      -if permitted_to? [:create, :delete], :participations
-        %p
-          -if @presentation.users.include? @current_user
-            = link_to "Meld meg av!", presentation_participation_path(@presentation), :method => :delete
-          -elsif @current_user
-            = link_to "Meld meg på", presentation_participations_path(@presentation), :method => :post
-    .span2
-      .well.sidebar-nav
-        %b
-          Bedrift:
-        :markdown
-          #{@presentation.corporation}
-        %b
-          Dato:
-        :markdown
-          #{@presentation.presentation_date.to_date}
-        %b
-          Klokkeslett:
-        :markdown
-          #{@presentation.presentation_date.strftime("%H:%M")}
-        %b
-          Sted:
-        :markdown
-          #{@presentation.area.name}
-        %b
-          Ledige plasser:
-        %p
-          = @presentation.guest_limit - @presentation.users.size
+= image_tag "/assets/placeholder.jpg", :id => "presentation-image"
 
-        -if permitted_to? :new, :presentations
-          :markdown
-            #{link_to "Rediger", edit_presentation_path(@presentation), :class=> 'btn'}
-          
-  .row
-    .span10.offset1
-      %h2
-        Påmeldte brukere
+%h1
+  = @presentation.name.capitalize
+
+.row
+  .span8
+    :markdown
+      #{@presentation.description}
+    -if permitted_to? :create, :participations
       %p
-        = "#{@presentation.users.size} / #{@presentation.guest_limit} påmeldte"
+        -if @presentation.users.include? @current_user
+          = link_to "Meld meg av!", presentation_participation_path(@presentation), :method => :delete
+        -elsif @current_user
+          = link_to "Meld meg på", presentation_participations_path(@presentation), :method => :post
+  .span2
+    .well.sidebar-nav
+      %b
+        Bedrift:
+      :markdown
+        #{@presentation.corporation}
+      %b
+        Dato:
+      :markdown
+        #{@presentation.presentation_date.to_date}
+      %b
+        Klokkeslett:
+      :markdown
+        #{@presentation.presentation_date.strftime("%H:%M")}
+      %b
+        Sted:
+      :markdown
+        #{@presentation.area.name}
+      %b
+        Ledige plasser:
+      %p
+        = @presentation.guest_limit - @presentation.users.size
 
-  -if @presentation.users.empty?
+      -if permitted_to? :new, :presentations
+        :markdown
+          #{link_to "Rediger", edit_presentation_path(@presentation), :class=> 'btn'}
+      - if permitted_to? :toggle_cancel, :presentations
+        - if @presentation.canceled
+          %p
+            #{link_to "Avlys avlysning", toggle_cancel_presentation_path(@presentation), :class=> 'btn', :method => :post, :confirm => "Er du sikker på at du vil avlyse avlysningen for presentasjonen?"}
+        - else
+          %p
+            #{link_to "Avlys", toggle_cancel_presentation_path(@presentation), :class=> 'btn', :method => :post, :confirm => "Er du sikker på at du vil avlyse denne presentasjonen?"}
+      -if permitted_to? :destroy, :presentations
+        :markdown
+          #{link_to "Slett", presentation_path(@presentation), :class=> 'btn', :method => :delete, :confirm => "Er du sikker på at du vil slette denne presentasjonen?"}
+
+%h2
+  Påmeldte brukere
+%p
+  = "#{@presentation.users.size} / #{@presentation.guest_limit} påmeldte"
+
+-if @presentation.users.empty?
+  %p
+    Ingen påmeldte :(
+-else
+  - users = @presentation.users
+  - len = users.length
+  - (users.size/10 +1).times do |y|
     .row
-      .span12
-        %p
-          Ingen påmeldte :(
-  -else
-    - users = @presentation.users
-    - len = users.length
-    - (users.size/10 +1).times do |y|
-      .row
-        - 10.times do |x|
-          -if y*10+x < len
-            -if x == 0
-              %p.span1.offset1
-                = users[y*10 + x].full_name
-            -else
-              %p.span1
-                = users[y*10 + x].full_name
+      - 10.times do |x|
+        -if y*10+x < len
+          %p.span1
+            = users[y*10 + x].full_name
