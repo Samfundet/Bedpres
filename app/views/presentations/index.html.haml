@@ -9,27 +9,8 @@
 
 %h3
   Kommende bedriftspresentasjoner
-%table.table
-  %thead
-    %tr
-      %th Tittel
-      %th Bedrift
-      %th Dato
-      %th Klokkeslett
-      %th Ledige Plasser
-  - unless @upcoming_presentations.empty?
-    - @upcoming_presentations.each do |presentation|
-      %tr
-        %td
-          = link_to presentation.name, presentation
-        %td
-          = presentation.corporation
-        %td
-          = presentation.presentation_date.to_date
-        %td
-          = presentation.presentation_date.strftime("%H:%M")
-        %td
-          = presentation.guest_limit - presentation.users.size
+
+= render 'presentations', :presentations => @upcoming_presentations
 
 -if permitted_to? :new, :presentations
   :markdown

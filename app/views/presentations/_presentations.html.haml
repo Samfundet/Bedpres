@@ -1,0 +1,21 @@
+%table.table
+  %thead
+    %tr
+      %th Tittel
+      %th Bedrift
+      %th Dato
+      %th Klokkeslett
+      %th Ledige Plasser
+  - unless presentations.empty?
+    - presentations.each do |presentation|
+      %tr
+        %td
+          = link_to presentation.name, presentation
+        %td
+          = presentation.corporation
+        %td
+          = presentation.presentation_date.to_date
+        %td
+          = presentation.presentation_date.strftime("%H:%M")
+        %td
+          = presentation.guest_limit - presentation.users.size
