@@ -3,6 +3,7 @@ class PresentationsController < ApplicationController
 	
 	def index
     @upcoming_presentations = Presentation.upcoming
+    @promo = @upcoming_presentations.where("canceled = ?", false).first
   end
 
 	def new
