@@ -1,11 +1,12 @@
-.hero-unit
-  -unless @promo.nil?
-    %h1
-      = link_to presentation_path(:id => @promo) do
-        = @promo.name
-      = " – #{@promo.corporation}"
-    %h1
-      = @promo.presentation_date.to_date
+-unless @promo.nil?
+  .banner{:style => "background-image: url('/assets/placeholder.jpg');"}
+    .align_bottom
+      %h2
+        = link_to @promo.name, @promo
+      %h3
+        = "#{@promo.corporation} – #{@promo.area} –"
+        %time{ :datetime => @promo.presentation_date.xmlschema }
+          = @promo.presentation_date.strftime("%d. %B %Y – %H:%M")
 
 %h3
   Kommende bedriftspresentasjoner
@@ -19,5 +20,4 @@
   = render 'presentations', :presentations => @past_presentations
 
 -if permitted_to? :new, :presentations
-  :markdown
-    #{link_to "Opprett presentasjon", new_presentation_path, :class => 'btn'}
+  = link_to "Opprett presentasjon", new_presentation_path, :class => 'btn'

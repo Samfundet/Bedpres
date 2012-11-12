@@ -37,21 +37,8 @@
         #{@presentation.guest_limit - @presentation.users.size}
         av
         #{@presentation.guest_limit}
+      = render 'edit_button', :presentation => @presentation
         
-
-      -if permitted_to? :new, :presentations
-        %p
-          = link_to "Rediger", edit_presentation_path(@presentation), :class=> 'btn'
-      - if permitted_to? :toggle_cancel, :presentations
-        - if @presentation.canceled
-          %p
-            = link_to "Avlys avlysning", toggle_cancel_presentation_path(@presentation), :class=> 'btn', :method => :post, :confirm => "Er du sikker på at du vil avlyse avlysningen for presentasjonen?"
-        - else
-          %p
-            = link_to "Avlys", toggle_cancel_presentation_path(@presentation), :class=> 'btn', :method => :post, :confirm => "Er du sikker på at du vil avlyse denne presentasjonen?"
-      -if permitted_to? :destroy, :presentations
-        %p
-          = link_to "Slett", presentation_path(@presentation), :class=> 'btn', :method => :delete, :confirm => "Er du sikker på at du vil slette denne presentasjonen?"
 -if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
   %h2
     Påmeldte brukere
