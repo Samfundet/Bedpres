@@ -37,7 +37,8 @@
         = @presentation.guest_limit - @presentation.users.size
 
       -if permitted_to? :new, :presentations
-        = link_to "Rediger", edit_presentation_path(@presentation), :class=> 'btn'
+        %p
+          = link_to "Rediger", edit_presentation_path(@presentation), :class=> 'btn'
       - if permitted_to? :toggle_cancel, :presentations
         - if @presentation.canceled
           %p
@@ -46,7 +47,8 @@
           %p
             = link_to "Avlys", toggle_cancel_presentation_path(@presentation), :class=> 'btn', :method => :post, :confirm => "Er du sikker på at du vil avlyse denne presentasjonen?"
       -if permitted_to? :destroy, :presentations
-        = link_to "Slett", presentation_path(@presentation), :class=> 'btn', :method => :delete, :confirm => "Er du sikker på at du vil slette denne presentasjonen?"
+        %p
+          = link_to "Slett", presentation_path(@presentation), :class=> 'btn', :method => :delete, :confirm => "Er du sikker på at du vil slette denne presentasjonen?"
 
 %h2
   Påmeldte brukere
