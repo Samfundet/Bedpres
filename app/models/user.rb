@@ -28,7 +28,11 @@ class User < ActiveRecord::Base
   has_many :password_recoveries
 
   before_validation :downcase_email
-  before_save :hash_new_password
+  before_save :hash_new_password, :if => :password_changed?
+
+  def password_changed?
+    not @password.nil?
+  end
 
   def role_symbols
     [:user]
