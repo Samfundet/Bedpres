@@ -1,7 +1,9 @@
 class PresentationsController < ApplicationController
 	filter_access_to :all
 	
-	def index; end
+	def index
+    @upcoming_presentations = Presentation.upcoming
+  end
 
 	def new
 		@presentation = Presentation.new

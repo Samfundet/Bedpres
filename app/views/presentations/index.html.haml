@@ -1,11 +1,11 @@
 .hero-unit
-  -unless Presentation.upcoming.empty?
+  -unless @upcoming_presentations.empty?
     %h1
-      = link_to presentation_path(:id => Presentation.upcoming.first) do
-        = Presentation.upcoming.first.name
-      = " – #{Presentation.upcoming.first.corporation}"
+      = link_to presentation_path(:id => @upcoming_presentations.first) do
+        = @upcoming_presentations.first.name
+      = " – #{@upcoming_presentations.first.corporation}"
     %h1
-      = Presentation.upcoming.first.presentation_date.to_date
+      = @upcoming_presentations.first.presentation_date.to_date
 
 %h3
   Kommende bedriftspresentasjoner
@@ -17,8 +17,8 @@
       %th Dato
       %th Klokkeslett
       %th Ledige Plasser
-  - unless Presentation.upcoming.empty?
-    - Presentation.upcoming.each do |presentation|
+  - unless @upcoming_presentations.empty?
+    - @upcoming_presentations.each do |presentation|
       %tr
         %td
           = link_to presentation.name, presentation
