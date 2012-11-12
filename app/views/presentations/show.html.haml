@@ -53,17 +53,25 @@
 %h2
   Påmeldte brukere
 %p
-  = "#{@presentation.users.size} / #{@presentation.guest_limit} påmeldte"
+  %b
+    = "#{@presentation.users.size} / #{@presentation.guest_limit} påmeldte"
 
 -if @presentation.users.empty?
   %p
     Ingen påmeldte :(
--else
-  - users = @presentation.users
-  - len = users.length
-  - (users.size/10 +1).times do |y|
-    .row
-      - 10.times do |x|
-        -if y*10+x < len
-          %p.span1
-            = users[y*10 + x].full_name
+-elsif @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
+  %table.table
+    %thead
+      %tr
+        %th Fornavn
+        %th Etternavn
+        %th Email
+    - users = @presentation.users
+    - users.size.times do |y|
+      %tr
+        %td
+          = users[y].firstname
+        %td
+          = users[y].surname
+        %td
+          = users[y].email
