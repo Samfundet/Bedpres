@@ -12,6 +12,12 @@
 
 = render 'presentations', :presentations => @upcoming_presentations
 
+- if !@current_user.nil? and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
+  %h3
+    Tidligere bedriftspresentasjoner
+
+  = render 'presentations', :presentations => @past_presentations
+
 -if permitted_to? :new, :presentations
   :markdown
     #{link_to "Opprett presentasjon", new_presentation_path, :class => 'btn'}

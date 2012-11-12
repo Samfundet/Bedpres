@@ -3,6 +3,7 @@ class PresentationsController < ApplicationController
 	
 	def index
     @upcoming_presentations = Presentation.upcoming
+    @past_presentations = Presentation.past
     @promo = @upcoming_presentations.where("canceled = ?", false).first
   end
 
