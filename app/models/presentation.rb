@@ -22,12 +22,12 @@ class Presentation < ActiveRecord::Base
   has_many :users, :through => :participations
 
   validates :guest_limit, :numericality => { :greater_than => 0}
-  validates :presentation_date, :date => { :after => Proc.new { Time.now } }, :if => :presentation_date_changed?
+  validates :presentation_date, :date => { :after => Proc.new { Time.zone.now } }, :if => :presentation_date_changed?
 
   belongs_to :area
 
-  scope :upcoming, lambda { where("presentation_date >= ?", Time.now).order("presentation_date ASC") }
-  scope :past, lambda { where("presentation_date < ?", Time.now).order("presentation_date DESC") }
+  scope :upcoming, lambda { where("presentation_date >= ?", Time.zone.now).order("presentation_date ASC") }
+  scope :past, lambda { where("presentation_date < ?", Time.zone.now).order("presentation_date DESC") }
 
   def to_param
     "#{id}-#{name.parameterize}"
