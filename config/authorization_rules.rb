@@ -13,6 +13,7 @@ authorization do
   role :user do
     includes :guest
     has_permission_on :participations, :to => [ :create, :delete ]
+    has_permission_on :users, :to => [ :update]
   end
 
   role :medlem do
