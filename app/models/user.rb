@@ -22,13 +22,17 @@ class User < ActiveRecord::Base
   validates_presence_of :firstname, :surname, :email
 
   validates :email, :email_format => {:message => 'ikke gyldig adresse'}, :presence => true, :uniqueness => true
-  validates :password, :presence => true, :confirmation => true, :length => {:minimum => 6}, :if => Proc.new { |user| user.new_record? }
-  validates :password_confirmation, :presence => true, :if => Proc.new { |user| user.new_record? }
+  validates :password, :presence => true, :confirmation => true, :length => {:minimum => 6}, :if => :password_changed?
+  validates :password_confirmation, :presence => true, :if => :password_changed?
 
   has_many :password_recoveries
 
   before_validation :downcase_email
-  before_save :hash_new_password
+  before_save :hash_new_password, :if => :password_changed?
+
+  def password_changed?
+    not @password.nil?
+  end
 
   def role_symbols
     [:user]
