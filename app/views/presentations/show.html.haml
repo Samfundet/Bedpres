@@ -34,7 +34,10 @@
       %b
         Ledige plasser:
       %p
-        = @presentation.guest_limit - @presentation.users.size
+        #{@presentation.guest_limit - @presentation.users.size}
+        av
+        #{@presentation.guest_limit}
+        
 
       -if permitted_to? :new, :presentations
         %p
