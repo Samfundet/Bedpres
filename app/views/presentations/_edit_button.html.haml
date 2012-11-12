@@ -1,0 +1,14 @@
+.btn-group
+  = link_to "#", :class => "btn btn-primary dropdown-toggle", "data-toggle" => "dropdown" do
+    %i.icon-wrench
+    %span.caret
+  %ul.dropdown-menu
+    %li
+      = link_to "Rediger", edit_presentation_path(presentation)
+    %li
+      - if presentation.canceled
+        = link_to "Avlys avlysning", toggle_cancel_presentation_path(presentation), :method => :post, :confirm => "Er du sikker på at du vil avlyse avlysningen for presentasjonen?"
+      - else
+        = link_to "Avlys", toggle_cancel_presentation_path(presentation), :method => :post, :confirm => "Er du sikker på at du vil avlyse denne presentasjonen?"
+    %li
+      = link_to "Slett", presentation_path(presentation), :method => :delete, :confirm => "Er du sikker på at du vil slette denne presentasjonen?"

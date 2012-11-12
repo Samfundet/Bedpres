@@ -19,3 +19,6 @@
           = presentation.presentation_date.strftime("%H:%M")
         %td
           = presentation.guest_limit - presentation.users.size
+        - if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
+          %td
+            = render 'edit_button', :presentation => presentation
