@@ -1,35 +1,22 @@
 .hero-unit
-  -unless Presentation.upcoming.empty?
+  -unless @promo.nil?
     %h1
-      = link_to presentation_path(:id => Presentation.upcoming.first) do
-        = Presentation.upcoming.first.name
-      = " – #{Presentation.upcoming.first.corporation}"
+      = link_to presentation_path(:id => @promo) do
+        = @promo.name
+      = " – #{@promo.corporation}"
     %h1
-      = Presentation.upcoming.first.presentation_date.to_date
+      = @promo.presentation_date.to_date
 
 %h3
   Kommende bedriftspresentasjoner
-%table.table
-  %thead
-    %tr
-      %th Tittel
-      %th Bedrift
-      %th Dato
-      %th Klokkeslett
-      %th Ledige Plasser
-  - unless Presentation.upcoming.empty?
-    - Presentation.upcoming.each do |presentation|
-      %tr{ :class =>  presentation.canceled ? 'error' : nil }
-        %td
-          = link_to presentation.name, presentation
-        %td
-          = presentation.corporation
-        %td
-          = presentation.presentation_date.to_date
-        %td
-          = presentation.presentation_date.strftime("%H:%M")
-        %td
-          = presentation.guest_limit - presentation.users.size
+
+= render 'presentations', :presentations => @upcoming_presentations
+
+- if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
+  %h3
+    Tidligere bedriftspresentasjoner
+
+  = render 'presentations', :presentations => @past_presentations
 
 -if permitted_to? :new, :presentations
   :markdown

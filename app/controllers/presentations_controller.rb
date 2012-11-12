@@ -2,8 +2,10 @@ class PresentationsController < ApplicationController
 	filter_access_to :all
 	
 	def index
-		@presentation = Presentation.all
-	end
+    @upcoming_presentations = Presentation.upcoming
+    @past_presentations = Presentation.past
+    @promo = @upcoming_presentations.where("canceled = ?", false).first
+  end
 
 	def new
 		@presentation = Presentation.new
