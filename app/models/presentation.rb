@@ -26,8 +26,8 @@ class Presentation < ActiveRecord::Base
 
   belongs_to :area
 
-  scope :upcoming, where("presentation_date >= ?", Time.now).order("presentation_date ASC")
-  scope :past, where("presentation_date < ?", Time.now).order("presentation_date DESC")
+  scope :upcoming, lambda { where("presentation_date >= ?", Time.now).order("presentation_date ASC") }
+  scope :past, lambda { where("presentation_date < ?", Time.now).order("presentation_date DESC") }
 
   def to_param
     "#{id}-#{name.parameterize}"
