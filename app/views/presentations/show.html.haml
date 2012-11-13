@@ -7,11 +7,11 @@
   .span8
     :markdown
       #{@presentation.description}
-    -if permitted_to? :create, :participations
+    - if permitted_to? :create, :participations
       %p
-        -if @presentation.users.include? @current_user
+        - if @presentation.users.include? @current_user
           = link_to "Meld meg av!", presentation_participation_path(@presentation), :method => :delete
-        -elsif @current_user
+        - elsif @current_user
           = link_to "Meld meg på", presentation_participations_path(@presentation), :method => :post
   .span2
     .well.sidebar-nav
@@ -40,17 +40,17 @@
       - if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
         = render 'edit_button', :presentation => @presentation
         
--if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
+- if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
   %h2
     Påmeldte brukere
   %p
     %b
       = "#{@presentation.users.size} / #{@presentation.guest_limit} påmeldte"
 
-  -if @presentation.users.empty?
+  - if @presentation.users.empty?
     %p
       Ingen påmeldte :(
-  -else
+  - else
     %table.table
       %thead
         %tr

@@ -1,4 +1,4 @@
--unless @promo.nil?
+- unless @promo.nil?
   .banner-image{:style => "background-image: url('#{@promo.image.url(:banner)}');"}
     .align_bottom
       %h2
@@ -18,5 +18,5 @@
     Tidligere bedriftspresentasjoner
   = render 'presentations', :presentations => @past_presentations
 
--if permitted_to? :new, :presentations
+- if permitted_to? :new, :presentations
   = link_to "Opprett presentasjon", new_presentation_path, :class => 'btn'
