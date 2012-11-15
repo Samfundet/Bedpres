@@ -27,6 +27,7 @@ class Presentation < ActiveRecord::Base
 
   validates :guest_limit, :numericality => { :greater_than => 0}
   validates :presentation_date, :date => { :after => Proc.new { Time.zone.now } }, :if => :presentation_date_changed?
+  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   belongs_to :area
 
