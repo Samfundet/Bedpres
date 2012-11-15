@@ -19,3 +19,4 @@ pickle-email-*.html
 .rvmrc
 /config/database.yml
 public/assets/
+vendor/ruby/
