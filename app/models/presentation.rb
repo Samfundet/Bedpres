@@ -22,7 +22,7 @@ class Presentation < ActiveRecord::Base
   has_many :participations, :dependent => :destroy
   has_many :users, :through => :participations
   has_attached_file :image, 
-              :styles => { :banner => "970x" },
+              :styles => { :banner => "970x300^" },
               :default_url => '/assets/placeholder.jpg'
 
   validates :guest_limit, :numericality => { :greater_than => 0}
