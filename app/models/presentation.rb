@@ -11,15 +11,19 @@
 #  guest_limit       :integer
 #  presentation_date :datetime
 #  corporation       :string(255)
+#  canceled          :boolean          default(FALSE)
 #
 
 class Presentation < ActiveRecord::Base
-  attr_accessible :name, :area_id, :presentation_date, :guest_limit, :description, :corporation
+  attr_accessible :name, :area_id, :presentation_date, :guest_limit, :description, :corporation, :image
 
   validates_presence_of :name, :guest_limit, :presentation_date, :corporation, :area
 
   has_many :participations, :dependent => :destroy
   has_many :users, :through => :participations
+  has_attached_file :image, 
+              :styles => { :banner => "970x" },
+              :default_url => '/assets/placeholder.jpg'
 
   validates :guest_limit, :numericality => { :greater_than => 0}
   validates :presentation_date, :date => { :after => Proc.new { Time.zone.now } }, :if => :presentation_date_changed?
