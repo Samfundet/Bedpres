@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/Samfundet/SamfundetAuth.git
-  revision: 1988dc7b44a0a93b20d9529c5e07cd3f7d124afb
+  revision: 0ce840377213032c81d7ea625f1635a478669f65
   specs:
     samfundet_auth (0.0.1)
       declarative_authorization
