@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/Samfundet/SamfundetDomain.git
-  revision: d353cfceb054d16aa13dba8df6556ce2fdbfb911
+  revision: cd5880b506c2c5425f32a09a3956e5b764ed263f
   specs:
     samfundet_domain (0.0.2)
       rails (~> 3.2.8)
