@@ -1,4 +1,4 @@
-= image_tag "/assets/placeholder.jpg", :id => "presentation-image"
+.banner-image{:style => "background-image: url('#{@presentation.image.url(:banner)}');"}
 
 %h1
   = @presentation.name.capitalize
