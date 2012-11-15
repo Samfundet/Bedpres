@@ -17,3 +17,6 @@ pickle-email-*.html
 .swp
 .idea/
 .rvmrc
+/config/database.yml
+public/assets/
+vendor/ruby/

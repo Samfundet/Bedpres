@@ -68,6 +68,12 @@ gem 'roadie'
 
 # Gems used only for assets and not required
 # in production environments by default.
+
+group :production do
+  # # PostgreSQL adapter. See: config/database.yml
+  gem 'pg'
+end
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
 
@@ -75,6 +81,8 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+
+  gem 'less-rails'
 end
 
 group :development do

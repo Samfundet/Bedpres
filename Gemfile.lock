@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/Samfundet/SamfundetAuth.git
-  revision: 1988dc7b44a0a93b20d9529c5e07cd3f7d124afb
+  revision: 0ce840377213032c81d7ea625f1635a478669f65
   specs:
     samfundet_auth (0.0.1)
       declarative_authorization
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/Samfundet/SamfundetDomain.git
-  revision: d353cfceb054d16aa13dba8df6556ce2fdbfb911
+  revision: cd5880b506c2c5425f32a09a3956e5b764ed263f
   specs:
     samfundet_domain (0.0.2)
       rails (~> 3.2.8)
@@ -97,6 +97,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.4.0)
       mime-types
+    pg (0.14.1)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -172,7 +173,9 @@ DEPENDENCIES
   haml
   jquery-rails
   jquery-ui-rails
+  less-rails
   paperclip
+  pg
   rails (= 3.2.8)
   rails-translate-routes
   redcarpet
