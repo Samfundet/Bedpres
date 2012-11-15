@@ -14,24 +14,22 @@ h2 {
     margin-bottom: 30px;
 }
 
-img#presentation-image {
-    margin-bottom: 30px;
-}
-
 .formtastic .form-actions {
     border-top: none;
     padding-top: 0;
 }
 
-.banner 
+.banner-image 
 { 
-  height:300px; 
   padding:0; 
   position:relative;
+  margin-bottom: 30px;
+  height: 300px; 
+  background-position: center;
 }
 
 
-.banner > .align_bottom
+.banner-image > .align_bottom
 {
   position:absolute; 
   bottom:0em; 
@@ -39,7 +37,7 @@ img#presentation-image {
   margin-left:0;
 }
 
-.banner > .align_bottom > h2
+.banner-image > .align_bottom > h2
 {
   font-size:4em; 
   margin: 0.3em 0; 
@@ -47,7 +45,7 @@ img#presentation-image {
   text-align: left;
 }
 
-.banner > .align_bottom > h2 > a
+.banner-image > .align_bottom > h2 > a
 {
 	margin:0; 
 	background-color:#A03033; 
@@ -55,7 +53,7 @@ img#presentation-image {
 	padding:0 20px 0 20px; 
 }
 
-.banner > .align_bottom > h3
+.banner-image > .align_bottom > h3
 {
   background-color:black; 
   color:white; margin:0; 
