@@ -6,5 +6,6 @@
     = f.input :guest_limit
     = f.input :presentation_date, :as => :string, :input_html => { :class => "datetime_select",  :value => I18n.l(f.object.presentation_date || Time.now, :format => :formtastic) }
     = f.input :area
+    = f.input :image
   = f.actions do
     = f.action :submit
