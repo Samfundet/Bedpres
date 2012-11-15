@@ -30,6 +30,9 @@ gem 'formtastic-bootstrap'
 #A simple date validator for Rails 3.
 gem 'date_validator'
 
+#A gem handling file uploading and attatching them to models
+gem 'paperclip'
+
 # Offers a declarative approach to user authorization.
 gem 'declarative_authorization'
 
