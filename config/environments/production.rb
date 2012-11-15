@@ -75,3 +75,5 @@ SamfundetAuth.setup do |config|
   config.member_database = :mdb2
   config.member_table = :lim_medlemsinfo
 end
+
+Paperclip.options[:command_path] = "/usr/bin/"
