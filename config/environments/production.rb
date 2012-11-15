@@ -73,4 +73,5 @@ end
 SamfundetAuth.setup do |config|
   config.domain_database = :johanne
   config.member_database = :mdb2
+  config.member_table = :lim_medlemsinfo
 end
