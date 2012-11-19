@@ -1,7 +1,11 @@
 !!! 5
 %html
   %head
-    %title Bedpres
+    %title
+      - unless (yield :title).nil?
+        #{yield(:title)}
+      - else 
+      Bedriftspresentasjoner
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
