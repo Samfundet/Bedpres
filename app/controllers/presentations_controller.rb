@@ -1,45 +1,45 @@
 class PresentationsController < ApplicationController
-	filter_access_to :all
-	
-	def index
+  filter_access_to :all
+  
+  def index
     @upcoming_presentations = Presentation.upcoming
     @past_presentations = Presentation.past
     @promo = @upcoming_presentations.where("canceled = ?", false).first
   end
 
-	def new
-		@presentation = Presentation.new
-	end
+  def new
+    @presentation = Presentation.new
+  end
 
-	def edit
-		@presentation = Presentation.find params[:id]
-	end
+  def edit
+    @presentation = Presentation.find params[:id]
+  end
 
-	def create
-		@presentation = Presentation.new params[:presentation]
+  def create
+    @presentation = Presentation.new params[:presentation]
 
-		if @presentation.save
-			flash[:success] = "Presentatsjonen er opprettet."
-			redirect_to presentations_path
-		else
-			flash.now[:error] = "Presentasjonen ble ikke opprettet."
-			render :new
-		end
-	end
+    if @presentation.save
+      flash[:success] = "Presentatsjonen er opprettet."
+      redirect_to presentations_path
+    else
+      flash.now[:error] = "Presentasjonen ble ikke opprettet."
+      render :new
+    end
+  end
 
-	def update
-		@presentation = Presentation.find params[:id]
-		if @presentation.update_attributes(params[:presentation])
-			flash[:success] = "Presentasjonen er oppdatert."
-			redirect_to presentation_path
-		else
-			flash.now[:error] = "Presentasjonen ble ikke oppdatert."
-			render :edit
-		end
-	end
+  def update
+    @presentation = Presentation.find params[:id]
+    if @presentation.update_attributes(params[:presentation])
+      flash[:success] = "Presentasjonen er oppdatert."
+      redirect_to presentation_path
+    else
+      flash.now[:error] = "Presentasjonen ble ikke oppdatert."
+      render :edit
+    end
+  end
 
-	def show
-		@presentation = Presentation.find(params[:id])
+  def show
+    @presentation = Presentation.find(params[:id])
   end
 
   def toggle_cancel
