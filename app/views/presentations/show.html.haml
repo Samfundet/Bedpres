@@ -57,12 +57,11 @@
           %th Fornavn
           %th Etternavn
           %th Email
-      - users = @presentation.users
-      - users.size.times do |y|
+      - @presentation.users.each do |user|
         %tr
           %td
-            = users[y].firstname
+            = user.firstname
           %td
-            = users[y].surname
+            = user.surname
           %td
-            = users[y].email
+            = user.email
