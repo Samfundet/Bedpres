@@ -2,10 +2,10 @@
 %html
   %head
     %title
-      - unless (yield :title).nil?
+      - unless (yield :title).blank?
         #{yield(:title)}
-      - else 
-      Bedriftspresentasjoner
+      - else
+        Bedriftspresentasjoner
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
