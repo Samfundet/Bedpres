@@ -40,7 +40,6 @@ class PresentationsController < ApplicationController
 
 	def show
 		@presentation = Presentation.find(params[:id])
-    @participants = @presentation.users
   end
 
   def toggle_cancel
