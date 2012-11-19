@@ -57,7 +57,7 @@
           %th Fornavn
           %th Etternavn
           %th Email
-      - @presentation.users.each do |user|
+      - @presentation.users.sort_by(&:full_name).each do |user|
         %tr
           %td
             = user.firstname
