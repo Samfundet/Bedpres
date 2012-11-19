@@ -18,7 +18,7 @@ class ParticipationsController < ApplicationController
       flash[:error] = "Denne presentasjonen er desverre avlyst."
       redirect_to @presentation
     elsif Time.now >= @presentation.presentation_date
-      flash[:error] = "Denne presentasjonen er desverre begynt."
+      flash[:error] = "Påmelding for denne presentasjonen er dessverre avsluttet."
       redirect_to @presentation
     elsif @presentation.users.size >= @presentation.guest_limit
       flash[:error] = "Denne presentasjonen er desverre full."
