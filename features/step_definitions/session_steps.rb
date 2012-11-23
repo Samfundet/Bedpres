@@ -1,6 +1,6 @@
 Given /^I am logged in as an user$/i do
   step %(there is a user with email "valid@user.com" and password "password")
-  step %(I am logged in as an member with email "valid@user.com" and password "password")
+  step %(I am logged in as an user with email "valid@user.com" and password "password")
 end
 
 Given /^I am logged in as an user with email "([^"]*)" and password "([^"]*)"$/i do |email, password|
