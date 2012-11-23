@@ -27,3 +27,4 @@ Feature: Authentication
     Then I should be on login page
     And I should not be logged in
     And the "member_mail" field should contain "invalid@member.com"
+    And I should see a message explaining the error
