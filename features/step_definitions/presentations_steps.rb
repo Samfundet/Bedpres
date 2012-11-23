@@ -1,4 +1,4 @@
-Given /^there are (past|upcoming) presentations titled (.+)$/i do |status, presentations|
+Given /^there (?:are|is an|is a) (past|upcoming) presentation(?:s)? titled (.+)$/i do |status, presentations|
   presentations.split(", ").each do |presentation_name|
     presentation_date = case status
                           when "past"
@@ -20,12 +20,21 @@ Given /^there are (past|upcoming) presentations titled (.+)$/i do |status, prese
   end
 end
 
+Given /^there is not any presentations named "(.*?)"$/ do |presentation_name|
+  presentation = Presentation.find_by_name presentation_name
+  presentation.destroy unless presentation.nil?
+end
+
 Then /^(?:|I )should see a presentation named "(.+)"$/i do |presentation|
   page.should have_content presentation
 end
 
 Then /^(?:|I )should not see a presentation named "(.+)"$/i do |presentation|
   page.should_not have_content presentation
+end
+
+Then /^(?:|I )should see a canceled presentation named "(.+)"$/i do |presentation|
+  page.should have_content "[avlyst] #{presentation}"
 end
 
 Then /^(?:|I )should see information about "(.+)"$/i do |presentation_name|
