@@ -97,3 +97,28 @@ group :development do
   # SQLite adapter. See: config/database.yml
   gem 'sqlite3'
 end
+
+group :test do
+  # Cucumber is a BDD testing framework.
+  gem 'cucumber-rails'
+
+  # Ruby library for generating XPath expressions.
+  gem 'xpath'
+
+  # database_cleaner ensures a clean DB state during tests;
+  # we use it with Cucumber.
+  gem 'database_cleaner'
+
+  # See above (:development)
+  gem 'faker'
+
+  # launchy is an application launcher; it's required for the
+  # 'Then show me the page' action in Cucumber
+  gem 'launchy'
+
+  # The RSpec testing framework.
+  gem 'rspec'
+
+  # See above (:development)
+  gem 'sqlite3'
+end
