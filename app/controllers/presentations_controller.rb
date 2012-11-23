@@ -20,7 +20,7 @@ class PresentationsController < ApplicationController
 
     if @presentation.save
       flash[:success] = "Presentatsjonen er opprettet."
-      redirect_to presentations_path
+      redirect_to root_path
     else
       flash.now[:error] = "Presentasjonen ble ikke opprettet."
       render :new
@@ -31,7 +31,7 @@ class PresentationsController < ApplicationController
     @presentation = Presentation.find params[:id]
     if @presentation.update_attributes(params[:presentation])
       flash[:success] = "Presentasjonen er oppdatert."
-      redirect_to presentation_path
+      redirect_to root_path
     else
       flash.now[:error] = "Presentasjonen ble ikke oppdatert."
       render :edit
