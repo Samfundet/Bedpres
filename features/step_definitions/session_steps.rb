@@ -8,6 +8,7 @@ Given /^I am logged in as an user with email "([^"]*)" and password "([^"]*)"$/i
   step %(I fill in "#{email}" for "user_email")
   step %(I fill in "#{password}" for "user_password")
   step %(I press "user_login")
+  step %(I should be logged in)
 end
 
 Given /^I am logged in as a member$/i do
@@ -20,6 +21,7 @@ Given /^I am logged in as an member with email "([^"]*)" and password "([^"]*)"$
   step %(I fill in "#{email}" for "member_mail")
   step %(I fill in "#{password}" for "member_passord")
   step %(I press "member_login")
+  step %(I should be logged in)
 end
 
 Given /^I am logged in as an administrator/i do
