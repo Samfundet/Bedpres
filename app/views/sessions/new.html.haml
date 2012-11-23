@@ -8,7 +8,7 @@
         = f.input :email
         = f.input :password
       = f.actions do
-        = f.action :submit, :label => "Logg inn"
+        = f.action :submit, :label => "Logg inn", :button_html => { :id => "user_login" }
 
   .span5
     %h2 Logg inn som administrator
@@ -17,7 +17,7 @@
         = f.input :mail
         = f.input :passord, :as => :password
       = f.actions do
-        = f.action :submit, :label => "Logg inn"
+        = f.action :submit, :label => "Logg inn", :button_html => { :id => "member_login" }
 
 %p
   = link_to "Ingen bruker? Opprett ny konto her!", new_user_path
