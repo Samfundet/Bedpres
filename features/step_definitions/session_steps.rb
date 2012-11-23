@@ -1,7 +1,7 @@
 Then /^I should be logged in$/i do
-  step %(I should not see "Logg inn")
+  page.should_not have_xpath XPath.descendant(:a)[XPath.attr(:href).equals(path_to("login page"))]
 end
 
 Then /^I should not be logged in$/i do
-  step %(I should see "Logg inn")
+  page.should have_xpath XPath.descendant(:a)[XPath.attr(:href).equals(path_to("login page"))]
 end
