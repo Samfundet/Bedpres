@@ -1,4 +1,3 @@
-@dev
 Feature: View presentations
   In order to attend presentations
   As a registered user
