@@ -13,6 +13,8 @@ def path_to(page_name)
       login_path
     when /the presentation page for "(.+)"/
       presentation_path Presentation.find_by_name $1
+    when /the registration page/
+      new_user_path
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
                 "Now, go and add a mapping in #{__FILE__}"
