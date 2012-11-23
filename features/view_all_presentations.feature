@@ -1,4 +1,3 @@
-@dev
 Feature: View presentations
   In order to administer presentations
   As a presentation administrator
