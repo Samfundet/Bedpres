@@ -14,6 +14,7 @@ Feature: Manage users
     And I press "Opprett bruker"
     Then I should be on the home page
     And I should see a message explaining the success
+    And there should be a user with firstname "Jane" and surname "Doe"
 
   Scenario: Edit profile
     Given there is a user with firstname "John", surname "Doe", email "john.doe@gmail.com" and password "password"
@@ -25,3 +26,5 @@ Feature: Manage users
     And I press "Oppdater bruker"
     Then I should be on the home page
     And I should see a message explaining the success
+    And there should be a user with firstname "John" and surname "Doe"
+    And there should not be a user with firstname "Jane" and surname "Doe"

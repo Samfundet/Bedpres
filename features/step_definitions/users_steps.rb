@@ -1,12 +1,5 @@
 Given /^there is a user with ((?:(?:(?:[^ ]+) "(?:[^"]+)"))(?:(?:, | and )(?:(?:[^ ]+) "(?:[^"]+)"))*)?$/i do |attributes_string|
-  attributes = Hash[attributes_string.split(/, | and /i).map do |attribute_string|
-    /(?<key>[^ ]+) "(?<value>[^"]+)"/ =~ attribute_string
-    [key.to_sym, value]
-  end]
-
-  if attributes.has_key? :password
-    attributes[:password_confirmation] = attributes[:password]
-  end
+  attributes = parse_attribute_string attributes_string
 
   if (user = User.find_by_email attributes[:email])
     user.update_attributes! attributes
@@ -21,4 +14,29 @@ Given /^there is a user with ((?:(?:(?:[^ ]+) "(?:[^"]+)"))(?:(?:, | and )(?:(?:
 
     User.create! attributes
   end
+end
+
+Then /^there should be a user with ((?:(?:(?:[^ ]+) "(?:[^"]+)"))(?:(?:, | and )(?:(?:[^ ]+) "(?:[^"]+)"))*)?$/i do |attributes_string|
+  attributes = parse_attribute_string attributes_string
+
+  User.where(attributes).should_not be_empty
+end
+
+Then /^there should not be a user with ((?:(?:(?:[^ ]+) "(?:[^"]+)"))(?:(?:, | and )(?:(?:[^ ]+) "(?:[^"]+)"))*)?$/i do |attributes_string|
+  attributes = parse_attribute_string attributes_string
+
+  User.where(attributes).should be_empty
+end
+
+def parse_attribute_string(attributes_string)
+  attributes = Hash[attributes_string.split(/, | and /i).map do |attribute_string|
+    /(?<key>[^ ]+) "(?<value>[^"]+)"/ =~ attribute_string
+    [key.to_sym, value]
+  end]
+
+  if attributes.has_key? :password
+    attributes[:password_confirmation] = attributes[:password]
+  end
+
+  attributes
 end
