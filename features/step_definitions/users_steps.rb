@@ -23,9 +23,7 @@ Then /^there should be a user with ((?:(?:(?:[^ ]+) "(?:[^"]+)"))(?:(?:, | and )
 end
 
 Then /^there should not be a user with ((?:(?:(?:[^ ]+) "(?:[^"]+)"))(?:(?:, | and )(?:(?:[^ ]+) "(?:[^"]+)"))*)?$/i do |attributes_string|
-  attributes = parse_attribute_string attributes_string
-
-  User.where(attributes).should be_empty
+  expect { step %(there should be a user with "#{attributes_string}") }.to raise_error
 end
 
 def parse_attribute_string(attributes_string)

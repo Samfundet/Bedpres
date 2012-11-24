@@ -45,7 +45,7 @@ Then /^(?:|I )should see a presentation named "(.+)"$/i do |presentation|
 end
 
 Then /^(?:|I )should not see a presentation named "(.+)"$/i do |presentation|
-  page.should_not have_content presentation
+  expect { step %(I should see a presentation named "#{presentation}") }.to raise_error
 end
 
 Then /^(?:|I )should see a canceled presentation named "(.+)"$/i do |presentation|

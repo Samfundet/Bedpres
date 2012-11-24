@@ -23,11 +23,7 @@ Then /^a user named "(.*?)" should be on the attendance list for "(.*?)"$/ do |u
 end
 
 Then /^a user named "(.*?)" should not be on the attendance list for "(.*?)"$/ do |user_full_name, presentation_name|
-  user = Presentation.find_by_name(presentation_name).users.find do |user|
-    user.full_name == user_full_name
-  end
-
-  user.should be_nil
+  expect { step %(a user named "#{user_full_name}" should be on the attendance list for "#{presentation_name}") }.to raise_error
 end
 
 Then /^I should see "(.*?)" as attending$/ do |user_full_name|
