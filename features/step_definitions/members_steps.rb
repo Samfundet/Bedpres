@@ -1,4 +1,4 @@
-Given /^there is a member with ((?:(?:(?:[^ ]+) "(?:[^"]+)")(?:, (?:(?:[^ ]+) "(?:[^"]+)"))*)(?: and (?:(?:[^ ]+) "(?:[^"]+)")))?$/i do |attributes_string|
+Given /^there is a member with ((?:(?:(?:[^ ]+) "(?:[^"]+)"))(?:(?:, | and )(?:(?:[^ ]+) "(?:[^"]+)"))*)?$/i do |attributes_string|
   attribute_map = {
       :firstname => :fornavn,
       :surname => :etternavn,

@@ -1,4 +1,4 @@
-Given /^there is a user with ((?:(?:(?:[^ ]+) "(?:[^"]+)")(?:, (?:(?:[^ ]+) "(?:[^"]+)"))*)(?: and (?:(?:[^ ]+) "(?:[^"]+)")))?$/i do |attributes_string|
+Given /^there is a user with ((?:(?:(?:[^ ]+) "(?:[^"]+)"))(?:(?:, | and )(?:(?:[^ ]+) "(?:[^"]+)"))*)?$/i do |attributes_string|
   attributes = Hash[attributes_string.split(/, | and /i).map do |attribute_string|
     /(?<key>[^ ]+) "(?<value>[^"]+)"/ =~ attribute_string
     [key.to_sym, value]
