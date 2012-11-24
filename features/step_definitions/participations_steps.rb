@@ -35,3 +35,7 @@ Then /^I should see "(.*?)" as attending$/ do |user_full_name|
     %(I should see "#{user_full_name}")
   end
 end
+
+Then /^I should not see "(.*?)" as attending$/ do |user_full_name|
+  expect { step %(I should see "#{user_full_name}" as attending) }.to raise_error
+end
