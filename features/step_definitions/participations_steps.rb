@@ -29,3 +29,9 @@ Then /^a user named "(.*?)" should not be on the attendance list for "(.*?)"$/ d
 
   user.should be_nil
 end
+
+Then /^I should see "(.*?)" as attending$/ do |user_full_name|
+  within "table" do
+    %(I should see "#{user_full_name}")
+  end
+end
