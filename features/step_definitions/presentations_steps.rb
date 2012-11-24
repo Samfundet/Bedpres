@@ -1,22 +1,37 @@
-Given /^there (?:are|is an|is a) (past|upcoming) presentation(?:s)? titled (.+)$/i do |status, presentations|
+Given /^there (?:are|is an|is a) (past|upcoming|canceled|full) presentation(?:s)? titled (.+)$/i do |status, presentations|
   presentations.split(", ").each do |presentation_name|
     presentation_date = case status
                           when "past"
                             Time.now - 1.day - rand(10).days
-                          when "upcoming"
+                          when "upcoming", "canceled", "full"
                             Time.now + 1.day + rand(10).days
                         end
 
     presentation = Presentation.create!(
         :name => presentation_name,
         :area_id => Area.find_or_create_by_name("Storsalen").id,
-        :guest_limit => 10 + rand(100),
+        :guest_limit => 2,
         :presentation_date => Time.now + 1.hour,
         :corporation => Faker::Company.name,
     )
 
+    presentation.canceled = true if status == "canceled"
     presentation.presentation_date = presentation_date
     presentation.save :validate => false
+
+    if status == "full"
+      presentation.guest_limit.times do |i|
+        user = User.find_or_create_by_email!(
+            :firstname => "Mr. Par",
+            :surname => "Ticipant",
+            :email => "#{i}@gmail.com",
+            :password => "password",
+            :password_confirmation => "password",
+        )
+
+        presentation.participations.create :user => user
+      end
+    end
   end
 end
 
