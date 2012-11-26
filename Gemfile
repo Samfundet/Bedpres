@@ -121,4 +121,8 @@ group :test do
 
   # See above (:development)
   gem 'sqlite3'
+
+  # A collection of matchers for RSpec/MiniTest and
+  # Cucumber steps to make testing emails go smoothly.
+  gem 'email_spec'
 end

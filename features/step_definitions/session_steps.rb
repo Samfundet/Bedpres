@@ -37,3 +37,7 @@ end
 Then /^I should not be logged in$/i do
   expect { step %(I should be logged in) }.to raise_error
 end
+
+Then /^I should be able to log in with "(.*?)" and "(.*?)"$/ do |email, password|
+  User.authenticate(email, password).should_not be_nil
+end

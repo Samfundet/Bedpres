@@ -15,6 +15,8 @@ def path_to(page_name)
       presentation_path Presentation.find_by_name $1
     when /the registration page/
       new_user_path
+    when /the reset password page/
+      forgot_password_users_path
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
                 "Now, go and add a mapping in #{__FILE__}"
