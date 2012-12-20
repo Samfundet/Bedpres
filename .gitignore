@@ -18,5 +18,6 @@ pickle-email-*.html
 .idea/
 .rvmrc
 /config/database.yml
+/config/initializers/secret_token.rb
 public/assets/
 vendor/ruby/
