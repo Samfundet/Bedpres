@@ -96,4 +96,7 @@ group :development do
 
   # SQLite adapter. See: config/database.yml
   gem 'sqlite3'
+
+  # Database Cleaner is a set of strategies for cleaning your database in Ruby.
+  gem 'database_cleaner'
 end
