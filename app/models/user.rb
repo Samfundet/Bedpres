@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
 
   has_many :participations, :dependent => :destroy
   has_many :presentations, :through => :participations
+  has_many :notifications
 
   validates_presence_of :firstname, :surname, :email
 

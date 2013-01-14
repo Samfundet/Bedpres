@@ -30,7 +30,11 @@
                 - else
                   = link_to "Logg inn", login_path
     .container
-      - flash.each do |type, message|
-        %div{ :class => "alert alert-block alert-#{type}" }
-          = message
-      = yield
+      - if @current_user.is_a? User
+        - @current_user.notifications.each do |notification|
+          %div{ :class => "alert alert-block alert-notice" }
+            = notification.descritpion
+        - flash.each do |type, message|
+          %div{ :class => "alert alert-block alert-#{type}" }
+            = message
+        = yield

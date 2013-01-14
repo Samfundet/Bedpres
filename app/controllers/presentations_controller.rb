@@ -1,5 +1,6 @@
 class PresentationsController < ApplicationController
   filter_access_to :all
+  include NotificationHelper
   
   def index
     @upcoming_presentations = Presentation.upcoming
@@ -49,8 +50,10 @@ class PresentationsController < ApplicationController
     if @presentation.save
       if @presentation.canceled
         flash[:success] = "Presentasjonen er markert som avlyst."
+        notify(@presentation.users, "Presentasjonen" + @presentation.name + "har blitt avlyst", @presentation)
       else
         flash[:success] = "Presentasjonen er ikke lenger markert som avlyst."
+        notify(@presentation.users, "Presentasjonen" + @presentation.name + "er ikke lenger avlyst", @presentation)
       end
 
       redirect_to presentation_path @presentation
