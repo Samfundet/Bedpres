@@ -6,7 +6,7 @@
 source 'http://rubygems.org'
 
 # Rails. Duh.
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.10'
 
 # Haml is a templating language. It compiles to HTML.
 gem 'haml'
@@ -96,4 +96,7 @@ group :development do
 
   # SQLite adapter. See: config/database.yml
   gem 'sqlite3'
+
+  # Database Cleaner is a set of strategies for cleaning your database in Ruby.
+  gem 'database_cleaner'
 end

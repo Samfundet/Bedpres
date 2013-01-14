@@ -1,7 +1,9 @@
+- title "#{@presentation.name}"
+
 .banner-image{:style => "background-image: url('#{@presentation.image.url(:banner)}');"}
 
 %h1
-  = @presentation.name.capitalize
+  = @presentation.name
 
 .row
   .span8
@@ -57,12 +59,11 @@
           %th Fornavn
           %th Etternavn
           %th Email
-      - users = @presentation.users
-      - users.size.times do |y|
+      - @presentation.users.sort_by(&:full_name).each do |user|
         %tr
           %td
-            = users[y].firstname
+            = user.firstname
           %td
-            = users[y].surname
+            = user.surname
           %td
-            = users[y].email
+            = user.email

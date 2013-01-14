@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   filter_access_to :all
+  filter_access_to [:edit, :update], :attribute_check => true
 
   def new
     @user = User.new
