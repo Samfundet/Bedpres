@@ -3,7 +3,7 @@
     = f.input :email
     = f.input :firstname
     = f.input :surname
-    = f.input :password
-    = f.input :password_confirmation
+    = f.input :password, :required => true
+    = f.input :password_confirmation, :required => true
   = f.actions do
     = f.action :submit

@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
 
       if member.nil?
         @member_mail = params[:member][:mail]
-        flash.now[:error] = "Du tastet inn feil brukernavn eller passord."
+        flash.now[:error] = "Du tastet inn feil brukernavn eller passord, eller så er kontoen ikke validert"
         render :new  
       else
         flash[:success] = "Du er nå logget inn."
@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
       end
 
     elsif !params[:user].nil?
-      logger.debug "trying to login as randomUser"
+      logger.debug "trying to login as bedpresUser"
       session[:member_id] = nil
 
       user = User.authenticate params[:user][:email], params[:user][:password]
