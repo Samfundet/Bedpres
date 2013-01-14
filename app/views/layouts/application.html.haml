@@ -34,6 +34,7 @@
         - @current_user.notifications.each do |notification|
           %div{ :class => "alert alert-block alert-notice" }
             = notification.descritpion
+            = link_to "Se presentasjonen her", presentation_path(notification.presentation)
         - flash.each do |type, message|
           %div{ :class => "alert alert-block alert-#{type}" }
             = message
