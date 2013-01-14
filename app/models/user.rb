@@ -40,7 +40,13 @@ class User < ActiveRecord::Base
   end
 
   def hash_new_password
-    self.hashed_password = BCrypt::Password.create(password)
+    if Rails.env == "production"
+      cost = 10
+    else
+      cost = 1
+    end
+
+    self.hashed_password = BCrypt::Password.create(password, :cost => cost)
   end
 
   def full_name

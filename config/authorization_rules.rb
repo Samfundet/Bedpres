@@ -13,7 +13,9 @@ authorization do
   role :user do
     includes :guest
     has_permission_on :participations, :to => [ :create, :delete ]
-    has_permission_on :users, :to => [ :update]
+    has_permission_on :users, :to => [:update] do
+      if_attribute :id => is { user.id }
+    end
   end
 
   role :medlem do
