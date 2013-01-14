@@ -42,7 +42,7 @@ Presentation.all.each do |p|
       :password_confirmation => "passord"
     )
     puts "Registering #{u.full_name} for #{p.name}"
-    Participation.create!(:user => u, :presentation => p)
+    Participation.create!(:participle => u, :presentation => p)
   end
 end
 

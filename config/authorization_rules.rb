@@ -20,6 +20,7 @@ authorization do
 
   role :medlem do
     includes :guest
+    has_permission_on :participations, :to => [ :create, :delete ]
   end
 
   role :presentation_administrator do

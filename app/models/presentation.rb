@@ -20,7 +20,6 @@ class Presentation < ActiveRecord::Base
   validates_presence_of :name, :guest_limit, :presentation_date, :corporation, :area
 
   has_many :participations, :dependent => :destroy
-  has_many :users, :through => :participations
   has_attached_file :image, 
               :styles => { :banner => "970x300^" },
               :default_url => '/assets/placeholder.jpg'
@@ -44,5 +43,9 @@ class Presentation < ActiveRecord::Base
     else
       super
     end
+  end
+
+  def users
+    participations.map &:participle
   end
 end

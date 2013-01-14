@@ -4,7 +4,9 @@ class ParticipationsController < ApplicationController
   filter_access_to :all
 
   def destroy
-    @participation = Participation.where(:presentation_id => params[:presentation_id], :user_id => @current_user).first
+    @participation = Participation.where(:presentation_id => params[:presentation_id],
+                                         :participle_id => @current_user.id,
+                                         :participle_type => @current_user.class.name).first
 
     if Time.now >= @participation.presentation.presentation_date
       flash[:error] = "Du kan ikke melde deg av etter at presentasjonen er over."
@@ -25,7 +27,7 @@ class ParticipationsController < ApplicationController
     elsif Time.now >= @presentation.presentation_date
       flash[:error] = "Påmelding for denne presentasjonen er dessverre avsluttet."
       redirect_to @presentation
-    elsif @presentation.users.size >= @presentation.guest_limit
+    elsif @presentation.participations.size >= @presentation.guest_limit
       flash[:error] = "Denne presentasjonen er desverre full."
       redirect_to @presentation
     else
@@ -34,7 +36,7 @@ class ParticipationsController < ApplicationController
         redirect_to @presentation
       else
         @participation = Participation.new(
-          :user => @current_user, 
+          :participle => @current_user,
           :presentation => @presentation
         )
         if @participation.save!
