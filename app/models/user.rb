@@ -9,6 +9,7 @@
 #  hashed_password :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  verified        :boolean          default(FALSE)
 #
 
 class User < ActiveRecord::Base
@@ -30,9 +31,14 @@ class User < ActiveRecord::Base
 
   before_validation :downcase_email
   before_save :hash_new_password, :if => :password_changed?
+  after_create :verify_account
 
   def password_changed?
     not @password.nil?
+  end
+
+  def verify_account
+    UserMailer.verify_account(self, create_verification_hash).deliver
   end
 
   def role_symbols
@@ -61,6 +67,10 @@ class User < ActiveRecord::Base
     Digest::SHA256.hexdigest(hashed_password + email + Time.now.to_s)
   end
 
+  def create_verification_hash
+    Digest::SHA256.hexdigest(attributes.map {|key,value| value}.join)
+  end
+
   def check_hash(hash)
     not password_recoveries.where("recovery_hash = ?", hash).where("created_at > ?", Time.now - 1.hour).empty?
   end
@@ -69,7 +79,8 @@ class User < ActiveRecord::Base
     def authenticate(email, password)
       user = find_by_email(email.downcase)
       return user if user &&
-        BCrypt::Password.new(user.hashed_password) == password
+        BCrypt::Password.new(user.hashed_password) == password &&
+        user.verified
     end
   end
 

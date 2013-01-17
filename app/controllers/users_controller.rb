@@ -11,12 +11,27 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:success] = "Velkommen, #{@user.full_name}"
-      session[:user_id] = @user.id
-      redirect_to root_path
+      flash[:success] = "En epost har blitt sendt til #{@user.email} med en lenke for å aktivere kontoen din."
+      redirect_to login_path
     else
       render :new
     end
+  end
+
+  def verify_account
+    @user = User.find(params[:id])
+    if @user
+      if @user.create_verification_hash == params[:hash]
+        @user.verified = true
+        @user.save
+        flash[:success] = "#{@user.email} er nå validert."
+      else
+        flash[:failure] = "Fant ingen fyrstikk."
+      end
+    else
+      flash[:failure] = "All work and no play makes johnny a dull boy."
+    end
+    redirect_to root_path
   end
 
   def forgot_password; end

@@ -6,7 +6,8 @@ authorization do
                                       :forgot_password,
                                       :generate_forgot_password_email,
                                       :reset_password,
-                                      :change_password]
+                                      :change_password,
+                                      :verify_account]
     has_permission_on :sessions, :to => :manage
   end
 

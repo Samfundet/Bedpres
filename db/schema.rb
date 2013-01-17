@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20130114193734) do
 
+
   create_table "areas", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -105,8 +106,9 @@ ActiveRecord::Schema.define(:version => 20130114193734) do
     t.string   "firstname"
     t.string   "surname"
     t.string   "hashed_password"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "verified",        :default => false
   end
 
 end

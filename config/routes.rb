@@ -11,6 +11,8 @@ Bedpres::Application.routes.draw do
     member do
       get 'reset_password/:hash' => 'users#reset_password', :as => :reset_password
       post 'reset_password/:hash' => 'users#change_password', :as => :reset_password
+
+      get 'verify_account/:hash' => 'users#verify_account', :as => :verify_account
     end
   end
 
