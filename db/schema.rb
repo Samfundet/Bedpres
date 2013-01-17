@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130114193734) do
 
-
   create_table "areas", :force => true do |t|
     t.string   "name"
     t.text     "description"

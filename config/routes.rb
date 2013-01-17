@@ -24,6 +24,8 @@ Bedpres::Application.routes.draw do
     end
   end
 
+  resources :notifications
+
   match '/login', :to => 'sessions#new', :via => :get
   match '/login', :to => 'sessions#create', :via => :post
   match '/logout', :to => 'sessions#destroy', :via => :post

@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 
   before_validation :downcase_email
   before_save :hash_new_password, :if => :password_changed?
-  after_create :verify_account
+  after_create :verify_account if Rails.env=="production"
 
   def password_changed?
     not @password.nil?
