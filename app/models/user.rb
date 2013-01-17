@@ -13,9 +13,9 @@
 #
 
 class User < ActiveRecord::Base
+  extend AccountValidationHelper
   attr_accessor :password, :password_confirmation, :old_password
   attr_accessible :firstname, :surname, :email, :password, :password_confirmation, :old_password
-
 
   has_many :participations, :dependent => :destroy
   has_many :presentations, :through => :participations
@@ -77,9 +77,13 @@ class User < ActiveRecord::Base
   class << self
     def authenticate(email, password)
       user = find_by_email(email.downcase)
-      return user if user &&
-        BCrypt::Password.new(user.hashed_password) == password &&
-        user.verified
+      if user && BCrypt::Password.new(user.hashed_password) == password
+        if user.verified?
+          user
+        else
+          raise EmailNotValidatedError
+        end
+      end
     end
   end
 
