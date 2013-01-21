@@ -100,7 +100,7 @@ class User < ActiveRecord::Base
   private
 
   def downcase_email
-      email.downcase!
+    email.downcase! if email
   end
 
 end
