@@ -33,7 +33,7 @@ class Presentation < ActiveRecord::Base
   validates :presentation_date, :date => { :after => Proc.new { Time.zone.now } }, :if => :presentation_date_changed?
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
-  belongs_to :area, :dependent => :nullify
+  belongs_to :area
 
   scope :upcoming, lambda { where("presentation_date >= ?", Time.zone.now).order("presentation_date ASC") }
   scope :past, lambda { where("presentation_date < ?", Time.zone.now).order("presentation_date DESC") }
