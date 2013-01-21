@@ -12,7 +12,7 @@
 #
 
 class Participation < ActiveRecord::Base
-  attr_accessible :user, :presentation_id
+  attr_accessible :user, :presentation, :presentation_id
   belongs_to :user, :dependent => :destroy
   belongs_to :presentation, :dependent => :destroy
 
