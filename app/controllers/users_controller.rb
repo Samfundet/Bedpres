@@ -43,34 +43,23 @@ class UsersController < ApplicationController
     if user.nil?
       flash.now[:error] = "Den eksisterer ingen bruker med denne adressen."
       render :forgot_password
-
-    elsif user.can_recover_password?
-      hash = user.create_recovery_hash
-
-      if PasswordRecovery.create(
-          :user => user,
-          :recovery_hash => hash)
-        if UserMailer.forgot_password(user, hash).deliver
-          flash[:success] = "En epost har blitt sendt til #{user.email} med videre instrukser."
-          redirect_to root_path
-        else
-          flash.now[:error] = "En feil har forekommet og passordbytte har ikke blitt fullført."
-          render :forgot_password
-        end
-      else
+    else
+      begin
+        user.forgot_password!
+        flash[:success] = "En epost har blitt sendt til #{user.email} med videre instrukser."
+        redirect_to root_path
+      rescue MaxAttemptsReachedError
+        flash.now[:error] = <<-MSG
+          Du har oversteget grensen for mulige
+          passordtilbakestillinger. Hvis problemet
+          ikke er løst kan du sende en epost til
+          mg-web@samfundet.no.
+        MSG
+        render :forgot_password
+      rescue Exception
         flash.now[:error] = "En feil har forekommet og passordbytte har ikke blitt fullført."
         render :forgot_password
       end
-
-    else
-      flash[:error] = <<-MSG
-        Du har oversteget grensen for mulige
-        passordtilbakestillinger. Hvis problemet
-        ikke er løst kan du sende en epost til
-        mg-web@samfundet.no.
-      MSG
-
-      redirect_to root_path
     end
   end
 
@@ -83,22 +72,22 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
     @hash = params[:hash]
 
-    if @user.check_hash @hash
-      if @user.update_attributes params[:user]
-        @user.password_recoveries.destroy_all
-        flash[:success] = "Passord har blitt tilbakestilt. Du kan nå logge inn med ditt nye passord."
-        redirect_to login_path
-      else
-        render :reset_password
-      end
+    begin
+      @user.reset_password!(@hash, params[:user])
+      flash[:success] = "Passordet har blitt endret. Du kan nå logge inn med ditt nye passord."
+      redirect_to login_path
+    rescue HashMismatchError
+      flash.now[:error] = "Passordet du skrev inn stemmer ikke. Passordet har ikke blitt endret."
+      render :reset_password
+    rescue Exception
+      flash.now[:error] = "Noe gikk galt. Passordet har ikke blitt endret."
+      render :reset_password
     end
   end
-
   
   def edit
     @user = User.find params[:id]
   end
-
 
   def update
     @user = User.find params[:id]
