@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
   has_many :participations, :as => :participle, :dependent => :destroy
   has_many :presentations, :through => :participations
-  has_many :notifications, :as => :notifiable, :order => "created_at DESC"
+  has_many :notifications, :as => :notifiable, :dependent => :destroy, :order => "created_at DESC"
 
   validates_presence_of :firstname, :surname, :email
 
