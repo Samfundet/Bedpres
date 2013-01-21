@@ -91,24 +91,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find params[:id]
 
-    password_should_change = !(params[:user][:password].blank? &&
-                               params[:user][:password_confirmation].blank?)
-
-    if password_should_change
-      user_pwd_check = User.authenticate(@user.email, params[:user][:old_password])
-      if user_pwd_check.nil?
-        flash[:error] = "Du tastet inn feil passord."
-        render :edit
-        return
-      end
-    end
-
-    unless password_should_change
-      [:old_password, :password, :password_confirmation].each do |key|
-        params[:user].delete(key)
-      end
-    end
-
     if @user.update_attributes(params[:user])
       flash[:success] = "Brukeren er oppdatert."
       redirect_to root_path

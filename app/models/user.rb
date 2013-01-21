@@ -28,6 +28,9 @@ class User < ActiveRecord::Base
   validates :email, :email_format => {:message => 'ikke gyldig adresse'}, :presence => true, :uniqueness => true
   validates :password, :presence => true, :confirmation => true, :length => {:minimum => 6}, :if => :password_changed?
   validates :password_confirmation, :presence => true, :if => :password_changed?
+  validate :validate_old_password, :if => (Proc.new do |user|
+    user.password_changed? && !user.new_record?
+  end)
 
   has_many :password_recoveries
 
@@ -45,7 +48,7 @@ class User < ActiveRecord::Base
   end
 
   def password_changed?
-    not @password.nil?
+    !(@password.nil? or @password.blank?) || !(@password_confirmation.nil? or @password_confirmation.blank?)
   end
 
   def verify_account
@@ -138,4 +141,9 @@ class User < ActiveRecord::Base
     email.downcase! if email
   end
 
+  def validate_old_password
+    unless self.class.authenticate(email, old_password)
+      errors.add :old_password, "feil passord"
+    end
+  end
 end
