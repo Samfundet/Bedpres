@@ -1,6 +1,8 @@
 # encoding: UTF-8
 
 class UsersController < ApplicationController
+  include PasswordResetHelper
+  
   filter_access_to :all
   filter_access_to [:edit, :update], :attribute_check => true
 
@@ -20,15 +22,12 @@ class UsersController < ApplicationController
 
   def verify_account
     @user = User.find(params[:id])
-    if @user
-      if @user.create_verification_hash == params[:hash]
-        @user.verified = true
-        @user.save
-        flash[:success] = "#{@user.email} er nå validert."
-      else
-        flash[:failure] = "Fant ingen fyrstikk."
-      end
-    else
+    begin
+      @user.verify!(params[:hash])
+      flash[:success] = "#{@user.email} er nå validert."
+    rescue HashMismatchError
+      flash[:failure] = "Verifikasjonslenken stemmer ikke overens med denne brukeren"
+    rescue Exception
       flash[:failure] = "All work and no play makes johnny a dull boy."
     end
     redirect_to root_path

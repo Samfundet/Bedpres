@@ -52,6 +52,15 @@ class User < ActiveRecord::Base
     UserMailer.verify_account(self, create_verification_hash).deliver
   end
 
+  def verify!(hash)
+    if create_verification_hash == hash
+      self.verified = true
+      self.save
+    else
+      raise HashMismatchError
+    end
+  end
+
   def role_symbols
     [:user]
   end
