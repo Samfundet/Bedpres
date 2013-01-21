@@ -14,7 +14,5 @@ class Participation < ActiveRecord::Base
   belongs_to :user, :dependent => :destroy
   belongs_to :presentation, :dependent => :destroy
 
-  validates_presence_of :user_id, :presentation_id
-  validates_associated :user, :presentation
-
+  validates_presence_of :user_id, :user, :presentation_id, :presentation
 end
