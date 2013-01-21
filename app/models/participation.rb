@@ -13,11 +13,10 @@
 
 class Participation < ActiveRecord::Base
   attr_accessible :user, :presentation_id
-  belongs_to :user
-  belongs_to :presentation
+  belongs_to :user, :dependent => :destroy
+  belongs_to :presentation, :dependent => :destroy
 
-  validates_presence_of :user_id, :presentation_id
-  validates_associated :user, :presentation
+  validates_presence_of :user_id, :user, :presentation_id, :presentation
 
   validate :presentation_canceled
   validate :presentation_date_passed
