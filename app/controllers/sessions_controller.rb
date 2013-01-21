@@ -1,8 +1,9 @@
 # encoding: UTF-8
 
 class SessionsController < ApplicationController
+  include AccountValidationHelper
   filter_access_to :all
-
+  
   def new; end
 
   def destroy
@@ -20,7 +21,7 @@ class SessionsController < ApplicationController
 
       if member.nil?
         @member_mail = params[:member][:mail]
-        flash.now[:error] = "Du tastet inn feil brukernavn eller passord."
+        flash.now[:error] = "Du tastet inn feil brukernavn eller passord"
         render :new  
       else
         flash[:success] = "Du er nå logget inn."
@@ -29,19 +30,22 @@ class SessionsController < ApplicationController
       end
 
     elsif !params[:user].nil?
-      logger.debug "trying to login as randomUser"
+      logger.debug "trying to login as bedpresUser"
       session[:member_id] = nil
-
-      user = User.authenticate params[:user][:email], params[:user][:password]
-
-      if user.nil?
-        @user_mail = params[:user][:email]
-        flash.now[:error] = "Du tastet inn feil brukernavn eller passord."
+      begin
+        user = User.authenticate params[:user][:email], params[:user][:password]
+        if user.nil?
+          @user_mail = params[:user][:email]
+          flash.now[:error] = "Du tastet inn feil brukernavn eller passord"
+          render :new
+        else
+          flash[:success] = "Du er nå logget inn."
+          session[:user_id] = user.id
+          redirect_to root_path
+        end
+      rescue EmailNotValidatedError
+        flash.now[:error] = "Du må validere eposten din før du kan logge inn"
         render :new
-      else
-        flash[:success] = "Du er nå logget inn."
-        session[:user_id] = user.id
-        redirect_to root_path
       end
     end
   end

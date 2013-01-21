@@ -2,16 +2,20 @@
 #
 # Table name: presentations
 #
-#  id                :integer          not null, primary key
-#  name              :string(255)
-#  area_id           :integer
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  description       :text
-#  guest_limit       :integer
-#  presentation_date :datetime
-#  corporation       :string(255)
-#  canceled          :boolean          default(FALSE)
+#  id                 :integer          not null, primary key
+#  name               :string(255)
+#  area_id            :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  description        :text
+#  guest_limit        :integer
+#  presentation_date  :datetime
+#  corporation        :string(255)
+#  canceled           :boolean          default(FALSE)
+#  image_file_name    :string(255)
+#  image_content_type :string(255)
+#  image_file_size    :integer
+#  image_updated_at   :datetime
 #
 
 class Presentation < ActiveRecord::Base

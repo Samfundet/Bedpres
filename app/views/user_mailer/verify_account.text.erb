@@ -1,0 +1,11 @@
+Hei, <%= @user.full_name %>
+
+Det ser ut til at du har prøvd å opprette en konto på bedpres.samfundet.no. Denne er ikke aktivert fram til epost-adressen din er bekreftet. Kontoen kan aktiveres ved å følge lenken nedenfor. 
+
+<a href=<%= verify_account_user_url(@user, :hash => @hash) %>>
+	Klikk her for å bekrefte at dette er din epost-adresse.
+</a>
+	
+Hvis det ikke fungerer å trykke på lenken, kan du kopiere adressen og lime den inn i adressefeltet til nettleseren din.
+
+Har du ikke prøvd å oprettet en konto, kan du bare se bort fra denne eposten.

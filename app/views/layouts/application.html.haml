@@ -30,6 +30,14 @@
                 - else
                   = link_to "Logg inn", login_path
     .container
+      - if @current_user.is_a? User
+        - @current_user.notifications.each do |notification|
+          %div{ :class => "alert alert-block alert-notice"}
+            %button{ :type => "button", :class => "close"}
+              = link_to notification_path(notification), {:method => :delete} do
+                &times
+            = notification.descritpion
+            = link_to "Se presentasjonen her", presentation_path(notification.presentation)
       - flash.each do |type, message|
         %div{ :class => "alert alert-block alert-#{type}" }
           = message

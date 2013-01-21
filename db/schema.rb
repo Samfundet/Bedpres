@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(:version => 20130114193928) do
     t.integer "role_id"
   end
 
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "descritpion"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "presentation_id"
+  end
+
   create_table "participations", :force => true do |t|
     t.integer  "presentation_id"
     t.datetime "created_at",      :null => false
@@ -98,8 +106,9 @@ ActiveRecord::Schema.define(:version => 20130114193928) do
     t.string   "firstname"
     t.string   "surname"
     t.string   "hashed_password"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "verified",        :default => false
   end
 
 end
