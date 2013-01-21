@@ -3,4 +3,5 @@ class Notification < ActiveRecord::Base
   belongs_to :user, :dependent => :destroy
   belongs_to :presentation, :dependent => :destroy
 
+  validates_presence_of :user_id, :user, :presentation_id, :presentation, :descritpion
 end
