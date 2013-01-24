@@ -14,6 +14,8 @@
 
 class User < ActiveRecord::Base
   extend AccountValidationHelper
+  include PasswordResetHelper
+
   attr_accessor :password, :password_confirmation, :old_password
   attr_accessible :firstname, :surname, :email, :password, :password_confirmation, :old_password
 
@@ -50,6 +52,15 @@ class User < ActiveRecord::Base
     UserMailer.verify_account(self, create_verification_hash).deliver
   end
 
+  def verify!(hash)
+    if create_verification_hash == hash
+      self.verified = true
+      self.save
+    else
+      raise HashMismatchError
+    end
+  end
+
   def role_symbols
     [:user]
   end
@@ -84,6 +95,30 @@ class User < ActiveRecord::Base
     not password_recoveries.where("recovery_hash = ?", hash).where("created_at > ?", Time.now - 1.hour).empty?
   end
 
+  def forgot_password!
+    if can_recover_password?
+      hash = create_recovery_hash
+
+      PasswordRecovery.create!(
+        :user => self,
+        :recovery_hash => hash
+        )
+
+      UserMailer.forgot_password(user, hash).deliver!
+    else
+      raise MaxAttemptsReachedError
+    end
+  end
+
+  def reset_password!(hash, params)
+    if check_hash(hash)
+      update_attributes!(params)
+      password_recoveries.delete_all
+    else
+      raise HashMismatchError
+    end
+  end
+
   class << self
     def authenticate(email, password)
       user = find_by_email(email.downcase)
@@ -100,7 +135,7 @@ class User < ActiveRecord::Base
   private
 
   def downcase_email
-      email.downcase!
+    email.downcase! if email
   end
 
 end
