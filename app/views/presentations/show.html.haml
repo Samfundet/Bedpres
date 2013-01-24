@@ -3,7 +3,7 @@
 .banner-image{:style => "background-image: url('#{@presentation.image.url(:banner)}');"}
 
 %h1
-  = @presentation.name
+  = @presentation.with_prefix
 
 .row
   .span8

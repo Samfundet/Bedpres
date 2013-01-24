@@ -10,7 +10,7 @@
     - presentations.each do |presentation|
       %tr
         %td
-          = link_to presentation.name, presentation
+          = link_to presentation.with_prefix, presentation
         %td
           = presentation.corporation
         %td

@@ -14,7 +14,7 @@
 #  canceled           :boolean          default(FALSE)
 #  image_file_name    :string(255)
 #  image_content_type :string(255)
-#  image_file_size    :integer
+#  image_file_size    :inetger
 #  image_updated_at   :datetime
 #
 
@@ -42,11 +42,12 @@ class Presentation < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
-  def name
+  def with_prefix
     if canceled
-      "[avlyst] #{super}"
+      "[avlyst] #{self.name}"
     else
-      super
+      self.name
     end
   end
+
 end
