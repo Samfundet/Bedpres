@@ -32,6 +32,7 @@ class PresentationsController < ApplicationController
     @presentation = Presentation.find params[:id]
     if @presentation.update_attributes(params[:presentation])
       flash[:success] = "Presentasjonen er oppdatert."
+      notify(@presentation.users, "Presentasjonen #{@presentation.name} har blitt oppdatert.", @presentation)
       redirect_to root_path
     else
       flash.now[:error] = "Presentasjonen ble ikke oppdatert."
