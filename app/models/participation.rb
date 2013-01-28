@@ -23,7 +23,10 @@ class Participation < ActiveRecord::Base
   validate :presentation_guest_limit
   validate :presentation_contains_user
 
+  before_destroy :presentation_date_passed
+
   private
+
   def presentation_canceled
     if presentation and presentation.canceled
       errors.add(:base, "Denne presentasjonen er desverre avlyst.")
@@ -34,6 +37,8 @@ class Participation < ActiveRecord::Base
     if presentation and ( Time.now >= presentation.presentation_date )
       errors.add(:base, "Påmelding for denne presentasjonen er dessverre avsluttet.")
     end
+
+    errors.blank?
   end
 
   def presentation_guest_limit

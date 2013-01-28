@@ -6,11 +6,10 @@ class ParticipationsController < ApplicationController
   def destroy
     @participation = Participation.where(:presentation_id => params[:presentation_id], :user_id => @current_user).first
 
-    if Time.now >= @participation.presentation.presentation_date
-      flash[:error] = "Du kan ikke melde deg av etter at presentasjonen er over."
-    else
-      @participation.destroy
+    if @participation.destroy
       flash[:success] = "Du er nå avmeldt presentasjonen."
+    else
+      flash[:error] = @participation.errors.full_messages.first
     end
 
     redirect_to @participation.presentation
