@@ -103,9 +103,9 @@ class User < ActiveRecord::Base
       hash = create_recovery_hash
 
       PasswordRecovery.create!(
-        :user => self,
-        :recovery_hash => hash
-        )
+          :user => self,
+          :recovery_hash => hash
+      )
 
       UserMailer.forgot_password(self, hash).deliver!
     else
