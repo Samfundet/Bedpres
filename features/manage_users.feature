@@ -12,7 +12,7 @@ Feature: Manage users
       | Passord         | passord                          |
       | Bekreft passord | passord                          |
     And I press "Opprett bruker"
-    Then I should be on the home page
+    Then I should be on login page
     And I should see a message explaining the success
     And there should be a user with firstname "Jane" and surname "Doe"
 
