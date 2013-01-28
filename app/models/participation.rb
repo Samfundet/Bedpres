@@ -35,7 +35,7 @@ class Participation < ActiveRecord::Base
 
   def presentation_date_passed
     if presentation and ( Time.now >= presentation.presentation_date )
-      errors.add(:base, "Påmelding for denne presentasjonen er dessverre avsluttet.")
+      errors.add(:base, "Denne presentasjonen er dessverre over og påmelding/avmelding har avsluttet.")
     end
 
     errors.blank?
