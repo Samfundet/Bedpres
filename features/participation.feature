@@ -29,6 +29,14 @@ Feature: Participation
     Then I should see a message explaining the error
     And a user named "John Doe" should be on the attendance list for "Vismadagen"
 
+  Scenario: Cancel attendance for canceled presentation
+    Given there is a canceled presentation titled Vismadagen
+    And "John Doe" is on the attendance list for "Vismadagen"
+    And I am on the presentation page for "Vismadagen"
+    When I follow "Meld meg av!"
+    Then I should see a message explaining the error
+    And a user named "John Doe" should be on the attendance list for "Vismadagen"
+
   Scenario: Attending past presentation
     Given there is a past presentation titled Vismadagen
     And I am on the presentation page for "Vismadagen"
