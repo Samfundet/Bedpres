@@ -100,3 +100,32 @@ group :development do
   # Database Cleaner is a set of strategies for cleaning your database in Ruby.
   gem 'database_cleaner'
 end
+
+group :test do
+  # Cucumber is a BDD testing framework.
+  gem 'cucumber-rails'
+
+  # Ruby library for generating XPath expressions.
+  gem 'xpath'
+
+  # database_cleaner ensures a clean DB state during tests;
+  # we use it with Cucumber.
+  gem 'database_cleaner'
+
+  # See above (:development)
+  gem 'faker'
+
+  # launchy is an application launcher; it's required for the
+  # 'Then show me the page' action in Cucumber
+  gem 'launchy'
+
+  # The RSpec testing framework.
+  gem 'rspec'
+
+  # See above (:development)
+  gem 'sqlite3'
+
+  # A collection of matchers for RSpec/MiniTest and
+  # Cucumber steps to make testing emails go smoothly.
+  gem 'email_spec'
+end
