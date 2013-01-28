@@ -107,7 +107,7 @@ class User < ActiveRecord::Base
         :recovery_hash => hash
         )
 
-      UserMailer.forgot_password(user, hash).deliver!
+      UserMailer.forgot_password(self, hash).deliver!
     else
       raise MaxAttemptsReachedError
     end
