@@ -7,10 +7,10 @@ Given /^"(.*?)" is on the attendance list for "(.*?)"$/ do |user_full_name, pres
     presentation = Presentation.find_by_name(presentation_name)
     user = User.find_by_firstname_and_surname(user_full_name.split.first, user_full_name.split.last)
 
-    Participation.create!(
+    puts Participation.new(
         :user => user,
         :presentation => presentation,
-    )
+    ).save(:validate => false).inspect
   end
 end
 
