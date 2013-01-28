@@ -30,7 +30,7 @@ class Participation < ActiveRecord::Base
 
   def presentation_canceled
     if presentation and presentation.canceled
-      errors.add(:base, "Denne presentasjonen er desverre avlyst.")
+      errors.add(:base, "Denne presentasjonen er desverre avlyst og påmelding/avmelding har derfor avsluttet..")
     end
 
     errors.blank?
@@ -38,7 +38,7 @@ class Participation < ActiveRecord::Base
 
   def presentation_date_passed
     if presentation and ( Time.now >= presentation.presentation_date )
-      errors.add(:base, "Denne presentasjonen er dessverre over og påmelding/avmelding har avsluttet.")
+      errors.add(:base, "Denne presentasjonen er dessverre over og påmelding/avmelding har derfor avsluttet.")
     end
 
     errors.blank?
