@@ -72,7 +72,7 @@ class UsersController < ApplicationController
     @hash = params[:hash]
 
     begin
-      @user.reset_password!(@hash, params[:user])
+      @user.reset_password!(@hash, params[:user][:password])
       flash[:success] = "Passordet har blitt endret. Du kan nå logge inn med ditt nye passord."
       redirect_to login_path
     rescue HashMismatchError

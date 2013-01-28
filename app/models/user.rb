@@ -113,9 +113,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  def reset_password!(hash, params)
+  def reset_password!(hash, password)
     if check_hash(hash)
-      update_attributes!(params)
+      @password = password
+      save :validate => false
       password_recoveries.delete_all
     else
       raise HashMismatchError
