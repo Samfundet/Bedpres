@@ -30,7 +30,7 @@ class Participation < ActiveRecord::Base
 
   def presentation_canceled
     if presentation and presentation.canceled
-      errors.add(:base, "Denne presentasjonen er desverre avlyst og påmelding/avmelding har derfor avsluttet..")
+      errors.add(:base, "Denne presentasjonen er dessverre avlyst og påmelding/avmelding har derfor avsluttet..")
     end
 
     errors.blank?
@@ -46,7 +46,7 @@ class Participation < ActiveRecord::Base
 
   def presentation_guest_limit
     if presentation and ( presentation.users.size >= presentation.guest_limit )
-      errors.add(:base, "Denne presentasjonen er desverre full.")
+      errors.add(:base, "Denne presentasjonen er dessverre full.")
     end
   end
 
