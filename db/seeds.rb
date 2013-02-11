@@ -22,7 +22,7 @@ presentations.times do
       :name => Faker::Lorem.words(3).join(" "),
       :corporation => Faker::Company.name,
       :area_id => Area.all.sample.id,
-      :guest_limit => 1 + rand(999),
+      :guest_limit => 7 + rand(999),
       :presentation_date => Time.now + (1+rand(9)).days,
       :description => Faker::Lorem.paragraphs.join("\n\n")
   )
