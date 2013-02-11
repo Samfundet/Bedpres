@@ -11,8 +11,6 @@
 
 class PasswordRecovery < ActiveRecord::Base
   attr_accessible :user, :recovery_hash
-
   belongs_to :user, :dependent => :destroy
-
   validates_presence_of :user_id, :user, :recovery_hash
 end
