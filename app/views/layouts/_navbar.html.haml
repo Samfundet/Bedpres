@@ -1,0 +1,27 @@
+.navbar.navbar-static-top
+  .navbar-inner
+    .container
+    
+      %a.btn.btn-navbar{ 'data-toggle' => "collapse", 'data-target' => ".nav-collapse" }
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+
+      = link_to "Bedriftspresentasjoner på Samfundet", root_path, :class => "brand"
+
+      .nav-collapse.collapse
+        %ul.nav.pull-right
+          - if @current_user
+            - if @current_user.is_a? User
+              %li
+                = link_to edit_user_path(@current_user) do
+                  = "Min profil ( #{@current_user.full_name} )"
+            - else
+              %li
+                = link_to "https://medlem.samfundet.no/account/edit" do
+                  = @current_user.full_name
+            %li
+              = link_to "Logg ut", logout_path, :method => :post
+          -else
+            %li
+              = link_to "Logg inn", login_path
