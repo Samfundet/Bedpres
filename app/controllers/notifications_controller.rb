@@ -1,8 +1,8 @@
 class NotificationsController < ApplicationController
 
+  filter_access_to :destroy, :attribute_check => true
 
   def destroy
-    @notification = Notification.find(params[:id])
     @notification.destroy
     redirect_to root_path
   end

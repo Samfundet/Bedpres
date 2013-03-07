@@ -14,6 +14,8 @@
 
 class User < ActiveRecord::Base
   extend AccountValidationHelper
+  include PasswordResetHelper
+
   attr_accessor :password, :password_confirmation, :old_password
   attr_accessible :firstname, :surname, :email, :password, :password_confirmation, :old_password
 
@@ -26,28 +28,35 @@ class User < ActiveRecord::Base
   validates :email, :email_format => {:message => 'ikke gyldig adresse'}, :presence => true, :uniqueness => true
   validates :password, :presence => true, :confirmation => true, :length => {:minimum => 6}, :if => :password_changed?
   validates :password_confirmation, :presence => true, :if => :password_changed?
+  validate :validate_old_password, :if => (Proc.new do |user|
+    user.password_changed? && !user.new_record?
+  end)
 
   has_many :password_recoveries
 
   before_validation :downcase_email
   before_save :hash_new_password, :if => :password_changed?
-
-  if Rails.env == "production"
-    after_create :verify_account
-  else
-    before_create :set_verified
-  end
-
-  def set_verified
-    self.verified = true
-  end
+  after_create :verify_account, :unless => :verified
 
   def password_changed?
-    not @password.nil?
+    !(@password.nil? or @password.blank?) || !(@password_confirmation.nil? or @password_confirmation.blank?)
+  end
+
+  def skip_email_validation!
+    self.verified = true
   end
 
   def verify_account
     UserMailer.verify_account(self, create_verification_hash).deliver
+  end
+
+  def verify!(hash)
+    if create_verification_hash == hash
+      self.verified = true
+      self.save
+    else
+      raise HashMismatchError
+    end
   end
 
   def role_symbols
@@ -84,6 +93,31 @@ class User < ActiveRecord::Base
     not password_recoveries.where("recovery_hash = ?", hash).where("created_at > ?", Time.now - 1.hour).empty?
   end
 
+  def forgot_password!
+    if can_recover_password?
+      hash = create_recovery_hash
+
+      PasswordRecovery.create!(
+          :user => self,
+          :recovery_hash => hash
+      )
+
+      UserMailer.forgot_password(self, hash).deliver!
+    else
+      raise MaxAttemptsReachedError
+    end
+  end
+
+  def reset_password!(hash, password)
+    if check_hash(hash)
+      @password = password
+      save :validate => false
+      password_recoveries.delete_all
+    else
+      raise HashMismatchError
+    end
+  end
+
   class << self
     def authenticate(email, password)
       user = find_by_email(email.downcase)
@@ -100,7 +134,12 @@ class User < ActiveRecord::Base
   private
 
   def downcase_email
-      email.downcase!
+    email.downcase! if email
   end
 
+  def validate_old_password
+    unless self.class.authenticate(email, old_password)
+      errors.add :old_password, "feil passord"
+    end
+  end
 end

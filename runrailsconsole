@@ -1,0 +1,8 @@
+#! /bin/bash
+
+export GEM_PATH="/var/www/samfundet.no/bedpres/vendor/ruby/1.9.1"
+export GEM_HOME="/var/www/samfundet.no/bedpres/vendor/ruby/1.9.1"
+export PATH="$PATH:/var/www/samfundet.no/bedpres/vendor/ruby/1.9.1/bin"
+
+bundle exec rails console production
+

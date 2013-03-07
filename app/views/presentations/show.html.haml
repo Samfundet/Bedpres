@@ -3,7 +3,7 @@
 .banner-image{:style => "background-image: url('#{@presentation.image.url(:banner)}');"}
 
 %h1
-  = @presentation.name
+  = @presentation.with_prefix
 
 .row
   .span8
@@ -12,7 +12,7 @@
     - if permitted_to? :create, :participations
       %p
         - if @presentation.users.include? @current_user
-          = link_to "Meld meg av!", presentation_participation_path(@presentation), :method => :delete
+          = link_to "Meld meg av!", presentation_participation_path(@presentation, participation(@presentation, @current_user)), :method => :delete
         - elsif @current_user
           = link_to "Meld meg på", presentation_participations_path(@presentation), :method => :post
   .span2

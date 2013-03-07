@@ -41,11 +41,11 @@ class Presentation < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
-  def name
+  def with_prefix
     if canceled
-      "[avlyst] #{super}"
+      "[avlyst] #{self.name}"
     else
-      super
+      self.name
     end
   end
 

@@ -17,6 +17,9 @@ authorization do
     has_permission_on :users, :to => [:update] do
       if_attribute :id => is { user.id }
     end
+    has_permission_on :notifications, :to => [:destroy] do
+      if_attribute :user_id => is { user.id }
+    end
   end
 
   role :medlem do

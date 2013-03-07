@@ -1,5 +1,11 @@
 'no':
   activerecord:
+    errors:
+      models:
+        presentation:
+          attributes:
+            presentation_date:
+              after: "Dette tidspunktet har passert"
     models:
       presentation:
         one: "presentasjon"
