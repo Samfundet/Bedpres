@@ -11,7 +11,7 @@
       #{@presentation.description}
     - if permitted_to? :create, :participations
       %p
-        - if @presentation.users.include? @current_user
+        - if @presentation.participants.include? @current_user
           = link_to "Meld meg av!", presentation_participation_path(@presentation, participation(@presentation, @current_user)), :method => :delete
         - elsif @current_user
           = link_to "Meld meg på", presentation_participations_path(@presentation), :method => :post
@@ -36,7 +36,7 @@
       %b
         Ledige plasser:
       %p
-        #{@presentation.guest_limit - @presentation.users.size}
+        #{@presentation.guest_limit - @presentation.participations.size}
         av
         #{@presentation.guest_limit}
       - if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
@@ -47,9 +47,9 @@
     Påmeldte brukere
   %p
     %b
-      = "#{@presentation.users.size} / #{@presentation.guest_limit} påmeldte"
+      = "#{@presentation.participations.size} / #{@presentation.guest_limit} påmeldte"
 
-  - if @presentation.users.empty?
+  - if @presentation.participations.empty?
     %p
       Ingen påmeldte :(
   - else
@@ -59,7 +59,7 @@
           %th Fornavn
           %th Etternavn
           %th Email
-      - @presentation.users.sort_by(&:full_name).each do |user|
+      - @presentation.participants.sort_by(&:full_name).each do |user|
         %tr
           %td
             = user.firstname

@@ -49,7 +49,7 @@ class Presentation < ActiveRecord::Base
     end
   end
 
-  def users
+  def participants
     participations.map &:participle
   end
 end

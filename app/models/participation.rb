@@ -17,12 +17,12 @@ class Participation < ActiveRecord::Base
   belongs_to :participle, :polymorphic => true
   belongs_to :presentation
 
-  validates_presence_of :user_id, :user, :presentation_id, :presentation
+  validates_presence_of :participle_id, :participle_type, :participle, :presentation_id, :presentation
 
   validate :presentation_canceled
   validate :presentation_date_passed
   validate :presentation_guest_limit
-  validate :presentation_contains_user
+  validate :presentation_contains_participant
 
   before_destroy :presentation_canceled
   before_destroy :presentation_date_passed
@@ -46,13 +46,13 @@ class Participation < ActiveRecord::Base
   end
 
   def presentation_guest_limit
-    if presentation and ( presentation.users.size >= presentation.guest_limit )
+    if presentation and ( presentation.participations.size >= presentation.guest_limit )
       errors.add(:base, "Denne presentasjonen er dessverre full.")
     end
   end
 
-  def presentation_contains_user
-    if presentation and ( presentation.users.include? user )
+  def presentation_contains_participant
+    if presentation and ( presentation.participants.include? participle )
       errors.add(:base, "Du er allerede påmeldt denne presentasjonen.")
     end
   end
