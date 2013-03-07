@@ -1,4 +1,4 @@
-Given /^"(.*?)" is on the attendance list for "(.*?)"$/ do |user_full_name, presentation_name|
+Given /^a user named "(.*?)" is on the attendance list for "(.*?)"$/ do |user_full_name, presentation_name|
   begin
     step %(a user named "#{user_full_name}" should be on the attendance list for "#{presentation_name}")
   rescue
