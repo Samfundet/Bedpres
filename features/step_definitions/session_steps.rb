@@ -41,3 +41,7 @@ end
 Then /^I should be able to log in with "(.*?)" and "(.*?)"$/ do |email, password|
   User.authenticate(email, password).should_not be_nil
 end
+
+Then /^I should not be able to log in with "(.*?)" and "(.*?)"$/ do |email, password|
+  expect { step %(I should not be able to log in with "#{email}" and "#{password}") }.to raise_error
+end
