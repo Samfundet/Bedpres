@@ -1,12 +1,12 @@
 - title "#{@presentation.name}"
 
-.banner-image{:style => "background-image: url('#{@presentation.image.url(:banner)}');"}
+.row-fluid
+  .span12
+    .banner-image{:style => "background-image: url('#{@presentation.image.url(:banner)}');"}
+    %h1= @presentation.with_prefix
 
-%h1
-  = @presentation.with_prefix
-
-.row
-  .span8
+.row-fluid
+  .span9
     :markdown
       #{@presentation.description}
     - if permitted_to? :create, :participations
@@ -15,55 +15,49 @@
           = link_to "Meld meg av!", presentation_participation_path(@presentation, participation(@presentation, @current_user)), :method => :delete
         - elsif @current_user
           = link_to "Meld meg på", presentation_participations_path(@presentation), :method => :post
-  .span2
+  .span3
     .well.sidebar-nav
-      %b
-        Bedrift:
-      %p
-        = @presentation.corporation
-      %b
-        Dato:
-      %p
-        = @presentation.presentation_date.to_date
-      %b
-        Klokkeslett:
-      %p
-        = @presentation.presentation_date.strftime("%H:%M")
-      %b
-        Sted:
-      %p
-        = @presentation.area.name
-      %b
-        Ledige plasser:
+      %b Bedrift:
+      %p= @presentation.corporation
+
+      %b Dato:
+      %p= @presentation.presentation_date.to_date
+
+      %b Klokkeslett:
+      %p= @presentation.presentation_date.strftime("%H:%M")
+
+      %b Sted:
+      %p= @presentation.area.name
+
+      %b Ledige plasser:
       %p
         #{@presentation.guest_limit - @presentation.users.size}
         av
         #{@presentation.guest_limit}
+
       - if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
         = render 'edit_button', :presentation => @presentation
         
 - if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
-  %h2
-    Påmeldte brukere
-  %p
-    %b
-      = "#{@presentation.users.size} / #{@presentation.guest_limit} påmeldte"
+  .row-fluid
+    .span12
+      %h2 Påmeldte brukere
+      %p
+        %b= "#{@presentation.users.size} / #{@presentation.guest_limit} påmeldte"
 
-  - if @presentation.users.empty?
-    %p
-      Ingen påmeldte :(
-  - else
-    %table.table
-      %thead
-        %tr
-          %th Fornavn
-          %th Etternavn
-          %th Email
-      - @presentation.users.sort_by(&:full_name).each do |user|
-        %tr
-          %td
-            = user.firstname
-          %td
-            = user.surname
-          %td
-            = user.email
+      - if @presentation.users.empty?
+        %p Ingen påmeldte :(
+        
+      - else
+        %table.table
+          %thead
+            %tr
+              %th Fornavn
+              %th Etternavn
+              %th Email
+          %tbody
+            - @presentation.users.sort_by(&:full_name).each do |user|
+              %tr
+                %td= user.firstname
+                %td= user.surname
+                %td= user.email
