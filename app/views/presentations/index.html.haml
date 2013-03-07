@@ -1,22 +1,28 @@
-- unless @promo.nil?
-  .banner-image{:style => "background-image: url('#{@promo.image.url(:banner)}');"}
-    .align_bottom
-      %h2
-        = link_to @promo.name, @promo
-      %h3
-        = "#{@promo.corporation} – #{@promo.area} –"
-        %time{ :datetime => @promo.presentation_date.xmlschema }
-          = @promo.presentation_date.strftime("%d. %B %Y – %H:%M")
+- unless @upcoming_presentations.empty?
+  - unless @promo.nil?
+    .banner-image{:style => "background-image: url('#{@promo.image.url(:banner)}');"}
+      .align_bottom
+        %h2
+          = link_to @promo.name, @promo
+        %h3
+          = "#{@promo.corporation} – #{@promo.area} –"
+          %time{ :datetime => @promo.presentation_date.xmlschema }
+            = @promo.presentation_date.strftime("%d. %B %Y – %H:%M")
 
-%h3
-  Kommende bedriftspresentasjoner
-
-= render 'presentations', :presentations => @upcoming_presentations
-
-- if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
   %h3
-    Tidligere bedriftspresentasjoner
-  = render 'presentations', :presentations => @past_presentations
+    Kommende bedriftspresentasjoner
+
+  = render 'presentations', :presentations => @upcoming_presentations
+
+  - if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
+    %h3
+      Tidligere bedriftspresentasjoner
+    = render 'presentations', :presentations => @past_presentations
+- else
+  :markdown
+    ### Ingen bedriftspresentasjoner
+
+    **Det eksisterer for øyeblikket ingen planlagte bedriftspresentasjoner.**
 
 - if permitted_to? :new, :presentations
   = link_to "Opprett presentasjon", new_presentation_path, :class => 'btn'
