@@ -6,29 +6,12 @@
         #{yield(:title)}
       - else
         Bedriftspresentasjoner
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    .navbar.navbar-static-top
-      .navbar-inner
-        .container
-          = link_to "Bedriftspresentasjoner på Samfundet", root_path, :class => "brand"
-          .pull-right
-            %ul.nav
-              - if @current_user
-                %li
-                  - if @current_user.is_a? User
-                    = link_to edit_user_path(@current_user) do
-                      = @current_user.full_name
-                  - else
-                    = link_to "https://medlem.samfundet.no/account/edit" do
-                      = @current_user.full_name
-              %li
-                - if @current_user
-                  = link_to "Logg ut", logout_path, :method => :post
-                - else
-                  = link_to "Logg inn", login_path
+    = render 'layouts/navbar'
     .container
       - if @current_user.is_a? User
         - @current_user.notifications.each do |notification|
