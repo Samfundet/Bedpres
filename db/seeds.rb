@@ -34,13 +34,15 @@ users = 7
 
 Presentation.all.each do |p|
   users.times do 
-    u = User.create!(
+    u = User.new(
       :firstname => Faker::Name.first_name, 
       :surname => Faker::Name.last_name,
       :email => Faker::Internet.email,
       :password => "passord",
       :password_confirmation => "passord"
     )
+    u.skip_email_validation!
+    u.save!
     puts "Registering #{u.full_name} for #{p.name}"
     Participation.create!(:user => u, :presentation => p)
   end
@@ -48,10 +50,12 @@ end
 
 puts "Creating named- and easy to remember user: bruker@samfundet.no !"
 
-User.create!(
+user = User.new(
   :firstname => "Bruker",
   :surname => "Brukerson",
   :email => "bruker@samfundet.no",
   :password => "passord",
   :password_confirmation => "passord"
 )
+user.skip_email_validation!
+user.save!
