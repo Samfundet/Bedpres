@@ -1,9 +1,9 @@
 module NotificationHelper
   
-  def notify(users, descritpion, presentation)
+  def notify(participants, descritpion, presentation)
     
-    users.each do |user|
-      Notification.create!({:notifiable => user, :descritpion => descritpion, :presentation_id => presentation.id})
+    participants.each do |participant|
+      Notification.create!({:notifiable => participant, :descritpion => descritpion, :presentation_id => presentation.id})
     end
 
   end
