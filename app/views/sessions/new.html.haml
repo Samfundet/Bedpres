@@ -1,7 +1,7 @@
 - title 'Innlogging'
 
-.row
-  .span5
+.row-fluid
+  .span6
     %h2 Logg inn som bruker
     = semantic_form_for User.new, :url => login_path, :html => { :class => "form-horizontal" } do |f|
       = f.inputs do
@@ -10,8 +10,8 @@
       = f.actions do
         = f.action :submit, :label => "Logg inn", :button_html => { :id => "user_login" }
 
-  .span5
-    %h2 Logg inn som administrator
+  .span6
+    %h2 Administratorlogin
     = semantic_form_for Member.new(:mail => @member_mail), :url => login_path, :html => { :class => "form-horizontal" } do |f|
       = f.inputs do
         = f.input :mail
