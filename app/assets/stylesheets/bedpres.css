@@ -2,61 +2,98 @@ body {
 	margin-bottom:2em;
 }
 
+h1 {
+  margin-bottom:1em;
+}
+
+h2 {
+  margin-bottom:1em;
+}
+
+tr {
+  word-break: break-all;
+}
+
 .navbar.navbar-static-top {
 	margin-bottom:2em;
 }
 
-h1 {
-    margin-bottom: 40px;
-}
-
-h2 {
-    margin-bottom: 30px;
-}
-
 .formtastic .form-actions {
     border-top: none;
-    padding-top: 0;
 }
 
 .banner-image 
 { 
-  padding:0; 
   position:relative;
   margin-bottom: 30px;
   height: 300px; 
   background-position: center;
 }
 
-
-.banner-image > .align_bottom
+.banner-image > a
 {
-  position:absolute; 
   bottom:0em; 
   padding-bottom:1em; 
-  margin-left:0;
+  position:absolute; 
+  text-decoration:none;
+  color:white; 
 }
 
-.banner-image > .align_bottom > h2
+.banner-image > a > h2
 {
-  font-size:4em; 
-  margin: 0.3em 0; 
-  padding: 0; 
+	margin:0; 
+	padding: 0.4em 20px 0.4em 20px;
+  line-height: 0.8em;
+  font-size: 2em;
+  background-color:#A03033; 
+}
+
+.banner-image > a > h3
+{
+  margin:0; 
+  padding:0 20px 0 20px; 
+  font-size:1em;
+  background-color:black; 
+}
+
+.snappy {
+  list-style-type: none;
+  overflow: auto;
+  text-align: center;
+}
+
+.snappy li {
+  padding: 0.5em;
+  word-break: break-all;
   text-align: left;
 }
 
-.banner-image > .align_bottom > h2 > a
-{
-	margin:0; 
-	background-color:#A03033; 
-	color:white; 
-	padding:0 20px 0 20px; 
+.loginbox {
+  float:left;
 }
 
-.banner-image > .align_bottom > h3
-{
-  background-color:black; 
-  color:white; margin:0; 
-  padding:0 20px 0 20px; 
-  text-align:left;
+@media only screen and (max-width: 480px) {
+
+  .snappy li {
+    margin:0;
+    padding:0;
+    width: 50%;
+    display:inline-block;
+    float: left;
+  }
+
+}
+
+@media only screen and (max-width: 767px) and (min-width: 480px) {
+
+  .snappy li {
+    width: 30%;
+    display:inline-block;
+    float:left;
+  }
+
+}
+
+@media only screen and (min-width: 767px) and (max-width: 960px ) {
+
 }
