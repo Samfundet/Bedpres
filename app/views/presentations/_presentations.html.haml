@@ -3,6 +3,8 @@
     %tr
       %th Tittel
       %th Bedrift
+      %th.hidden-phone Lokale
+      %th.hidden-phone.hidden-tablet Plasser
       %th Tidspunkt
   - unless presentations.empty?
     - presentations.each do |presentation|
@@ -11,6 +13,10 @@
           = link_to presentation.with_prefix, presentation
         %td
           = presentation.corporation
+        %td.hidden-phone
+          = presentation.area
+        %td.hidden-phone.hidden-tablet
+          = "#{presentation.guest_limit - presentation.participants.size} / #{presentation.guest_limit}"
         %td
           %time{ :datetime => @promo.presentation_date.xmlschema }
             = @promo.presentation_date.strftime("%d. %B %Y – %H:%M")
