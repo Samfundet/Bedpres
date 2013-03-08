@@ -19,12 +19,10 @@
         = f.input :password, :required => true
       = f.actions do
         = f.action :submit, :label => "Logg inn", :button_html => { :id => "user_login" }
-    %p
-      = link_to "Ingen bruker? Opprett ny konto her!", new_user_path
-    %p
-      %a
-        = link_to forgot_password_users_path do
-          Glemt passord?
+    :markdown
+      [Ingen bruker? Opprett ny konto her!](#{new_user_path})
+
+      [Glemt passord?](#{forgot_password_users_path})
 
   .span5
     %h3 medlem av Studentersamfundet
@@ -34,9 +32,7 @@
         = f.input :passord, :as => :password
       = f.actions do
         = f.action :submit, :label => "Logg inn", :button_html => { :id => "member_login" }
-    %p
-      = link_to "Registrer medlemskapet ditt elektronisk for å logge på!", registrate_card_path
-    %p
-      %a
-        = link_to forgot_card_password_path do
-          Glemt passord til ditt medlemskap?
+    :markdown
+      [Registrer medlemskapet ditt elektronisk for å logge på!](#{registrate_card_path})
+
+      [Glemt passord til ditt medlemskap?](#{forgot_card_password_path})
