@@ -1,21 +1,22 @@
-- title "#{@current_user.firstname}"
-%h1 
-  = "Rediger #{@current_user.full_name}"
+- title "#{@current_user.full_name} "
 
+.row-fluid
+  .span12
+    %h1= "Rediger #{@current_user.full_name}"
 
-= semantic_form_for @user, :html => { :class => "form-horizontal" } do |f|
-  = f.inputs :name => "Generell informasjon" do
-    = f.input :email
-    = f.input :firstname
-    = f.input :surname
+    = semantic_form_for @user, :html => { :class => "form-horizontal" } do |f|
+      = f.inputs :name => "Generell informasjon" do
+        = f.input :email
+        = f.input :firstname
+        = f.input :surname
 
-  =f.inputs :name => "Passord" do
-    %div.control-group
-      %p
-        La stå blankt dersom du ikke ønsker å endre passordet ditt.
-    = f.input :old_password
-    = f.input :password, :label => "Nytt passord"
-    = f.input :password_confirmation
+      =f.inputs :name => "Passord" do
+        %div.control-group
+          %p
+            La stå blankt dersom du ikke ønsker å endre passordet ditt.
+        = f.input :old_password
+        = f.input :password, :label => "Nytt passord"
+        = f.input :password_confirmation
 
-  = f.actions do
-    = f.action :submit
+      = f.actions do
+        = f.action :submit
