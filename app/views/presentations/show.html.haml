@@ -20,7 +20,6 @@
           = link_to "Meld meg av!", presentation_participation_path(@presentation, participation(@presentation, @current_user)), :method => :delete
         - elsif @current_user
           = link_to "Meld meg på", presentation_participations_path(@presentation), :method => :post
-<<<<<<< HEAD
   .span4
     .well
       %ul.snappy
@@ -42,7 +41,7 @@
         %li
           %b Ledige plasser:
           %p
-            #{@presentation.guest_limit - @presentation.users.size}
+            #{@presentation.guest_limit - @presentation.participants.size}
             av
             #{@presentation.guest_limit}
 
@@ -51,9 +50,9 @@
     .span12
       %h2 Påmeldte brukere
       %p
-        %b= "#{@presentation.users.size} / #{@presentation.guest_limit} påmeldte"
+        %b= "#{@presentation.participants.size} / #{@presentation.guest_limit} påmeldte"
 
-      - if @presentation.users.empty?
+      - if @presentation.participants.empty?
         %p Ingen påmeldte :(
 
       - else
@@ -63,7 +62,7 @@
               %th Navn
               %th Email
           %tbody
-            - @presentation.users.sort_by(&:full_name).each do |user|
+            - @presentation.participants.sort_by(&:full_name).each do |user|
               %tr
                 %td= "#{user.surname}, #{user.firstname}"
                 %td= user.email
