@@ -32,7 +32,7 @@ class PresentationsController < ApplicationController
     @presentation = Presentation.find params[:id]
     if @presentation.update_attributes(params[:presentation])
       flash[:success] = "Presentasjonen er oppdatert."
-      notify(@presentation.users, "Presentasjonen #{@presentation.name} har blitt oppdatert.", @presentation)
+      notify(@presentation.participants, "Presentasjonen #{@presentation.name} har blitt oppdatert.", @presentation)
       redirect_to root_path
     else
       flash.now[:error] = "Presentasjonen ble ikke oppdatert."
@@ -51,10 +51,10 @@ class PresentationsController < ApplicationController
     if @presentation.save
       if @presentation.canceled
         flash[:success] = "Presentasjonen er markert som avlyst."
-        notify(@presentation.users, "Presentasjonen #{@presentation.name} har blitt avlyst.", @presentation)
+        notify(@presentation.participants, "Presentasjonen #{@presentation.name} har blitt avlyst.", @presentation)
       else
         flash[:success] = "Presentasjonen er ikke lenger markert som avlyst."
-        notify(@presentation.users, "Presentasjonen #{@presentation.name} er ikke lenger avlyst.", @presentation)
+        notify(@presentation.participants, "Presentasjonen #{@presentation.name} er ikke lenger avlyst.", @presentation)
       end
 
       redirect_to presentation_path @presentation

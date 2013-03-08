@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130114193734) do
+ActiveRecord::Schema.define(:version => 20130121173123) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -52,18 +52,20 @@ ActiveRecord::Schema.define(:version => 20130114193734) do
   end
 
   create_table "notifications", :force => true do |t|
-    t.integer  "user_id"
     t.text     "descritpion"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "presentation_id"
+    t.string   "notifiable_type"
+    t.integer  "notifiable_id"
   end
 
   create_table "participations", :force => true do |t|
     t.integer  "presentation_id"
-    t.integer  "user_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "participle_type"
+    t.integer  "participle_id"
   end
 
   create_table "password_recoveries", :force => true do |t|

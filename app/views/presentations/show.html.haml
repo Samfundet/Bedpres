@@ -12,15 +12,15 @@
 
 .row-fluid
   .span8
-    /%h1= @presentation.with_prefix
     :markdown
       #{@presentation.description}
     - if permitted_to? :create, :participations
       %p
-        - if @presentation.users.include? @current_user
+        - if @presentation.participants.include? @current_user
           = link_to "Meld meg av!", presentation_participation_path(@presentation, participation(@presentation, @current_user)), :method => :delete
         - elsif @current_user
           = link_to "Meld meg på", presentation_participations_path(@presentation), :method => :post
+<<<<<<< HEAD
   .span4
     .well
       %ul.snappy

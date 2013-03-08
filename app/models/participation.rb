@@ -6,22 +6,23 @@
 #
 #  id              :integer          not null, primary key
 #  presentation_id :integer
-#  user_id         :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  participle_type :string(255)
+#  participle_id   :integer
 #
 
 class Participation < ActiveRecord::Base
-  attr_accessible :user, :presentation, :presentation_id
-  belongs_to :user
+  attr_accessible :participle, :presentation, :presentation_id
+  belongs_to :participle, :polymorphic => true
   belongs_to :presentation
 
-  validates_presence_of :user_id, :user, :presentation_id, :presentation
+  validates_presence_of :participle_id, :participle_type, :participle, :presentation_id, :presentation
 
   validate :presentation_canceled
   validate :presentation_date_passed
   validate :presentation_guest_limit
-  validate :presentation_contains_user
+  validate :presentation_contains_participant
 
   before_destroy :presentation_canceled
   before_destroy :presentation_date_passed
@@ -45,15 +46,14 @@ class Participation < ActiveRecord::Base
   end
 
   def presentation_guest_limit
-    if presentation and ( presentation.users.size >= presentation.guest_limit )
+    if presentation and ( presentation.participations.size >= presentation.guest_limit )
       errors.add(:base, "Denne presentasjonen er dessverre full.")
     end
   end
 
-  def presentation_contains_user
-    if presentation and ( presentation.users.include? user )
+  def presentation_contains_participant
+    if presentation and ( presentation.participants.include? participle )
       errors.add(:base, "Du er allerede påmeldt denne presentasjonen.")
     end
   end
-
 end

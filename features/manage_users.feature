@@ -13,8 +13,12 @@ Feature: Manage users
       | Bekreft passord | passord                          |
     And I press "Opprett bruker"
     Then I should be on login page
+    And I should not be able to log in with "jane.doe@gmail.com"" and "passord"
     And I should see a message explaining the success
-    And there should be a user with firstname "Jane" and surname "Doe"
+    And "jane.doe@gmail.com" should receive an email
+    When I open the email
+    And I follow "bekrefte" in the email
+    Then I should be able to log in with "jane.doe@gmail.com" and "passord"
 
   Scenario: Edit profile
     Given there is a user with firstname "John", surname "Doe", email "john.doe@gmail.com" and password "password"

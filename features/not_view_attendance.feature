@@ -6,7 +6,7 @@ Feature: Not view attendance
   Background:
     Given there is a upcoming presentation titled Statoildagen
     And there is a user with firstname "Ola" and surname "Nordmann"
-    And "Ola Nordmann" is on the attendance list for "Statoildagen"
+    And a user named "Ola Nordmann" is on the attendance list for "Statoildagen"
     And I am logged in as an user
 
   Scenario: Not view list

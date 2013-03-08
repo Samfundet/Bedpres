@@ -19,9 +19,9 @@ class User < ActiveRecord::Base
   attr_accessor :password, :password_confirmation, :old_password
   attr_accessible :firstname, :surname, :email, :password, :password_confirmation, :old_password
 
-  has_many :participations, :dependent => :destroy
+  has_many :participations, :as => :participle, :dependent => :destroy
   has_many :presentations, :through => :participations
-  has_many :notifications
+  has_many :notifications, :as => :notifiable, :dependent => :destroy, :order => "created_at DESC"
 
   validates_presence_of :firstname, :surname, :email
 
@@ -36,19 +36,14 @@ class User < ActiveRecord::Base
 
   before_validation :downcase_email
   before_save :hash_new_password, :if => :password_changed?
-
-  if Rails.env == "production"
-    after_create :verify_account
-  else
-    before_create :set_verified
-  end
-
-  def set_verified
-    self.verified = true
-  end
+  after_create :verify_account, :unless => :verified
 
   def password_changed?
     !(@password.nil? or @password.blank?) || !(@password_confirmation.nil? or @password_confirmation.blank?)
+  end
+
+  def skip_email_validation!
+    self.verified = true
   end
 
   def verify_account

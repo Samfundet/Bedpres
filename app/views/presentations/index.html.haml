@@ -1,24 +1,31 @@
-- unless @promo.nil?
+- unless @upcoming_presentations.empty?
+  - unless @promo.nil?
+    .row-fluid
+      .span12
+        .banner-image{:style => "background-image: url('#{@promo.image.url(:banner)}');"}
+          = link_to @promo, :style => "align_bottom" do
+            %h2= @promo.with_prefix
+            %h3
+              = "#{@promo.corporation} – #{@promo.area} –"
+              %time{ :datetime => @promo.presentation_date.xmlschema }
+                = @promo.presentation_date.strftime("%d. %B %Y – %H:%M")
+                
   .row-fluid
     .span12
-      .banner-image{:style => "background-image: url('#{@promo.image.url(:banner)}');"}
-        = link_to @promo, :style => "align_bottom" do
-          %h2= @promo.with_prefix
-          %h3
-            = "#{@promo.corporation} – #{@promo.area} –"
-            %time{ :datetime => @promo.presentation_date.xmlschema }
-              = @promo.presentation_date.strftime("%d. %B %Y – %H:%M")
-              
-.row-fluid
-  .span12
-    %h2 Kommende Presentasjoner
+      %h2 Kommende Presentasjoner
 
-    = render 'presentations', :presentations => @upcoming_presentations
+      = render 'presentations', :presentations => @upcoming_presentations
 
-    - if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
-      %h3
-        Tidligere presentasjoner
-      = render 'presentations', :presentations => @past_presentations
+      - if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
+        %h3
+          Tidligere presentasjoner
+        = render 'presentations', :presentations => @past_presentations
+
+- else
+  :markdown
+    ### Ingen bedriftspresentasjoner
+
+    **Det eksisterer for øyeblikket ingen planlagte bedriftspresentasjoner.**
 
     - if permitted_to? :new, :presentations
       = link_to "Opprett presentasjon", new_presentation_path, :class => 'btn'

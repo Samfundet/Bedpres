@@ -15,7 +15,7 @@ Feature: Participation
     And a user named "John Doe" should be on the attendance list for "Statoildagen"
 
   Scenario: Cancel attendance
-    Given "John Doe" is on the attendance list for "Statoildagen"
+    Given a user named "John Doe" is on the attendance list for "Statoildagen"
     And I am on the presentation page for "Statoildagen"
     When I follow "Meld meg av!"
     Then I should see a message explaining the success
@@ -23,7 +23,7 @@ Feature: Participation
 
   Scenario: Cancel attendance for past presentation
     Given there is a past presentation titled Vismadagen
-    And "John Doe" is on the attendance list for "Vismadagen"
+    And a user named "John Doe" is on the attendance list for "Vismadagen"
     And I am on the presentation page for "Vismadagen"
     When I follow "Meld meg av!"
     Then I should see a message explaining the error
@@ -31,7 +31,7 @@ Feature: Participation
 
   Scenario: Cancel attendance for canceled presentation
     Given there is a canceled presentation titled Vismadagen
-    And "John Doe" is on the attendance list for "Vismadagen"
+    And a user named "John Doe" is on the attendance list for "Vismadagen"
     And I am on the presentation page for "Vismadagen"
     When I follow "Meld meg av!"
     Then I should see a message explaining the error

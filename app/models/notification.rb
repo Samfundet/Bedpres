@@ -11,8 +11,8 @@
 #
 
 class Notification < ActiveRecord::Base
-  attr_accessible :descritpion, :user_id, :presentation_id 
-  belongs_to :user
+  attr_accessible :descritpion, :notifiable, :presentation_id
+  belongs_to :notifiable, :polymorphic => true
   belongs_to :presentation
 
   validates_presence_of :user_id, :user, :presentation_id, :presentation, :descritpion

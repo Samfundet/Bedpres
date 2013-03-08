@@ -4,7 +4,9 @@ class ParticipationsController < ApplicationController
   filter_access_to :all
 
   def destroy
-    @participation = Participation.where(:presentation_id => params[:presentation_id], :user_id => @current_user).first
+    @participation = Participation.where(:presentation_id => params[:presentation_id],
+                                         :participle_id => @current_user.id,
+                                         :participle_type => @current_user.class.name).first
 
     if @participation.destroy
       flash[:success] = "Du er nå avmeldt presentasjonen."
@@ -17,7 +19,7 @@ class ParticipationsController < ApplicationController
 
   def create
     @participation = Participation.new(
-      :user => @current_user, 
+      :participle => @current_user,
       :presentation_id => params[:presentation_id]
     )
 

@@ -29,7 +29,7 @@ Given /^there (?:are|is an|is a) (past|upcoming|canceled|full) presentation(?:s)
             :password_confirmation => "password",
         )
 
-        presentation.participations.create :user => user
+        presentation.participations.create :participle => user
       end
     end
   end
@@ -65,7 +65,7 @@ Then /^(?:|I )should see information about "(.+)"$/i do |presentation_name|
   area = presentation.area.name
   date = I18n.l(presentation.presentation_date.to_date)
   time = I18n.l(presentation.presentation_date, :format => :time)
-  slots = presentation.guest_limit - presentation.users.size
+  slots = presentation.guest_limit - presentation.participations.size
 
   step %(I should see "#{presentation.corporation}")
   step %(I should see "#{area}")

@@ -12,7 +12,9 @@ Given /^there is a user with ((?:(?:(?:[^ ]+) "(?:[^"]+)"))(?:(?:, | and )(?:(?:
         :password_confirmation => "password",
     }.merge attributes
 
-    User.create! attributes
+    user = User.new attributes
+    user.skip_email_validation!
+    user.save!
   end
 end
 
