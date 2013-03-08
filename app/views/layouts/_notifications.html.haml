@@ -3,7 +3,7 @@
     .span12
       - if @current_user.is_a? User
         - @current_user.notifications.each do |notification|
-          %div.alert.alert-block.alert-notice
+          .alert.alert-block.alert-notice
             %button{ :type => "button", :class => "close"}
               = link_to notification_path(notification), {:method => :delete} do
                 &times
