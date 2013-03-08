@@ -8,3 +8,5 @@
     forgot_password: 'glemt-passord'
     reset_password: 'tilbakestill-passord'
     notifications: 'notifikasjoner'
+    registrate_card: 'registrer-kort'
+    forgot_card_password: 'glemt-kort-passord'
