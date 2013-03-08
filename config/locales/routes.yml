@@ -7,3 +7,4 @@
     users: 'brukere'
     forgot_password: 'glemt-passord'
     reset_password: 'tilbakestill-passord'
+    notifications: 'notifikasjoner'
