@@ -16,5 +16,5 @@ class Notification < ActiveRecord::Base
   belongs_to :notifiable, :polymorphic => true
   belongs_to :presentation
 
-  validates_presence_of :presentation_id, :presentation, :descritpion
+  validates_presence_of :notifiable_id, :notifiable_type, :notifiable, :presentation_id, :presentation, :descritpion
 end

@@ -1,28 +1,40 @@
 - title 'Innlogging'
 
 .row-fluid
+  .span12
+    %h2 Logg inn som
+
+    .alert.alert-block
+      :markdown
+        Både medlemmer av Studentersamfundet og de som ikke er medlemmer av Studentersamfundet kan delta på
+        bedriftspresentasjonene vi arrangerer. Man må derimot **velge hva man vil logge inn som**. Dersom du har [registrert
+        ditt medlemskap](#{registrate_card_path}) på internett, så kan du logge inn her med en gang. Er du ikke medlem av
+        Studentersamfundet kan du [opprette](#{new_user_path}) en bruker. Denne vil kun kunne brukes i sammenheng med
+        bedriftspresentasjonene.
+
+.row-fluid
   .span6
-    %h2 Logg inn som bruker
+    %h3 ikke medlem av Studentersamfundet
     = semantic_form_for User.new, :url => login_path, :html => { :class => "form-horizontal" } do |f|
       = f.inputs do
         = f.input :email, :input_html => { :value => @user_mail }
         = f.input :password, :required => true
       = f.actions do
         = f.action :submit, :label => "Logg inn", :button_html => { :id => "user_login" }
+    :markdown
+      [Ingen bruker? Opprett ny konto her!](#{new_user_path})
+
+      [Glemt passord?](#{forgot_password_users_path})
 
   .span6
-    %h2 Administratorlogin
+    %h3 medlem av Studentersamfundet
     = semantic_form_for Member.new(:mail => @member_mail), :url => login_path, :html => { :class => "form-horizontal" } do |f|
       = f.inputs do
         = f.input :mail
         = f.input :passord, :as => :password
       = f.actions do
         = f.action :submit, :label => "Logg inn", :button_html => { :id => "member_login" }
+    :markdown
+      [Registrer medlemskapet ditt elektronisk for å logge på!](#{registrate_card_path})
 
-%p
-  = link_to "Ingen bruker? Opprett ny konto her!", new_user_path
-
-%p
-  %a
-    = link_to forgot_password_users_path do
-      Glemt passord?
+      [Glemt passord til ditt medlemskap?](#{forgot_card_password_path})

@@ -30,6 +30,9 @@ Bedpres::Application.routes.draw do
   match '/login', :to => 'sessions#create', :via => :post
   match '/logout', :to => 'sessions#destroy', :via => :post
 
+  match '/registrate_card' => redirect('https://medlem.samfundet.no/account/regcard'), :as => :registrate_card
+  match '/forgot_card_password' => redirect('https://medlem.samfundet.no/account/lostpwd'), :as => :forgot_card_password
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
