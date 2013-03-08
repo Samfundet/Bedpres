@@ -3,9 +3,7 @@
     %tr
       %th Tittel
       %th Bedrift
-      %th Dato
-      %th Klokkeslett
-      %th Ledige Plasser
+      %th Tidspunkt
   - unless presentations.empty?
     - presentations.each do |presentation|
       %tr
@@ -14,11 +12,8 @@
         %td
           = presentation.corporation
         %td
-          = presentation.presentation_date.to_date
-        %td
-          = presentation.presentation_date.strftime("%H:%M")
-        %td
-          = presentation.guest_limit - presentation.users.size
+          %time{ :datetime => @promo.presentation_date.xmlschema }
+            = @promo.presentation_date.strftime("%d. %B %Y – %H:%M")
         - if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
           %td
             = render 'edit_button', :presentation => presentation
