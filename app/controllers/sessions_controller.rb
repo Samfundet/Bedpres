@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
 
       if member.nil?
         @member_mail = params[:member][:mail]
-        flash.now[:error] = "Du tastet inn feil brukernavn eller passord"
+        flash.now[:error] = "Du tastet inn feil brukernavn eller passord."
         render :new  
       else
         flash[:success] = "Du er nå logget inn."
@@ -36,7 +36,7 @@ class SessionsController < ApplicationController
         user = User.authenticate params[:user][:email], params[:user][:password]
         if user.nil?
           @user_mail = params[:user][:email]
-          flash.now[:error] = "Du tastet inn feil brukernavn eller passord"
+          flash.now[:error] = "Du tastet inn feil brukernavn eller passord."
           render :new
         else
           flash[:success] = "Du er nå logget inn."
@@ -44,7 +44,7 @@ class SessionsController < ApplicationController
           redirect_to root_path
         end
       rescue EmailNotValidatedError
-        flash.now[:error] = "Du må validere eposten din før du kan logge inn"
+        flash.now[:error] = "Du må validere eposten din før du kan logge inn."
         render :new
       end
     end
