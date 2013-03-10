@@ -1,9 +1,9 @@
 module PresentationHelper
 
-  def css_status(presentation)
+  def css_status presentation
     if presentation.canceled
       "error"
-    elsif ( @current_user && presentation.participants.include?(@current_user) )
+    elsif @current_user && @current_user.presentations.include?( presentation )
       "success"
     end
   end
