@@ -16,7 +16,7 @@
         %td.hidden-phone
           = presentation.area
         %td.hidden-phone.hidden-tablet
-          = "#{presentation.guest_limit - presentation.participants.size} / #{presentation.guest_limit}"
+          = "#{presentation.guest_limit - presentation.participations.size} / #{presentation.guest_limit}"
         %td
           %time{ :datetime => @promo.presentation_date.xmlschema }
             = @promo.presentation_date.strftime("%d. %B %Y – %H:%M")

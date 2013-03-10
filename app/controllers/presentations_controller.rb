@@ -3,9 +3,12 @@ class PresentationsController < ApplicationController
   include NotificationHelper
   
   def index
-    @upcoming_presentations = Presentation.upcoming
-    @past_presentations = Presentation.past
+    @upcoming_presentations = Presentation.upcoming.includes(:area, :participations)
+    @past_presentations = Presentation.past.includes(:area, :participations)
     @promo = @upcoming_presentations.where("canceled = ?", false).first
+
+    # Eagerly load the relation to avoid N queries to check if the user is participating in each presentation.
+    @current_user.presentations.to_a if @current_user
   end
 
   def new
