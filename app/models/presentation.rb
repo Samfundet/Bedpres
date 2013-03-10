@@ -49,10 +49,11 @@ class Presentation < ActiveRecord::Base
     end
   end
 
-  has_many :users,   :through => :participations, :source => :user,   :conditions => "participations.participle_type = 'User'"
-  has_many :members, :through => :participations, :source => :member, :conditions => "participations.participle_type = 'Member'"
-
   def participants
-    users + members
+    grouped_participations = participations.group_by &:participle_type
+
+    grouped_participations.map do |type, participations|
+      type.constantize.find participations.map &:participle_id
+    end.flatten
   end
 end
