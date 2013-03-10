@@ -11,16 +11,16 @@
             = @presentation.presentation_date.strftime("%d. %B %Y – %H:%M")
 
 .row-fluid
-  .span8
+  .span9
     :markdown
       #{@presentation.description}
     - if permitted_to? :create, :participations
       %p
         - if @presentation.participants.include? @current_user
-          = link_to "Meld meg av!", presentation_participation_path(@presentation, participation(@presentation, @current_user)), :method => :delete
+          = link_to "Meld meg av!", presentation_participation_path(@presentation, participation(@presentation, @current_user)), :method => :delete, :class => "btn btn-primary"
         - elsif @current_user
-          = link_to "Meld meg på", presentation_participations_path(@presentation), :method => :post
-  .span4
+          = link_to "Meld meg på", presentation_participations_path(@presentation), :method => :post, :class => "btn btn-primary"
+  .span3
     .well
       %ul.snappy
         - if @current_user.respond_to? :role_symbols_with_hierarchy and @current_user.role_symbols_with_hierarchy.include? :presentation_administrator
