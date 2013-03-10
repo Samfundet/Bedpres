@@ -8,7 +8,7 @@
       %th Tidspunkt
   - unless presentations.empty?
     - presentations.each do |presentation|
-      %tr
+      %tr{ :class => css_status(presentation)  }
         %td
           = link_to presentation.with_prefix, presentation
         %td
