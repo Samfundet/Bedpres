@@ -15,6 +15,8 @@
 class Participation < ActiveRecord::Base
   attr_accessible :participle, :presentation, :presentation_id
   belongs_to :participle, :polymorphic => true
+  belongs_to :user,   :class_name => "User",   :foreign_key => "participle_id"
+  belongs_to :member, :class_name => "Member", :foreign_key => "participle_id"
   belongs_to :presentation
 
   validates_presence_of :participle_id, :participle_type, :participle, :presentation_id, :presentation

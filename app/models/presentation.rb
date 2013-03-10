@@ -49,7 +49,10 @@ class Presentation < ActiveRecord::Base
     end
   end
 
+  has_many :users,   :through => :participations, :source => :user,   :conditions => "participations.participle_type = 'User'"
+  has_many :members, :through => :participations, :source => :member, :conditions => "participations.participle_type = 'Member'"
+
   def participants
-    participations.map &:participle
+    users + members
   end
 end
