@@ -20,6 +20,9 @@
           = link_to "Meld meg av!", presentation_participation_path(@presentation, participation(@presentation, @current_user)), :method => :delete, :class => "btn btn-primary"
         - elsif @current_user
           = link_to "Meld meg på", presentation_participations_path(@presentation), :method => :post, :class => "btn btn-primary"
+    - else
+      :markdown
+        [Logg inn](#{login_path}) for å melde deg på.
   .span3
     .well
       %ul.snappy
