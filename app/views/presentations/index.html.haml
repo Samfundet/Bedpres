@@ -8,7 +8,7 @@
             %h3
               = "#{@promo.corporation} – #{@promo.area} –"
               %time{ :datetime => @promo.presentation_date.xmlschema }
-                = @promo.presentation_date.strftime("%d. %B %Y – %H:%M")
+                = l @promo.presentation_date, :format => "%d. %B %Y – %H:%M"
                 
   .row-fluid
     .span12
