@@ -4,7 +4,7 @@
     = f.input :corporation
     = f.input :description, :input_html => { :class => "input-xxlarge" }
     = f.input :guest_limit
-    = f.input :presentation_date, :as => :string, :input_html => { :class => "datetime_select",  :value => I18n.l(f.object.presentation_date || (Time.now + 1.hour), :format => :formtastic) }
+    = f.input :presentation_date, :as => :string, :input_html => { :class => "datetime_select",  :value => I18n.l(f.object.presentation_date || (Time.zone.now + 1.hour), :format => :formtastic) }
     = f.input :area
     = f.input :image
   = f.actions do
