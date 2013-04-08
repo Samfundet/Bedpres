@@ -1,5 +1,8 @@
 language: ruby
 bundler_args: --without development
+before_script:
+  - ln -s database.yml.example config/database.yml
+  - rake db:test:load
 rvm:
   - 1.9.2
   - 1.9.3
