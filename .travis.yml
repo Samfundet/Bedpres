@@ -2,6 +2,7 @@ language: ruby
 bundler_args: --without development
 before_script:
   - ln -s database.yml.example config/database.yml
+  - ln -s secret_token.rb.example config/initializers/secret_token.rb
   - rake db:test:load
 rvm:
   - 1.9.2
