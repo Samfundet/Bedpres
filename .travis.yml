@@ -1,5 +1,5 @@
 language: ruby
-bundler_args: --without development
+bundler_args: --without development production assets
 before_script:
   - ln -s database.yml.example config/database.yml
   - ln -s secret_token.rb.example config/initializers/secret_token.rb
