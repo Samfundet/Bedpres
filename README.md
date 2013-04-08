@@ -1,5 +1,7 @@
 # Bedriftspresentasjoner på Samfundet
 
+[![Build Status](https://travis-ci.org/Samfundet/Bedpres.png)](https://travis-ci.org/Samfundet/Bedpres)
+
 Påmeldingssystem for bedriftspresentasjoner på Samfundet. Ingen ytterligere dokumentasjon er tilgjengelig.
 
 ## Bidragsytere
