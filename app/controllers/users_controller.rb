@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       flash[:success] = "#{@user.email} er nå validert."
     rescue HashMismatchError
       flash[:failure] = "Verifikasjonslenken stemmer ikke overens med denne brukeren"
-    rescue Exception
+    else
       flash[:failure] = "All work and no play makes johnny a dull boy."
     end
     redirect_to root_path
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
           mg-web@samfundet.no.
         MSG
         render :forgot_password
-      rescue Exception
+      else
         flash.now[:error] = "En feil har forekommet og passordbytte har ikke blitt fullført."
         render :forgot_password
       end
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
     rescue HashMismatchError
       flash.now[:error] = "Passordet du skrev inn stemmer ikke. Passordet har ikke blitt endret."
       render :reset_password
-    rescue Exception
+    else
       flash.now[:error] = "Noe gikk galt. Passordet har ikke blitt endret."
       render :reset_password
     end
