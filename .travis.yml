@@ -5,5 +5,4 @@ before_script:
   - ln -s secret_token.rb.example config/initializers/secret_token.rb
   - rake db:test:load
 rvm:
-  - 1.9.2
   - 1.9.3
