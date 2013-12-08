@@ -71,15 +71,20 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
     @hash = params[:hash]
 
-    begin
-      @user.reset_password!(@hash, params[:user][:password])
-      flash[:success] = "Passordet har blitt endret. Du kan nå logge inn med ditt nye passord."
-      redirect_to login_path
-    rescue HashMismatchError
-      flash.now[:error] = "Passordet du skrev inn stemmer ikke. Passordet har ikke blitt endret."
-      render :reset_password
-    rescue
-      flash.now[:error] = "Noe gikk galt. Passordet har ikke blitt endret."
+    if params[:user][:password] == params[:user][:password_confirmation]
+      begin
+        @user.reset_password!(@hash, params[:user][:password])
+        flash[:success] = "Passordet har blitt endret. Du kan nå logge inn med ditt nye passord."
+        redirect_to login_path
+      rescue HashMismatchError
+        flash.now[:error] = "Passordet du skrev inn stemmer ikke. Passordet har ikke blitt endret."
+        render :reset_password
+      rescue
+        flash.now[:error] = "Noe gikk galt. Passordet har ikke blitt endret."
+        render :reset_password
+      end
+    else
+      flash.now[:error] = "Passordene du skrev inn stemmer ikke overens med hverandre."
       render :reset_password
     end
   end
