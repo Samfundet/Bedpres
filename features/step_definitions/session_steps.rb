@@ -43,5 +43,5 @@ Then /^I should be able to log in with "(.*?)" and "(.*?)"$/ do |email, password
 end
 
 Then /^I should not be able to log in with "(.*?)" and "(.*?)"$/ do |email, password|
-  expect { step %(I should not be able to log in with "#{email}" and "#{password}") }.to raise_error
+  expect { step %(I should be able to log in with "#{email}" and "#{password}") }.to raise_error
 end
