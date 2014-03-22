@@ -108,13 +108,17 @@ class User < ActiveRecord::Base
     end
   end
 
-  def reset_password!(hash, password)
-    if check_hash(hash)
-      @password = password
-      save :validate => false
-      password_recoveries.delete_all
+  def reset_password!(hash, password, password_confirmation)
+    if password == password_confirmation
+      if check_hash(hash)
+        @password = password
+        save :validate => false
+        password_recoveries.delete_all
+      else
+        raise HashMismatchError
+      end
     else
-      raise HashMismatchError
+      raise PasswordMismatchError
     end
   end
 
