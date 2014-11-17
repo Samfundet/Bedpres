@@ -6,7 +6,7 @@
 source 'http://rubygems.org'
 
 # Rails. Duh.
-gem 'rails', '3.2.20'
+gem 'rails', '3.2.21'
 
 # Haml is a templating language. It compiles to HTML.
 gem 'haml'
